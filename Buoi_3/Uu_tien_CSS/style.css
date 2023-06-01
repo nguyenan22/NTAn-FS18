@@ -1,0 +1,20 @@
+/* #title{
+    color: blue !important
+
+} */
+#title{
+    color:orange;
+}
+#title.heading{
+    color: green;
+}
+
+#css1{
+    color: gray;
+}
+.title1{
+    color: pink;
+}
+*{
+    color:blueviolet 
+}

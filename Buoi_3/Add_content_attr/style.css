@@ -1,0 +1,6 @@
+li::after{
+    content: " test attr";
+}
+.box::after{
+    content: attr(data-title)
+}
