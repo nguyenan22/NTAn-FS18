@@ -1,0 +1,13 @@
+.box {
+    width: 500px;
+    height: 500px;
+    background-image: url(https://cdn.sforum.vn/sforum/wp-content/uploads/2018/11/3-8.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border: 20px dashed purple;
+    padding: 20px;
+    box-sizing: border-box;
+    background-origin: border-box
+
+    
+}
