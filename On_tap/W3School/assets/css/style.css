@@ -322,6 +322,9 @@ br{
     margin: 0 0 16px 0;
     font-size: 18px;
 }
+#content .detail i{
+    width: 30px;
+}
 #content .detail-fill{
     float: left;
     width: calc(100%/2);
@@ -329,28 +332,34 @@ br{
 #content .fill{
     float: left;
     width: calc(100%/2);
+    font-size: 15px;
 }
 #content .fill-content{
     margin: 0 -16px 8px -16px;
     padding: 0 8px;
-    display: table;
+    display: flex;
+    justify-content: space-between;
+    
 }
 #content .fill-form{
     padding:0 8px;
     margin: 0;
     float: left;
-    width: calc(100%/2);
+    width: 50
+    /* line-height: 1.5; */
 }
 #content .text{
-    width: 100%;
+    /* width: 100%; */
     border: 1px solid #ccc;
     padding: 8px;
+    line-height: 22.5px;
 }
 #content .text-mess{
     width: 100%;
     border: 1px solid #ccc;
     padding: 8px;
     font-family: "Lato", sans-serif;
+    line-height: 22.5px;
 }
 #content .btn-contact{
     padding: 8px 16px;
