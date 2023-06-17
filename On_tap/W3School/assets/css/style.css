@@ -160,6 +160,10 @@ html{
 br{
     line-height: 1.5;
 }
+#content .content-t{
+    width: 100%;
+    background-color: black;
+}
 #content .content-tour{
     background-color: black;
     max-width: 800px;
@@ -273,6 +277,10 @@ br{
     text-align: center;
     border: none;
 }
+#content .btn-img-city:hover {
+    background-color: #ccc;
+    color:black
+}
 #content .contact{
 
     max-width: 800px;
@@ -302,13 +310,77 @@ br{
 }
 #content .detail-contact{   
     padding: 32px 0;
+    display: block;
+    font-family: "Lato", sans-serif;
+
+    /* display: table; */
 
 }
 #content .detail{
     float: left;
     width: calc(100%/2);
+    margin: 0 0 16px 0;
+    font-size: 18px;
 }
 #content .detail-fill{
     float: left;
     width: calc(100%/2);
+}
+#content .fill{
+    float: left;
+    width: calc(100%/2);
+}
+#content .fill-content{
+    margin: 0 -16px 8px -16px;
+    padding: 0 8px;
+    display: table;
+}
+#content .fill-form{
+    padding:0 8px;
+    margin: 0;
+    float: left;
+    width: calc(100%/2);
+}
+#content .text{
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+#content .text-mess{
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-family: "Lato", sans-serif;
+}
+#content .btn-contact{
+    padding: 8px 16px;
+    margin: 16px 0;
+    float: right;
+    cursor: pointer;
+    background-color: black;
+    color:white;
+    border: none;
+
+}
+#content .btn-contact:hover{
+    background-color: #ccc;
+    color: black;
+}
+#content .img-last-content{
+    vertical-align: middle;
+    width: 100%;
+    filter: grayscale(50%);  
+}
+#footer{
+    text-align: center;
+    padding: 64px 16px;
+    opacity: 0.6;
+    font-family:"Lato", sans-serif; ;
+}
+#footer i{
+    font-size: 24px;
+}
+#footer p{
+    margin: 15px 0;
+    line-height: 22.5px;
 }
