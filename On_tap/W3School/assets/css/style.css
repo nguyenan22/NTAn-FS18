@@ -345,11 +345,8 @@ br{
     padding:0 8px;
     margin: 0;
     float: left;
-    width: 50
-    /* line-height: 1.5; */
 }
 #content .text{
-    /* width: 100%; */
     border: 1px solid #ccc;
     padding: 8px;
     line-height: 22.5px;
@@ -392,4 +389,93 @@ br{
 #footer p{
     margin: 15px 0;
     line-height: 22.5px;
+}
+
+
+/* Buy ticket */
+.ticket-modal{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding-top: 100px;
+    display: none;
+}
+.animate-ticket{
+    position: relative;
+    max-width:calc(100%/3);
+    margin: auto;
+    /* background-color:#009688; */
+    position: relative;
+    
+}
+.container{
+    background-color:#009688 ;
+    color:white;
+    text-align: center;
+    padding: 42px 16px;
+    letter-spacing: 4px;
+    font-family: "Segoe UI",Arial,sans-serif;
+    /* font-size: 30px; */
+}
+.container-x{
+    font-size: 24px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.fa-sharps{
+    padding: 10px;
+}
+.container-heading{
+    font-size: 30px;
+    font-weight: 400;
+}
+.container-x:hover{
+    background-color: #ccc;
+    color: black ;
+}
+.content-ticket{
+    background-color: white;
+    color: black;
+    padding: 0 15px;
+    font-size: 15px;
+}
+.ticket-p{
+    padding: 15px 0;
+}
+.ticket-text{
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 8px;
+}
+.btn-pay{
+    margin: 16px 0;
+    padding: 16px;
+    background-color: #009688;
+    width: 100%;
+    border: none;
+    color: white;
+}
+.btn-pay:hover{
+    background-color: #ccc;
+    color: black;
+}
+.footer-ticket  .footer-btn{
+    margin: 8px 0 16px;
+    padding: 8px 16px;
+    background-color: red;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+.footer-ticket .footer-btn:hover{
+    background-color: #ccc;
+    color: black;
+}
+.footer-ticket .footer-btn-p{
+    float: right;
+
 }
