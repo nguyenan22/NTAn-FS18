@@ -55,6 +55,7 @@
                   </div>
                 </div>
             </div>
+            <div class="content-t">
             <div class="content-tour">
                 <div class="tour-date">
                     <h2 class="tour-date-heading">tour dates</h2>
@@ -109,10 +110,12 @@
                 <div class="clear"></div>
             </div>
             </div>
+        </div>
             <div class="contact">
                 <div class="contact-content">
                     <h2 class="contact-heading">contact</h2>
                     <p class="contact-p">Fan? Drop a note!</p>
+                    <div class="clear"></div>
                     <div class="detail-contact">
                         <div class="detail">
                             <i class="fa-solid fa-location-dot"></i>  Chicago, US
@@ -121,19 +124,57 @@
                             <br>
                             <i class="fa-solid fa-envelope"></i> Email: mail@mail.com       
                         </div>
-                        <div class="detail-fill">
                             <div class="fill">
-                                <input type="text" placeholder="Name">
-                                <input type="text" placeholder="Email">
-                            </div>
-                            <input type="text" placeholder="Message">
-                            <button>SEND</button>
+                                <div class="fill-content">
+                                    <div class="fill-form">
+                                    <input class="text" type="text" placeholder="Name" required="Name">
+                                    </div>
+                                    <div class="fill-form">
+                                    <input class="text" type="text" placeholder="Email" required="Email">
+                                    </div>
+                                </div>    
+                            <input class="text-mess" type="text" placeholder="Message">
+                            <button class="btn-contact">SEND</button>
+                        </div>
+                        <div class="clear"></div>
                         </div>
                     </div>
                 </div>
+                    <img class="img-last-content" src="./assets/img/map.jpg" alt="">
             </div>
-        </div>
+            <footer id="footer"> 
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-square-snapchat"></i>
+                <i class="fa-brands fa-pinterest"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-linkedin"></i>
+                <p class="footer-p">Powered by <a class="footer-link" href="">w3.css</a></p>
+            </footer>
+        
     </div>
-
+    <!-- Buy ticket page -->
+    <div class="ticket-modal">
+        <div class="animate-ticket" >
+            <header class="container">
+                <h2 class="container-heading"><i class="fa-solid fa-bag-shopping"></i>Tickets</h2>
+                <span class="container-x"><i class="fa-sharps fa-solid fa-xmark"></i></span>
+            </header>
+            <div class="content-ticket">
+                <p class="ticket-p">
+                    <label for=""><i class="fa-solid fa-cart-shopping"></i> Tickets, $15 per person</label>
+                </p>
+                <input class="ticket-text" type="text" placeholder="How many?" re>
+                <p class="ticket-p">
+                    <label for=""><i class="fa-solid fa-address-book"></i>Send to</label>
+                </p>
+                 <input class="ticket-text"  type="text" placeholder="Enter email">
+                <button class="btn-pay">PAY<i class="fa-solid fa-check"></i></button>
+                <footer class="footer-ticket">
+                    <button class="footer-btn">Close <i class="fa-sharp fa-solid fa-xmark"></i></i></button>
+                    <p class="footer-btn-p">Need <a href="">help</a></p>
+            </footer>
+        </div>
+        </div>
 </body>
 </html>
