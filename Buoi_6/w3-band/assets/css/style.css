@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: "Lato", sans-serif;
+    line-height: 1.5;
+#header{
+    width: 100vw;
+    height: 46.5px;
+    background-color: black;
+
+}
+#nav li{
+    display: inline-block;
+    position: relative;
+    
+}
+#nav li:hover a{
+    color: black;
+    background-color:#ccc;
+    
+}
+#nav a{
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    line-height: 46.5px; 
+    padding: 15.5px 24px;
+    font-family: "Lato", sans-serif;
+}
+.subNav{
+    position: absolute;
+}
+#nav .subNav{
+
+}
+/* #nav>li:hover>a, #nav ,.subNav>li:hover>a{
+    color: black;
+
+} */
+#slider{
+
+}
+#content {
+
+}
+#footer{
+
+}
