@@ -89,7 +89,40 @@ console.log('test JS')
 // let a;
 //     console.log(a)
 
-age=18;
-let canBuyAlcohol=18;
-let result=canBuyAlcohol <= age? console.log("dc nhậu") : console.log("k dc nhậu")
-    
+// age=18;
+// let canBuyAlcohol=18;
+// let result=canBuyAlcohol <= age? console.log("dc nhậu") : console.log("k dc nhậu")
+// let coures = [
+//     backenkend = {
+//         name: 'java',
+//         count:'5$'
+//     },
+//     {
+//         name: 'PHP',
+//         count:'5$'
+//     },
+//     frontend = {
+//         name: 'reactjs'
+//     }
+// ]
+// console.log("Output1:",frontend.name)
+// console.log("Output2:",coures[1].name)
+// (function result(number1,number2) {
+//     return console.log(number1*number2)
+// })(10,20)
+// // console.log(result(10,20))
+// const odds=  (number) => {
+//     let result=(number % 2 ===0)? "số chẵn" : "số lẻ"
+//     return console.log(result)
+// }
+// odds(22)
+// const checkValue=(value1,value2) =>{
+//     var check=(value1>value2)? "value1 lớn nhất" : "value2 lớn nhất"
+//     return console.log(check)
+// }
+
+// checkValue(3,3)
+const luythua=(a,n) =>{
+    return console.log(`Lũy thừa ${a}^${n}:`, a**n)
+}
+luythua(2,5)
