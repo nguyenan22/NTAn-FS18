@@ -122,7 +122,15 @@ console.log('test JS')
 // }
 
 // checkValue(3,3)
-const luythua=(a,n) =>{
-    return console.log(`Lũy thừa ${a}^${n}:`, a**n)
+// const luythua=(a,n) =>{
+//     return console.log(`Lũy thừa ${a}^${n}:`, a**n)
+// }
+// luythua(2,5)
+const positinegative=(number) =>{
+    if (number === 0) return console.log("không âm, không dương")
+    else {
+        var result=(number > 0) ? "số dương":"số âm";
+    }
+    return console.log(result)
 }
-luythua(2,5)
+positinegative(-1)
