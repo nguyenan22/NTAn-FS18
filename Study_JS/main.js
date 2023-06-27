@@ -126,11 +126,61 @@ console.log('test JS')
 //     return console.log(`Lũy thừa ${a}^${n}:`, a**n)
 // }
 // luythua(2,5)
-const positinegative=(number) =>{
-    if (number === 0) return console.log("không âm, không dương")
-    else {
-        var result=(number > 0) ? "số dương":"số âm";
-    }
-    return console.log(result)
+// const positinegative=(number) =>{
+//     if (number === 0) return console.log("không âm, không dương")
+//     else {
+//         var result=(number > 0) ? "số dương":"số âm";
+//     }
+//     return console.log(result)
+// }
+// positinegative(-1)
+// let course="java,python,java";
+// const lastName="An";
+// var random="12"
+// console.log(course,lastName,random)
+// typeof: kiem tra kieu du lieu
+
+// console.log(course.indexOf("java",5))
+// console.log(course.length)
+// console.log(course.lastIndexOf("java",0))
+// console.log(course.slice(5,11))
+// console.log(course.replace("java","react"))
+// console.log(course.toLocaleUpperCase())
+// console.log(lastName.toLocaleLowerCase())
+// console.log(course.split(","))
+
+
+// let le = (strings) => {
+//     return strings.length
+// }
+// console.log(le("Nguyen Truong An"))
+
+// let upcase= (strings) =>{
+//   if (strings === strings.toLocaleUpperCase()){
+//     return console.log("giữ nguyên chữ hoa",strings)
+//   }
+//   else {
+//     return console.log("chữ thường thành hoa",strings.toLocaleUpperCase())
+//   }
+// }
+// upcase("test")
+// upcase("TEST")
+// let findIndexString=(strings,find)=>{
+//     return strings.indexOf(find)
+// }
+// console.log(findIndexString("truong nguyen an","an"))
+
+
+// toString:chuyển sang String
+// let checktype=(value)=>{
+//     return resutl=(typeof value==="number")? value:"không phải giá trị số"
+// }
+// console.log(checktype("một"))
+// let a=1;
+// console.log(typeof a)
+let a=5
+let b=6
+if (!(a>b)) {
+    console.log(a,b)
 }
-positinegative(-1)
+console.log("1")
