@@ -137,12 +137,101 @@
     color: black;
 }
 #content {
-    /* margin: 80px 680px; */
+    /* padding: 0 200px; */
 }
 #content h1{
     text-align: center;
     text-transform: uppercase;
 }
-#content p{
+#content .content-p{
     text-align: center;
+}
+.our-service{
+    display: flex;
+    flex-direction: row;
+}
+.furniture-content{
+    text-align: center;
+}
+/* .furniture-content img{
+    filter: grayscale(100%);
+} */
+.furniture-content h2{
+    text-transform: uppercase;
+}
+.furniture-content button{
+    text-transform: uppercase;
+    background-color: orange;
+    border: none;
+    padding: 10px;
+}
+.furniture-content button:hover{
+    background-color: #ccc;
+}
+.furniture-content button:hover>a{
+    color:black
+}
+.furniture-content button>a{
+    text-decoration: none;
+    color: white;
+}
+.about-us-content {
+    display: flex;
+    flex-direction: row;
+    background-color: orange;
+    padding: 100px 100px;
+    margin: 20px 0;
+}
+.about-us h2{
+    text-transform: uppercase;
+    color: white;
+}
+.about-us .about-us-p{
+    text-align: left;
+    padding: 20px 120px 20px 0;
+    
+}
+.about-us .about-us-btn{
+    text-transform: uppercase;
+    background-color: black;
+    border: none;
+    padding: 10px;
+}
+.about-us button:hover{
+    background-color: #ccc;
+}
+.about-us button:hover>a{
+    color:black
+}
+.about-us button>a{
+    text-decoration: none;
+    color:white;
+}
+.about-us-img img{
+    max-width: 550px;
+    max-height: 450px;
+    padding: 10px 50px;
+}
+.our-furnitures{
+    margin: 100px ;
+}
+.our-furniture-h2{
+    text-transform: uppercase;
+    text-align: center;
+}
+.our-furniture-p{
+    text-align: center;
+}
+.our-furnitures-img-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.our-furniture-img-content-h2{
+    text-transform: uppercase;
+    color: orange;
+}
+.our-furniture-img-content-div{
+    margin-left: 100px;
 }
