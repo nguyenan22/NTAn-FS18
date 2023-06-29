@@ -178,9 +178,69 @@ console.log('test JS')
 // console.log(checktype("một"))
 // let a=1;
 // console.log(typeof a)
-let a=5
-let b=6
-if (!(a>b)) {
-    console.log(a,b)
+// let a=5
+// let b=6
+// if (!(a>b)) {
+//     console.log(a,b)
+// }
+// console.log("1")
+// let num = 2  --> true
+// let num2 = num/'g' --> false
+// let num3 = NaN --> false
+// console.log(typeof (num/'g'));
+// let a=5
+// let b=6
+// let num=NaN
+// var result=(number)=>{
+//     if ((typeof number =="number") && (number != NaN)){
+//             return "là số"
+//     }
+//     else {
+//         return "không là số"
+// }
+// }
+// console.log(result(num))
+// }
+// const result=(number)=>{
+//     if (isNaN(number)) {
+//         return "not number"
+//     }
+//     else{
+//         return "number"
+//     }
+// }
+// console.log(result(1/2))
+const result=(number)=>{
+    if ((typeof number =="number") && (!isNaN(number))){
+        return "number"
+    }
+    else {
+        return "not number"
+    }
 }
-console.log("1")
+console.log(result(2/4))
+// console.log(typeof(1/'6'))
+// console.log(1/'6')
+// let arr=[1,2,3,4,5,5]
+// pop xóa phần tử cuối mảng
+// join chuyển mảng thành chuổi có thể thêm ký tự ngăn cách
+// shift xóa phần từ ở đầu mảng
+// push thêm phần tử vào cuối mảng
+// unshift thêm phần tử vào đầu mảng
+// arr.push(1)
+// console.log(arr)
+// splice xóa --> trả về các phần tử xóa, thêm các phần tử tại các vị trí chỉ định
+// concat nối mảng với nhau
+// arr.unshift("truong an","troi mua")
+// arr.splice(0,0,1,3)
+// console.log(arr)
+const joinWithCharacter= (array,character) => {
+   result= array.join(character)
+    return result
+}
+console.log(joinWithCharacter(["MEC","TOY","MAZ"]," - "))
+
+const getFirstElement =(array) => {
+    return array[0]
+}
+console.log(getFirstElement(['Monkey', 'Tiger', 'Elephant']))
