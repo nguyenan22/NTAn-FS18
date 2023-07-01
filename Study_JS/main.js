@@ -210,15 +210,15 @@ console.log('test JS')
 //     }
 // }
 // console.log(result(1/2))
-const result=(number)=>{
-    if ((typeof number =="number") && (!isNaN(number))){
-        return "number"
-    }
-    else {
-        return "not number"
-    }
-}
-console.log(result(2/4))
+// const result=(number)=>{
+//     if ((typeof number =="number") && (!isNaN(number))){
+//         return "number"
+//     }
+//     else {
+//         return "not number"
+//     }
+// }
+// console.log(result(2/4))
 // console.log(typeof(1/'6'))
 // console.log(1/'6')
 // let arr=[1,2,3,4,5,5]
@@ -234,13 +234,72 @@ console.log(result(2/4))
 // arr.unshift("truong an","troi mua")
 // arr.splice(0,0,1,3)
 // console.log(arr)
-const joinWithCharacter= (array,character) => {
-   result= array.join(character)
-    return result
-}
-console.log(joinWithCharacter(["MEC","TOY","MAZ"]," - "))
+// const joinWithCharacter= (array,character) => {
+//    result= array.join(character)
+//     return result
+// }
+// console.log(joinWithCharacter(["MEC","TOY","MAZ"]," - "))
 
-const getFirstElement =(array) => {
-    return array[0]
+// const getFirstElement =(array) => {
+//     return array[0]
+// }
+// console.log(getFirstElement(['Monkey', 'Tiger', 'Elephant']))
+// let gioiTinh="Sex"
+// let nghe="career"
+// let info={ 
+//     lastName:"An",
+//     firstName:"Nguyen",
+//     course:"FullStack",
+//     "family-name":"TAn",
+//     [gioiTinh]:"Male"
+// }
+// info.time="6 months"
+// info["a-g-e"]=27
+// info[nghe]="dev"
+// console.log(info)
+// console.log(info[gioiTinh])
+// let coure = [
+//     backenkend= [{
+//         name: 'java',
+//         count:'5$'
+//     },
+//     {
+//         name: 'PHP',
+//         count:'5$'
+//     }],
+//     frontend= {
+//         name: 'reactjs'
+//     } 
+// ]
+// console.log(coure[0][0].name,coure[1].name,coure[0][1].name)
+// let coures = {
+//     backenkend: [{
+//         name: 'java',
+//         count:'5$'
+//     },
+//     {
+//         name: 'PHP',
+//         count:'5$'
+//     }],
+//     frontend: {
+//         name: 'reactjs'
+//     } 
+// }
+// console.log(coures.backenkend[1].name)
+
+// localStorage.setItem("lastName","An")
+// let info={ 
+//     lastName:"An",
+//     firstName:"Nguyen",
+//     course:"FullStack",
+//     "family-name":"TAn",
+// }
+// localStorage.setItem("infoName",JSON.stringify(info))
+// console.log(JSON.parse(localStorage.getItem("infoName")))
+// let date=new Date
+var date=new Date
+function nextYear() {
+    return date.getFullYear() +1
 }
-console.log(getFirstElement(['Monkey', 'Tiger', 'Elephant']))
+console.log(nextYear)
+console.log(date)
