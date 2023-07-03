@@ -342,8 +342,10 @@
     position: relative;
     /* padding: 0 100px ; */
     background-image: url(/assets/img/rustic-vegan-AwOG1tC5buE-unsplash_\(1\).png);
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%;
-    height: 700px
+    height: 1100px
 }
 .contact-us{
     /* padding: 0 100px ; */
@@ -353,7 +355,7 @@
     right: 0;
     left:0;
     top: 0;
-    bottom: 0;
+    /* bottom: 0; */
 
 }   
 .contact-us h2{
@@ -411,4 +413,86 @@
 .send-contact:hover a{
     color:black;
     font-weight: bold;
+}
+.designtogether{
+    /* padding: 0 100px ; */
+    position: absolute;
+    background-color: rgba(53, 47, 50, 0.93);
+    /* background-color: rgba(255,182,7,1.00); */
+    right: 0;
+    left:0;
+    bottom: 0px;
+    height:387px ;
+}   
+.designtogether-content{
+    margin: 70px 100px;
+    color: white;
+}
+.design{
+    float: left;
+    width: calc(100%/4);
+}
+.design h2{
+    margin-bottom: 30px;
+}
+.design-content-detail{
+    padding-right: 80px;
+}
+.design-content-detail h2{
+    font-size: 36px;
+    font-weight: bold;
+}
+.let-us-help-you{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.information{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.information li{
+    list-style-type: none;
+}
+.information li>a{
+    color: white;
+    text-decoration: none;
+}
+.our-design{
+    padding-left: 90px;
+}
+.button-sub{
+    position: absolute;
+    bottom: 20px;
+    right:100px;
+    width: 600px;
+    border-bottom: 2px solid #ccc;
+}
+.button-sub input{
+    width: 530px;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0px solid;
+    /* border-bottom: 2px solid #ccc; */
+}
+.button-sub input:focus{
+    outline: none;
+    color: white;
+}
+.button-sub button{
+    background-color:rgba(255, 255, 255, 0);
+    border: none;
+}
+.button-sub button>a:hover{
+    color: orange;
+}
+.button-sub button>a{
+    text-decoration: none;
+    color: white;
+}
+#footer{
+    text-align: center;
+}
+#footer .logo{
+    margin:30px 0;
+    font-size: 30px;
+    color: black;
 }
