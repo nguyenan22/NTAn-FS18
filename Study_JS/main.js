@@ -297,9 +297,101 @@ console.log('test JS')
 // localStorage.setItem("infoName",JSON.stringify(info))
 // console.log(JSON.parse(localStorage.getItem("infoName")))
 // let date=new Date
-var date=new Date
-function nextYear() {
-    return date.getFullYear() +1
+// var date=new Date
+// function nextYear() {
+//     return date.getFullYear() +1
+// }
+// console.log(nextYear)
+// console.log(date)
+// let checkNumber=(value) =>{
+//     if ((value % 3 == 0) && (value % 5==0)){
+//         return `chia hết cho 3 và 5`}
+//     else if (value%3==0) {
+//         return `chia hết cho 3`}
+//     else if (value%5==0) {
+//         return `chia hết cho 5`
+//     }
+//     else {
+//         return `không chia hết cho 3 và 5`
+//     }
+//     }
+// console.log(checkNumber(30))
+// switch(number){
+//     case 2:
+//         console.log('dây là số 2')
+//         // continue
+//     break;
+//     default:
+//         console.log('day là default')
+//         break;
+// }
+// let day= new Date
+// console.log(day.getDate(),day.getDay(),day.getMonth())
+// switch(day.getDay()+1){
+//     case 2:
+//         console.log("hôm nay là thứ 2")
+//         break;
+//     case 3:
+//         console.log("hôm nay là thứ 3")
+//         break;
+//     case 4:
+//         console.log("hôm nay là thứ 4")
+//         break;
+//     case 5:
+//         console.log("hôm nay là thứ 5")
+//         break;
+//     case 6:
+//         console.log("hôm nay là thứ 6")
+//         break;
+//     case 7:
+//         console.log("hôm nay là thứ 7")
+//         break;
+//     case 8:
+//         console.log("hôm nay là thứ cn")
+//         break;
+//     default:
+//         console.log("không phải là ngày trong tuần")
+// }
+// for (let i=0;i<11;i+=2) {
+//     if (i%2===0){
+//         console.log(`${i} chia hết cho 2`)
+//     }
+// }
+
+// let getRandNumbers=(min,max,lenght)=>{
+//     var arr=[]
+//     for (let i=0; i < lenght;i++) {
+//         arr.push(Math.round(Math.random() * (max - min) + min))}
+//     return arr
+// }
+// console.log(getRandNumbers(10,20,6))
+
+// function getTotal(arr){
+
+let getTotal = (arr) =>{
+    let tong=0
+    let len=arr.length
+    for (let i=0;i < len;i++){
+        tong+=arr[i]
+    }
+    return tong
 }
-console.log(nextYear)
-console.log(date)
+
+// function getTotal(arr) {
+//     let sum = 0;
+//     for(let i = 0; i < arr.length; i++)
+//         sum += arr[i];
+//     return sum;
+// }
+
+
+
+
+// let getTotal = (arr) =>{
+//     let tong = 0;
+//     for (let i=0 ; i< arr.length;i++)
+//         tong += arr[i];
+//     return tong;
+// }
+
+console.log(getTotal([1,2,3]))
