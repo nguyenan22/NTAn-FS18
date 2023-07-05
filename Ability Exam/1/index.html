@@ -20,10 +20,10 @@
                 <div class="bar-header">
                     <ul>
                         <li><a href="">home</a></li>
-                        <li><a href="">services</a></li>
-                        <li><a href="">about</a></li>
-                        <li><a href="">shop</a></li>
-                        <li><a href="">contact</a></li>
+                        <li><a href="#services">services</a></li>
+                        <li><a href="#about">about</a></li>
+                        <li><a href="#shop">shop</a></li>
+                        <li><a href="#contact">contact</a></li>
                     </ul>
                 </div>
                 <div class="contact-header">
@@ -43,7 +43,7 @@
             <button class="button-contact-us"><a href="">contact us</a></button>
         </div>
         <div id="content">
-            <h1>our services</h1>
+            <h1 id="services">our services</h1>
             <p class="content-p">There are many variations of passages of Lorem Ipsum</p>
             <div class="our-service">
                 <div class="furniture-content">
@@ -71,7 +71,7 @@
                     <button><a href="">read more</a></button>
                 </div>
             </div>
-            <div class="about-us-content">
+            <div id="about" class="about-us-content">
                 <div class="about-us">
                     <h2>about us</h2>
                     <p class="about-us-p">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believableThere are many variations of passages of Lorem Ipsum available, but the majority have able</p>
@@ -81,35 +81,60 @@
                     <img src="./assets/img/cradle-960646_1280.png" alt="">
                 </div>
             </div>
-            <div class="our-furnitures">
+            <div id="shop" class="our-furnitures">
                 <h2 class="our-furniture-h2">our furnitures</h2>
                 <p class="our-furniture-p">There are many variations of passages of Lorem Ipsum </p>
                 <div class="our-furnitures-img-content">
                     <div class="our-furniture-img-content-div">
                         <img  src="./assets/img/rustic-vegan-AwOG1tC5buE-unsplash_(1).png" alt="">
+                        <i class="hover-search fa-solid fa-magnifying-glass"></i>
                         <h2 class="our-furniture-img-content-h2"> tempor incididunt ut labore et dolore</h2>
                         <p class="our-furniture-img-content-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut</p>
                     </div>
                     <div class="our-furniture-img-content-div2">
                         <img  src="./assets/img/tap-791172_640.png" alt="">
+                        <i class="hover-search fa-solid fa-magnifying-glass"></i>
                         <h2 class="our-furniture-img-content-h2"> tempor incididunt ut labore et dolore</h2>
                         <p class="our-furniture-img-content-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut</p>
                     </div>
                 </div>
             </div>
-            <div class="we-are-content">
-                <h1>who we are ?</h1>
-                <h2>DESIGNERS & INNOVATORS</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi utLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut</p>
-                <button><a href="">get a quote</a></button>
+            <div class="we-are-content-bg">
+                <div class="we-are-content" >
+                    <h1>who we are ?</h1>
+                    <h2>DESIGNERS & INNOVATORS</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi utLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut</p>
+                    <button><a href="">get a quote</a></button>
+                </div>
             </div>
             <div class="our-project">
                 <h2 class="our-project-h2">Our projects</h2>
                 <p class="our-project-p">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+                <button class="our-project-left"><i class="fa-solid fa-angle-left"></i></button>
+                <button class="our-project-right"><i class="fa-solid fa-angle-right"></i></button>
                 <div class="our-project-img">
-                    <img src="./assets/img/ecca-tapert-lA7OhpEMRug-unsplash_(1).png" alt="">
-                    <img src="./assets/img/staircase-274614_1280.png" alt="">
-                    <img src="./assets/img/hall-621741_1280.png" alt="">
+                    <div class="our-project-img-hover">
+                        <img src="./assets/img/ecca-tapert-lA7OhpEMRug-unsplash_(1).png" alt="">
+                        <div class="our-project-img-hover-button">
+                            <button>view more</button>
+                        </div>
+                        <h3>Modern home designe</h3>
+                    </div>
+                    <div class="our-project-img-hover" >
+                        <img src="./assets/img/staircase-274614_1280.png" alt="">
+                        <div class="our-project-img-hover-button">
+                            <button>view more</button>
+                        </div>
+                        <h3>Modern home designe</h3>
+                    </div>
+                    <div class="our-project-img-hover">
+                        <img src="./assets/img/hall-621741_1280.png" alt="">
+                        <div class="our-project-img-hover-button">
+                            <button>view more</button>
+                        </div>
+                        <h3>Modern home designe</h3>
+                    </div>
+                    
                 </div>
                 <div class="our-client">
                     <h2 class="our-client-h2">what is says our clients</h2>
@@ -122,6 +147,7 @@
                                 <p>ipsum dolor sit amet, consectetur adipiscing elit, sed  veniam, quis nostrud 
                                     exercitation ullamco laboris nisi ut reprehenderit in voluptate velit</p>
                             </div>
+                            <i class="fa-sharp fa-solid fa-quote-left"></i>
                         </div>
                         <div class="our-client-content-div2">
                             <img src="./assets/img/kyryll-ushakov-qsjM7zomoEI-unsplash.png" alt="">
@@ -130,11 +156,19 @@
                                 <p>ipsum dolor sit amet, consectetur adipiscing elit, sed  veniam, quis nostrud 
                                     exercitation ullamco laboris nisi ut reprehenderit in voluptate velit</p>
                             </div>
+                            <i class="fa-sharp fa-solid fa-quote-left"></i>
                         </div>
+                        <div class="slider-our-client">
+                            <i class="eclip-orange fa-solid fa-circle"></i>
+                            <i class="eclip-black fa-solid fa-circle"></i>
+                            <i class="eclip-orange fa-solid fa-circle"></i>
+                            <i class="eclip-orange fa-solid fa-circle"></i>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="contact-main">
+            <div id="contact" class="contact-main">
                 <div class="contact-us">
                     <h2>contact us</h2>
                     <div class="contact-us-content">
