@@ -126,11 +126,272 @@ console.log('test JS')
 //     return console.log(`Lũy thừa ${a}^${n}:`, a**n)
 // }
 // luythua(2,5)
-const positinegative=(number) =>{
-    if (number === 0) return console.log("không âm, không dương")
-    else {
-        var result=(number > 0) ? "số dương":"số âm";
+// const positinegative=(number) =>{
+//     if (number === 0) return console.log("không âm, không dương")
+//     else {
+//         var result=(number > 0) ? "số dương":"số âm";
+//     }
+//     return console.log(result)
+// }
+// positinegative(-1)
+// let course="java,python,java";
+// const lastName="An";
+// var random="12"
+// console.log(course,lastName,random)
+// typeof: kiem tra kieu du lieu
+
+// console.log(course.indexOf("java",5))
+// console.log(course.length)
+// console.log(course.lastIndexOf("java",0))
+// console.log(course.slice(5,11))
+// console.log(course.replace("java","react"))
+// console.log(course.toLocaleUpperCase())
+// console.log(lastName.toLocaleLowerCase())
+// console.log(course.split(","))
+
+
+// let le = (strings) => {
+//     return strings.length
+// }
+// console.log(le("Nguyen Truong An"))
+
+// let upcase= (strings) =>{
+//   if (strings === strings.toLocaleUpperCase()){
+//     return console.log("giữ nguyên chữ hoa",strings)
+//   }
+//   else {
+//     return console.log("chữ thường thành hoa",strings.toLocaleUpperCase())
+//   }
+// }
+// upcase("test")
+// upcase("TEST")
+// let findIndexString=(strings,find)=>{
+//     return strings.indexOf(find)
+// }
+// console.log(findIndexString("truong nguyen an","an"))
+
+
+// toString:chuyển sang String
+// let checktype=(value)=>{
+//     return resutl=(typeof value==="number")? value:"không phải giá trị số"
+// }
+// console.log(checktype("một"))
+// let a=1;
+// console.log(typeof a)
+// let a=5
+// let b=6
+// if (!(a>b)) {
+//     console.log(a,b)
+// }
+// console.log("1")
+// let num = 2  --> true
+// let num2 = num/'g' --> false
+// let num3 = NaN --> false
+// console.log(typeof (num/'g'));
+// let a=5
+// let b=6
+// let num=NaN
+// var result=(number)=>{
+//     if ((typeof number =="number") && (number != NaN)){
+//             return "là số"
+//     }
+//     else {
+//         return "không là số"
+// }
+// }
+// console.log(result(num))
+// }
+// const result=(number)=>{
+//     if (isNaN(number)) {
+//         return "not number"
+//     }
+//     else{
+//         return "number"
+//     }
+// }
+// console.log(result(1/2))
+// const result=(number)=>{
+//     if ((typeof number =="number") && (!isNaN(number))){
+//         return "number"
+//     }
+//     else {
+//         return "not number"
+//     }
+// }
+// console.log(result(2/4))
+// console.log(typeof(1/'6'))
+// console.log(1/'6')
+// let arr=[1,2,3,4,5,5]
+// pop xóa phần tử cuối mảng
+// join chuyển mảng thành chuổi có thể thêm ký tự ngăn cách
+// shift xóa phần từ ở đầu mảng
+// push thêm phần tử vào cuối mảng
+// unshift thêm phần tử vào đầu mảng
+// arr.push(1)
+// console.log(arr)
+// splice xóa --> trả về các phần tử xóa, thêm các phần tử tại các vị trí chỉ định
+// concat nối mảng với nhau
+// arr.unshift("truong an","troi mua")
+// arr.splice(0,0,1,3)
+// console.log(arr)
+// const joinWithCharacter= (array,character) => {
+//    result= array.join(character)
+//     return result
+// }
+// console.log(joinWithCharacter(["MEC","TOY","MAZ"]," - "))
+
+// const getFirstElement =(array) => {
+//     return array[0]
+// }
+// console.log(getFirstElement(['Monkey', 'Tiger', 'Elephant']))
+// let gioiTinh="Sex"
+// let nghe="career"
+// let info={ 
+//     lastName:"An",
+//     firstName:"Nguyen",
+//     course:"FullStack",
+//     "family-name":"TAn",
+//     [gioiTinh]:"Male"
+// }
+// info.time="6 months"
+// info["a-g-e"]=27
+// info[nghe]="dev"
+// console.log(info)
+// console.log(info[gioiTinh])
+// let coure = [
+//     backenkend= [{
+//         name: 'java',
+//         count:'5$'
+//     },
+//     {
+//         name: 'PHP',
+//         count:'5$'
+//     }],
+//     frontend= {
+//         name: 'reactjs'
+//     } 
+// ]
+// console.log(coure[0][0].name,coure[1].name,coure[0][1].name)
+// let coures = {
+//     backenkend: [{
+//         name: 'java',
+//         count:'5$'
+//     },
+//     {
+//         name: 'PHP',
+//         count:'5$'
+//     }],
+//     frontend: {
+//         name: 'reactjs'
+//     } 
+// }
+// console.log(coures.backenkend[1].name)
+
+// localStorage.setItem("lastName","An")
+// let info={ 
+//     lastName:"An",
+//     firstName:"Nguyen",
+//     course:"FullStack",
+//     "family-name":"TAn",
+// }
+// localStorage.setItem("infoName",JSON.stringify(info))
+// console.log(JSON.parse(localStorage.getItem("infoName")))
+// let date=new Date
+// var date=new Date
+// function nextYear() {
+//     return date.getFullYear() +1
+// }
+// console.log(nextYear)
+// console.log(date)
+// let checkNumber=(value) =>{
+//     if ((value % 3 == 0) && (value % 5==0)){
+//         return `chia hết cho 3 và 5`}
+//     else if (value%3==0) {
+//         return `chia hết cho 3`}
+//     else if (value%5==0) {
+//         return `chia hết cho 5`
+//     }
+//     else {
+//         return `không chia hết cho 3 và 5`
+//     }
+//     }
+// console.log(checkNumber(30))
+// switch(number){
+//     case 2:
+//         console.log('dây là số 2')
+//         // continue
+//     break;
+//     default:
+//         console.log('day là default')
+//         break;
+// }
+// let day= new Date
+// console.log(day.getDate(),day.getDay(),day.getMonth())
+// switch(day.getDay()+1){
+//     case 2:
+//         console.log("hôm nay là thứ 2")
+//         break;
+//     case 3:
+//         console.log("hôm nay là thứ 3")
+//         break;
+//     case 4:
+//         console.log("hôm nay là thứ 4")
+//         break;
+//     case 5:
+//         console.log("hôm nay là thứ 5")
+//         break;
+//     case 6:
+//         console.log("hôm nay là thứ 6")
+//         break;
+//     case 7:
+//         console.log("hôm nay là thứ 7")
+//         break;
+//     case 8:
+//         console.log("hôm nay là thứ cn")
+//         break;
+//     default:
+//         console.log("không phải là ngày trong tuần")
+// }
+// for (let i=0;i<11;i+=2) {
+//     if (i%2===0){
+//         console.log(`${i} chia hết cho 2`)
+//     }
+// }
+
+// let getRandNumbers=(min,max,lenght)=>{
+//     var arr=[]
+//     for (let i=0; i < lenght;i++) {
+//         arr.push(Math.round(Math.random() * (max - min) + min))}
+//     return arr
+// }
+// console.log(getRandNumbers(10,20,6))
+
+// function getTotal(arr){
+
+let getTotal = (arr) =>{
+    let tong=0
+    let len=arr.length
+    for (let i=0;i < len;i++){
+        tong+=arr[i]
     }
-    return console.log(result)
+    return tong
 }
-positinegative(-1)
+
+// function getTotal(arr) {
+//     let sum = 0;
+//     for(let i = 0; i < arr.length; i++)
+//         sum += arr[i];
+//     return sum;
+// }
+
+
+
+
+// let getTotal = (arr) =>{
+//     let tong = 0;
+//     for (let i=0 ; i< arr.length;i++)
+//         tong += arr[i];
+//     return tong;
+// }
+
+console.log(getTotal([1,2,3]))
