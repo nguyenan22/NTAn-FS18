@@ -423,8 +423,6 @@ html {
 }
 .our-project-img-hover-button{
     position: absolute;
-    height:auto ;
-    width: 100%px;
     background-color: rgba(255, 200, 1, 0.81);
     bottom: 20px;
     top:20px;
@@ -484,8 +482,8 @@ html {
 }
 .our-client-content-div2 i{
     position: absolute;
-    bottom: 92px;
-    right: 710px;
+    bottom: 95px;
+    right: 1050px;
     color: orange;
 }
 .slider-our-client{
@@ -559,7 +557,7 @@ html {
     margin-right: 20px;
 }
 .contact-us-content-input .contact-input{
-    width: 700px;
+    width: 900px;
     height: 60px;
     margin-bottom: 30px;
     border-radius: 5px;
