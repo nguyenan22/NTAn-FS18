@@ -570,8 +570,9 @@ html {
     border: none;
 }
 .contact-us-img img{
-    width: 600px;
+    min-width: 740px;
     height: 370px;
+
     
 }
 .send-contact{
