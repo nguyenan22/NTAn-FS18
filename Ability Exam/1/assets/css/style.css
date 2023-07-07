@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family:'Poppins';
 }
+html {
+    scroll-behavior: smooth;
+  }
 #header{
     max-width: 100%;
     position: relative;
@@ -53,6 +56,22 @@
 .bar-header li >a{
     text-decoration: none;
     color: black;
+    position: relative;
+}
+.bar-header li > a::after{
+    content: "";
+    position: absolute;
+    background-color: orange;
+    height: 5px;
+    width: 0;
+    left: calc(100%/3);
+    right: calc(100%/3);
+    bottom: -10px;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+.bar-header li >a:hover::after{
+    width: 20px;
 }
 .contact-header{
     float:left;
@@ -62,6 +81,24 @@
     display: inline-block;
     margin:0 20px;
     text-transform: uppercase;
+}
+.contact-header li > a{
+    position: relative;
+}
+.contact-header li > a::after{
+    content: "";
+    position: absolute;
+    background-color: orange;
+    height: 5px;
+    width: 0;
+    left: calc(100%/3);
+    right: calc(100%/3);
+    bottom: -10px;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+.contact-header li > a:hover::after{
+    width: calc(100%/3);
 }
 .contact-header .call-us a{
     color:orange
@@ -80,7 +117,7 @@
     -webkit-border-radius: 60px 0 0 60px;
     background: black;
     right: 0;
-    bottom: 300px;
+    bottom: 450px;
     border: none;
 }
 .right i{
@@ -94,7 +131,7 @@
     -moz-border-radius: 0px 60px 60px 0;
     -webkit-border-radius: 0px 60px 60px 0;
     background:black;
-    bottom: 300px;
+    bottom: 450px;
     left:0px;
     border: none;
 }
@@ -106,7 +143,8 @@
     position: absolute;
     top:200px;
     left:calc(100%/3);
-    right:calc(100%/3)
+    right:calc(100%/3);
+
 }
 .content-header h1{
     text-transform: uppercase;
@@ -116,14 +154,17 @@
 }
 .content-header p{
     text-align: center;
+    font-size: 17px;
 }
 .button-contact-us{
-    padding: 20px 40px;
+    padding: 10px 20px;
     background-color: orange;
     position: absolute;
     border: none;
     bottom: 50px;
     left: 680px;
+    border-radius: 4px;
+    font-size: 17px;
 }
 .button-contact-us a{
     text-decoration: none;
@@ -137,7 +178,7 @@
     color: black;
 }
 #content {
-    /* padding: 0 200px; */
+    margin-top: 90px;
 }
 #content h1{
     text-align: center;
@@ -149,6 +190,7 @@
 .our-service{
     display: flex;
     flex-direction: row;
+    margin: 60px 100px 120px 100px;
 }
 .furniture-content{
     text-align: center;
@@ -158,12 +200,15 @@
 } */
 .furniture-content h2{
     text-transform: uppercase;
+    margin: 25px 0;
 }
 .furniture-content button{
     text-transform: uppercase;
     background-color: orange;
     border: none;
     padding: 10px;
+    margin-top: 25px;
+    border-radius: 4px;
 }
 .furniture-content button:hover{
     background-color: #ccc;
@@ -185,10 +230,12 @@
 .about-us h2{
     text-transform: uppercase;
     color: white;
+    font-size: 35px;
 }
 .about-us .about-us-p{
     text-align: left;
-    padding: 20px 120px 20px 0;
+    padding: 20px 120px 100px 0;
+    color: white;
     
 }
 .about-us .about-us-btn{
@@ -218,6 +265,7 @@
 .our-furniture-h2{
     text-transform: uppercase;
     text-align: center;
+    font-size: 35px;
 }
 .our-furniture-p{
     text-align: center;
@@ -226,11 +274,18 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 75px;
 }
-
+.our-furniture-img-content-div{
+    position: relative;
+}
+.our-furniture-img-content-div2{
+    position: relative;
+}
 .our-furniture-img-content-h2{
     text-transform: uppercase;
     color: orange;
+    margin: 35px 0 25px 0;
 }
 .our-furniture-img-content-div2{
     margin-left: 100px;
@@ -241,8 +296,44 @@
 .our-furniture-img-content-div img{
     width: 100%;
 }
-.we-are-content {
+.hover-search{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    line-height: 60px !important;
     background-color: orange;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    -webkit-transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 300ms 0ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    cursor: pointer;
+}
+
+.our-furniture-img-content-div:hover  .hover-search{
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+    transition: all 300ms 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.our-furniture-img-content-div2:hover  .hover-search{
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+    transition: all 300ms 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.we-are-content-bg {
+    background-image: url(/assets/img/rustic-vegan-AwOG1tC5buE-unsplash_\(1\).png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.we-are-content{
+    background-color: rgba(255, 200, 1, 0.81);
+    top: 0;
+    left: 0;
     color: white;
     padding: 100px;
     text-align: center;
@@ -279,6 +370,7 @@
 .our-project{
     /* text-align: center; */
     margin:120px 0 0 0;
+    position: relative;
 }
 .our-project-h2{
     text-transform: uppercase; 
@@ -291,31 +383,122 @@
     text-align: center;
     margin: 0 50px 50px 50px;
 }
+.our-project-left{
+    background-color: black;
+    color: white;
+    position: absolute;
+    left:20px;
+    top:350px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+.our-project-right{
+    background-color: black;
+    color: white;
+    position: absolute;
+    right:20px;
+    top:350px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
 .our-project-img{
     margin: 0 90px 120px 90px;
     display: flex;
-    text-align: center;
+    justify-content: space-around;
+}
+.our-project-img-hover{
+    position: relative;
+    /* background-color: orange; */
+
+}
+.our-project-img-hover h3{
+    position: absolute;
+    bottom: 30px;
+    left: calc(100%/5);
+    text-transform: uppercase;
+    color: white;
+
+}
+.our-project-img-hover-button{
+    position: absolute;
+    height:auto ;
+    width: 100%px;
+    background-color: rgba(255, 200, 1, 0.81);
+    bottom: 20px;
+    top:20px;
+    left: 10px;
+    right: 10px;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    display: none;
+    border-radius: 5px;
+    
+    
+}
+.our-project-img-hover:hover .our-project-img-hover-button{
+    display: flex;
+    
+}
+.our-project-img-hover button{
+    background-color:rgba(255, 255, 255, 0);
+    text-transform: uppercase;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    cursor: pointer;
+    
 }
 .our-project-img img{
     width: 100%;
-    padding: 10px;
+    /* padding: 10px; */
 }
 .our-client-h2{
     text-align: center;
     text-transform: uppercase;
+    font-size: 35px;
+    margin-bottom: 20px;
 }
 .our-client-p{
     text-align: center;
+    margin-bottom: 100px;
 }
 .our-client-content{
- height: 400px;
+    height: 400px;
+    position: relative;
 }
 .our-client-content-div {
     border: 1px solid black;
     margin: 10px 700px 10px 100px;
     display: flex;
     padding: 20px;
-
+    position: relative;
+}
+.our-client-content-div i{
+    position: absolute;
+    bottom: 10px;
+    left: 90px;
+    color: orange;
+}
+.our-client-content-div2 i{
+    position: absolute;
+    bottom: 92px;
+    right: 710px;
+    color: orange;
+}
+.slider-our-client{
+    position: absolute;
+    bottom: 100px;
+    left: 100px;
+    font-size: 35px;
+}
+.eclip-orange{
+    color: orange;
+}
+.eclip-black{
+    color: black;
 }
 .our-client-content-div-loksans{
     padding-left: 20px;
@@ -342,8 +525,10 @@
     position: relative;
     /* padding: 0 100px ; */
     background-image: url(/assets/img/rustic-vegan-AwOG1tC5buE-unsplash_\(1\).png);
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%;
-    height: 700px
+    height: 1100px
 }
 .contact-us{
     /* padding: 0 100px ; */
@@ -353,7 +538,7 @@
     right: 0;
     left:0;
     top: 0;
-    bottom: 0;
+    /* bottom: 0; */
 
 }   
 .contact-us h2{
@@ -411,4 +596,90 @@
 .send-contact:hover a{
     color:black;
     font-weight: bold;
+}
+.designtogether{
+    /* padding: 0 100px ; */
+    position: absolute;
+    background-color: rgba(53, 47, 50, 0.93);
+    /* background-color: rgba(255,182,7,1.00); */
+    right: 0;
+    left:0;
+    bottom: 0px;
+    height:387px ;
+}   
+.designtogether-content{
+    margin: 70px 100px;
+    color: white;
+}
+.design{
+    float: left;
+    width: calc(100%/4);
+}
+.let-us-help-you,.information, .our-design{
+    padding-top: 10px;
+}
+.design h2{
+    margin-bottom: 30px;
+}
+.design-content-detail{
+    padding-right: 80px;
+}
+.design-content-detail h2{
+    font-size: 36px;
+    font-weight: bold;
+}
+.let-us-help-you{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.information{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.information li{
+    list-style-type: none;
+}
+.information li>a{
+    color: white;
+    text-decoration: none;
+}
+.our-design{
+    padding-left: 90px;
+}
+.button-sub{
+    position: absolute;
+    bottom: 20px;
+    right:100px;
+    width: 600px;
+    border-bottom: 2px solid #ccc;
+}
+.button-sub input{
+    width: 530px;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0px solid;
+    /* border-bottom: 2px solid #ccc; */
+}
+.button-sub input:focus{
+    outline: none;
+    color: white;
+}
+.button-sub button{
+    background-color:rgba(255, 255, 255, 0);
+    border: none;
+}
+.button-sub button>a:hover{
+    color: orange;
+}
+.button-sub button>a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+#footer{
+    text-align: center;
+}
+#footer .logo{
+    margin:30px 0;
+    font-size: 30px;
+    color: black;
 }
