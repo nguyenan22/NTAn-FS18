@@ -359,3 +359,75 @@ var watchList = [
 
 // console.log(calculateRating(watchList))
 // console.log(count)
+// Expected output: Array ["Jan", "Feb", "March", "April", "June"]
+// const months = ['Jan','Feb' , 'April', 'June'];
+// let arrMonth=(arr)=>{
+//   months.splice(2, 0, arr)
+//   return months
+// } 
+// console.log(arrMonth('March'))
+// const a = ["Wind", "Water", "Fire"];
+// 'Wind + Water + Fire'
+// const changeString=(arr)=>{
+//   let a = arr.toString(arr)
+//   console.log(a.replace(",","+"))
+  
+//   return a.replaceAll(",","+")
+// }
+// console.log(changeString(["Wind", "Water", "Fire"]))
+// const plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato'];
+// Expected output: "tomato"
+// const lastArray=(arr)=>{
+//   return arr.pop()
+// }
+// console.log(lastArray(['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato']))
+// const animals = ['pigs', 'goats', 'sheep'];
+ // ['pigs', 'goats', 'sheep', 'football', 'swimming']
+//  const addSport=(arr,Sport1,Sport2) =>{
+//   arr.push(Sport1,Sport2)
+//   return arr
+//  }
+//  console.log(addSport(['pigs', 'goats', 'sheep'],"football","swimming"))
+// const names = ["Andrew", "Tyrone", "Paul", "Maria", "Gayatri"];
+//  "Andrew"
+// function getName(arr,name) {
+//   return arr.find(a => a == name)
+// }
+// console.log(getName(names,"Andrew"))
+// const filtered = [12, 5, 8, 130, 44]
+// filtered is [12, 130, 44]
+// const filterValue=(arr,number) => arr.filter(result => result >= number)
+// console.log(filterValue([12, 5, 8, 130, 44],12))
+// const inventory = [
+//   { name: "apples", quantity: 2 },
+//   { name: "bananas", quantity: 0 },
+//   { name: "cherries", quantity: 5 },
+// ];
+
+// let findObject=(arr,obj) => {
+//   for (const i of arr){
+//     if (i.name=obj) {
+//        return i
+//       }
+//     }
+// }
+// console.log(findObject(inventory,"cherries"))
+// Expected results:
+
+// console.log(arrToObj(arr)); // { name: 'La Minh', age: 18 }
+// function toObject(arr) {
+//   var rv = {};
+//   for (var i = 0; i < arr.length; ++i)
+//     rv[i] = arr[i];
+//   return rv;
+// }
+// console.log(toObject(arr))
+// var arr = [
+//   ['name', 'La Minh'],
+//   ['age', 18],
+// ];
+// var obj={}
+// for (const i of arr){
+//   obj[i[0]]=i[1]
+// }
+// console.log(obj)
