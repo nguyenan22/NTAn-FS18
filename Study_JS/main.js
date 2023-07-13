@@ -431,3 +431,84 @@ var watchList = [
 //   obj[i[0]]=i[1]
 // }
 // console.log(obj)
+// const array1 = [1, 4, 9, 16];
+// let result=(arr,number)=>arr.map(a => a*number)
+// console.log(result([1, 4, 9, 16],4));
+// var key=0
+// console.log(++key)
+// const key=6
+// key=9
+// console.log(key)
+// let result=(arr) =>{
+//     let arr1=[]
+//     for (const i in arr){
+//         arr1[i]=(arr[i]/(Number(i)+1))
+//     }
+//     return arr1
+// }
+// console.log(result([1,4,9]))
+// let result=(arr)=>{
+//     let sum=0
+//     for (const i of arr){
+//         sum +=i
+//         console.log (typeof i)
+//     }
+//     return sum
+// }
+// console.log(result([1,2,3,4,5,6,7]))
+// const arraySparse = [1, 3, /* empty */, 7];
+// let obj={}
+// const arraySparse = [1, 3, /* empty */, 7];
+// const result=(arr) =>{
+//     let obj={}
+//     for (const i of arraySparse){
+//         if (i !== undefined){
+//             obj["element"]= i
+//             console.log(obj)
+//         }
+//     }
+//     return
+
+
+// }
+
+// console.log(result(arraySparse))
+
+// const countArr = ( arr , count = 0,arrayTemp = []) =>{
+//     if(!(count < arr.length)) {
+//         arrayTemp.forEach(element => {
+//             console.log({"element":element})
+//         });
+//             console.log({"numCallbackRuns":arrayTemp.length})
+//         return
+//     }
+//     //arr[count] !== undefined
+//     if(1 * arr[count] === arr[count]){
+//         arrayTemp.push(arr[count])
+//     }
+//     return countArr( arr , count +1,arrayTemp)
+// }
+// countArr(arraySparse)
+// const result=(arr)=>{
+
+// }
+const arraySparse = [1, 3, /* empty */, 7];
+// const checkEmpty = (arr) => {
+//     let temp = arr.filter(i => i !== '');
+//     let obj = [];
+//     let count = 0;
+//     obj = temp.map((value) => obj[count++] = {"element": value});
+//     obj.push({"numCallbackRuns": count});
+//     return obj;
+// };
+// console.log(checkEmpty(arraySparse));
+// let arr=[]
+// let obj={}
+// for (const i in arraySparse){
+//     if (arraySparse[i] !== undefined){
+//         obj={"element":arraySparse[i]}
+//         arr[i]=obj
+        
+//     }
+// }
+// console.log(arr)
