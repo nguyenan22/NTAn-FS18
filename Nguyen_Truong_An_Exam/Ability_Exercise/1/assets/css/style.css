@@ -347,7 +347,7 @@ html {
     font-family: 'Open Sans', sans-serif !important
 }
 .we-are-content-bg {
-    background-image: url(/assets/img/rustic-vegan-AwOG1tC5buE-unsplash_\(1\).png);
+    background-image: url("../img/rustic-vegan-AwOG1tC5buE-unsplash_\(1\).png");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -546,7 +546,7 @@ html {
 .contact-main{
     position: relative;
     /* padding: 0 100px ; */
-    background-image: url(/assets/img/rustic-vegan-AwOG1tC5buE-unsplash_\(1\).png);
+    background-image: url("../img/rustic-vegan-AwOG1tC5buE-unsplash_\(1\).png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
