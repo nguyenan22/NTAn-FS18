@@ -432,7 +432,17 @@ var watchList = [
 // }
 // console.log(obj)
 // const array1 = [1, 4, 9, 16];
-// let result=(arr,number)=>arr.map(a => a*number)
+// function tinh(a,number){
+//   return a*number
+// }
+// let result=(arr,number)=>{
+//   function tinh(a){
+//     return a*number
+//   }
+//   return arr.map(tinh)
+// }
+
+// let result=(arr,number) => arr.map(a => a*number)
 // console.log(result([1, 4, 9, 16],4));
 // var key=0
 // console.log(++key)
@@ -492,7 +502,7 @@ var watchList = [
 // const result=(arr)=>{
 
 // }
-const arraySparse = [1, 3, /* empty */, 7];
+// const arraySparse = [1, 3, /* empty */, 7];
 // const checkEmpty = (arr) => {
 //     let temp = arr.filter(i => i !== '');
 //     let obj = [];
@@ -512,3 +522,100 @@ const arraySparse = [1, 3, /* empty */, 7];
 //     }
 // }
 // console.log(arr)
+// gán attribute hợp lệ
+// let heading=document.querySelector('h1')
+// heading.title='heading_title'
+// heading.class='heading_class'
+//lấy attribute hợp lệ
+// console.log(heading.title='heading_title')
+// gán attribute không hợp lệ
+// heading.setAttribute('href',www.google.com)
+
+
+// <h1>Học lập trình để đi làm</h1>
+//     <p>Truy cập <a>nestech.edu.vn</a> để học lập trình các bạn nhé!!!</p>
+
+// Thêm thuộc tính title có giá trị " Học lập trình để đi làm" cho thẻ h1.
+// Thêm thuộc tính data-title có giá trị "Học lập trình" cho thẻ h1.
+// Thêm thuộc tính href có giá trị "https://nestech.edu.vn/" cho thẻ a.
+// Thêm thuộc tính target có giá trị "_blank" cho thẻ a.
+// let tagTitle=document.getElementsByTagName('h1')[0]
+// let aTag=document.querySelector('a')
+// console.log(tagTitle)
+// tagTitle.title="Học lập trình để đi làm"
+// tagTitle.setAttribute('data-title',"Học lập trình")
+// aTag.href="https://nestech.edu.vn/"
+// // aTag.setAttribute('target',"_blank")
+// aTag.target="_blank"
+
+{/* <h1 class="heading">Nestech</h1>
+Các bạn hãy thay đổi nội dung của thẻ h1 thành Nestech - Học lập trình để đi làm */}
+
+// let changeContent=document.querySelector('h1')
+// changeContent.innerText="Nestech - Học lập trình để đi làm"
+// let arrCourse = ['HTML','JS','PHP']
+// let addUL=document.querySelector('ul')
+// let render=(arr)=>{
+//   let result=''
+//   for (const i of arr){
+//     result += `<li>Khóa học ${i}</li>`
+// }
+//   return addUL.innerHTML=result
+// }
+// console.log(render(arrCourse))
+const goldPrice=
+[
+  {
+    "buy": "65.800",
+    "sell": "66.600",
+    "type": "Vàng SJC 1L - 10L"
+  },
+  {
+    "buy": "52.950",
+    "sell": "53.950",
+    "type": "Vàng nhẫn SJC 99,99 1 chỉ, 2 chỉ, 5 chỉ"
+  },
+  {
+    "buy": "52.950",
+    "sell": "54.050",
+    "type": "Vàng nhẫn SJC 99,99 0,5 chỉ"
+  },
+  {
+    "buy": "52.750",
+    "sell": "53.550",
+    "type": "Vàng nữ trang 99,99%"
+  },
+  {
+    "buy": "51.720",
+    "sell": "53.020",
+    "type": "Vàng nữ trang 99%"
+  },
+  {
+    "buy": "38.317",
+    "sell": "40.317",
+    "type": "Vàng nữ trang 75%"
+  },
+  {
+    "buy": "29.373",
+    "sell": "31.373",
+    "type": "Vàng nữ trang 58,3%"
+  },
+  {
+    "buy": "20.483",
+    "sell": "22.483",
+    "type": "Vàng nữ trang 41,7%"
+  }
+]
+let a=document.querySelector('tbody')
+let render=(arr)=>{
+  let result=''
+  for (const i of arr){
+    result +=`<tr>
+              <td>${i['type']}</td>
+              <td>${i['buy']}</td>
+              <td>${i['sell']}</td>
+              <tr>` 
+}
+  return a.innerHTML=result
+}
+console.log(render(goldPrice))
