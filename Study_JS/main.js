@@ -563,59 +563,230 @@ Các bạn hãy thay đổi nội dung của thẻ h1 thành Nestech - Học l�
 //   return addUL.innerHTML=result
 // }
 // console.log(render(arrCourse))
-const goldPrice=
-[
-  {
-    "buy": "65.800",
-    "sell": "66.600",
-    "type": "Vàng SJC 1L - 10L"
-  },
-  {
-    "buy": "52.950",
-    "sell": "53.950",
-    "type": "Vàng nhẫn SJC 99,99 1 chỉ, 2 chỉ, 5 chỉ"
-  },
-  {
-    "buy": "52.950",
-    "sell": "54.050",
-    "type": "Vàng nhẫn SJC 99,99 0,5 chỉ"
-  },
-  {
-    "buy": "52.750",
-    "sell": "53.550",
-    "type": "Vàng nữ trang 99,99%"
-  },
-  {
-    "buy": "51.720",
-    "sell": "53.020",
-    "type": "Vàng nữ trang 99%"
-  },
-  {
-    "buy": "38.317",
-    "sell": "40.317",
-    "type": "Vàng nữ trang 75%"
-  },
-  {
-    "buy": "29.373",
-    "sell": "31.373",
-    "type": "Vàng nữ trang 58,3%"
-  },
-  {
-    "buy": "20.483",
-    "sell": "22.483",
-    "type": "Vàng nữ trang 41,7%"
-  }
+// const goldPrice=
+// [
+//   {
+//     "buy": "65.800",
+//     "sell": "66.600",
+//     "type": "Vàng SJC 1L - 10L"
+//   },
+//   {
+//     "buy": "52.950",
+//     "sell": "53.950",
+//     "type": "Vàng nhẫn SJC 99,99 1 chỉ, 2 chỉ, 5 chỉ"
+//   },
+//   {
+//     "buy": "52.950",
+//     "sell": "54.050",
+//     "type": "Vàng nhẫn SJC 99,99 0,5 chỉ"
+//   },
+//   {
+//     "buy": "52.750",
+//     "sell": "53.550",
+//     "type": "Vàng nữ trang 99,99%"
+//   },
+//   {
+//     "buy": "51.720",
+//     "sell": "53.020",
+//     "type": "Vàng nữ trang 99%"
+//   },
+//   {
+//     "buy": "38.317",
+//     "sell": "40.317",
+//     "type": "Vàng nữ trang 75%"
+//   },
+//   {
+//     "buy": "29.373",
+//     "sell": "31.373",
+//     "type": "Vàng nữ trang 58,3%"
+//   },
+//   {
+//     "buy": "20.483",
+//     "sell": "22.483",
+//     "type": "Vàng nữ trang 41,7%"
+//   }
+// ]
+// let a=document.querySelector('tbody')
+// let render=(arr)=>{
+//   let result=''
+//   for (const i of arr){
+//     result +=`<tr>
+//               <td>${i['type']}</td>
+//               <td>${i['buy']}</td>
+//               <td>${i['sell']}</td>
+//               <tr>` 
+// }
+//   return a.innerHTML=result
+// }
+// console.log(render(goldPrice))
+// const detailtCoin=[
+//   {
+//     "id": 1,
+//     "name": "Bitcoin",
+//     "price": 19340.953647943366,
+//     "percent_change_24h": 3.18974865,
+//     "percent_change_1h": 0.13874144
+//   },
+//   {
+//     "id": 1027,
+//     "name": "Ethereum",
+//     "price": 1319.766681320235,
+//     "percent_change_24h": 3.07108724,
+//     "percent_change_1h": 0.09324792
+//   },
+//   {
+//     "id": 825,
+//     "name": "Tether",
+//     "price": 1.0000356256544913,
+//     "percent_change_24h": 0.00616275,
+//     "percent_change_1h": -0.00081655
+//   },
+//   {
+//     "id": 3408,
+//     "name": "USD Coin",
+//     "price": 0.9999707419817206,
+//     "percent_change_24h": -0.01333926,
+//     "percent_change_1h": 0.00731704
+//   },
+//   {
+//     "id": 1839,
+//     "name": "BNB",
+//     "price": 280.4971307183375,
+//     "percent_change_24h": 3.86797039,
+//     "percent_change_1h": -0.07656999
+//   },
+//   {
+//     "id": 52,
+//     "name": "XRP",
+//     "price": 0.4378728623269723,
+//     "percent_change_24h": 3.59775661,
+//     "percent_change_1h": 0.24123988
+//   },
+//   {
+//     "id": 4687,
+//     "name": "Binance USD",
+//     "price": 0.9998212428351202,
+//     "percent_change_24h": -0.04704566,
+//     "percent_change_1h": 0.03799726
+//   },
+//   {
+//     "id": 2010,
+//     "name": "Cardano",
+//     "price": 0.43205242562096685,
+//     "percent_change_24h": 0.46973443,
+//     "percent_change_1h": -0.0513443
+//   },
+//   {
+//     "id": 5426,
+//     "name": "Solana",
+//     "price": 33.29481291691432,
+//     "percent_change_24h": 3.62047747,
+//     "percent_change_1h": -0.06248286
+//   },
+//   {
+//     "id": 74,
+//     "name": "Dogecoin",
+//     "price": 0.06011837389674329,
+//     "percent_change_24h": 0.9993402,
+//     "percent_change_1h": -0.16297579
+//   }
+// ]
+// let coin=document.querySelector('tbody')
+// let render=(arr)=>{
+//   let result=''
+//   for (const i of arr){
+//     result +=`<tr>
+//               <td>${i['name']}</td>
+//               <td>${parseFloat((i['price']).toFixed(2))}</td>
+//               <td>${parseFloat((i['percent_change_24h']).toFixed(2))}%</td>
+//               <td>${parseFloat((i['percent_change_1h']).toFixed(2))}%</td>
+//               <tr>` 
+// }
+//   return coin.innerHTML=result
+// }
+// console.log(render(detailtCoin))
+const detailNews=[
+     {
+        "id": "1",
+        "name": "Thế Giới"
+       },
+     {
+        "id": "2",
+         "name": "Thể Thao"
+     },
+       {
+         "id": "3",
+       "name": "Thời Sự"
+      },
+      {
+         "id": "4",
+        "name": "Bóng Đá"
+      },
+      {
+        "id": "5",
+        "name": "Xã Hội"
+       },
+       {
+        "id": "6",
+        "name": "Tin Tức"
+       },
+       {
+         "id": "7",
+       "name": "Bất Động Sản"
+       },
+      {
+      "id": "8",
+        "name": "Thị Trường"
+       }
 ]
-let a=document.querySelector('tbody')
-let render=(arr)=>{
-  let result=''
-  for (const i of arr){
-    result +=`<tr>
-              <td>${i['type']}</td>
-              <td>${i['buy']}</td>
-              <td>${i['sell']}</td>
-              <tr>` 
+// let a=document.getElementsByClassName('box')[0]
+// let render=(arr)=>{
+//   let result=''
+//   for (const i of arr){
+//     result +=`<li>${i['name']}</li>`
+// }
+//   return a.innerHTML=`<ul>${result}</ul>`
+// }
+// render(detailNews)
+// let a=document.getElementsByClassName('box')[0]
+// a.innerHTML=`<ul></ul>`
+// let b=document.getElementsByTagName('ul')[0]
+// let render=(arr)=>{
+//   let result=''
+//   for (const i of arr){
+//     result +=`<li>${i['name']}</li>`
+// }
+//   return b.innerHTML=result
+// }
+// render(detailNews)
+// DOM CSS
+// let boxElement=document.getElementsByClassName('box')[0]
+// console.log(boxElement)
+// Object.assign(boxElement.style,{
+//   width:'10px',
+//   height:'10px',
+//   backgroundColor:'red'
+
+// })
+// boxElement.classList.
+
+// let boxH1=document.querySelector('h1')
+// let boxP=document.querySelector('p')
+// boxH1.classList.add('title')
+// boxP.classList.replace('sub-title','content')
+// console.log(boxH1.classList.value)
+// let elements=document.querySelectorAll('div')
+// console.log(elements)
+// elements.forEach((element) => {
+//   element.classList.add('box');
+// });
+// let elements=document.querySelectorAll('div')
+// for (const i of elements){
+//   i.classList.add('box')
+// }
+let elements=document.getElementsByTagName('div')
+console.log(elements)
+for (const i in elements){
+  console.log(i)
+  elements[i].classList.add('box')
 }
-  return a.innerHTML=result
-}
-console.log(render(goldPrice))
