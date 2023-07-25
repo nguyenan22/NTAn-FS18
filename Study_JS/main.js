@@ -784,9 +784,47 @@ const detailNews=[
 // for (const i of elements){
 //   i.classList.add('box')
 // }
-let elements=document.getElementsByTagName('div')
-console.log(elements)
-for (const i in elements){
-  console.log(i)
-  elements[i].classList.add('box')
+// let elements=document.getElementsByTagName('div')
+// console.log(elements)
+// for (const i in elements){
+//   console.log(i)
+//   elements[i].classList.add('box')
+// }
+// let text=document.querySelectorAll('.box')
+// for (const i in text)
+//   text[i].addEventListener("click", ()=>{
+//     console.log(text[i].innerText)
+//   });
+// let light=document.getElementsByClassName('image')[0]
+// console.log(light)
+// let firstImage = true;
+// light.addEventListener("click",()=>{
+//   if (firstImage) {
+//     light.src = "./img/off.jpg";
+//   } else {
+//     light.src = "./img/on.jpg";
+//   }
+//   firstImage = !firstImage;
+// })
+// let names=document.getElementById('name')
+// let email=document.getElementById('email')
+// let career=document.getElementById('job')
+// let button=document.getElementById('btn-submit')
+// button.addEventListener('click',()=>{
+//   console.log(names.value,email.value,career.value)
+// })
+let number=document.getElementById('number')
+let saves=document.getElementById('saved-number')
+console.log(saves)
+let decrease=()=>{
+  if (number.textContent >0)
+   number.innerHTML--
+}
+let increase=()=>{
+  number.innerHTML++
+}
+let save=()=>{
+  saves.innerText="Save Number: "+ number.innerHTML
+  
+  
 }

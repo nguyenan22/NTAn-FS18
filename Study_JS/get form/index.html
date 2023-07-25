@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalStorage Basic</title>
+
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container py-3">
+    <div class="card card-body shadow">
+      <div>
+        <div class="mb-3">
+          <label class="form-label" >Họ và tên</label>
+          <input type="text" class="form-control" id="name" value="">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" id="email">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Nghề nghiệp</label>
+          <select id="job" class="form-select">
+            <option value="student">Sinh viên</option>
+            <option value="teacher">Giáo viên</option>
+            <option value="developer">Lập trình viên</option>
+          </select>
+        </div>
+        <div>
+          <button type="button" id="btn-submit" class="btn btn-success">Submit</button>
+          <!-- <button type="button" id="btn-clear" class="btn btn-danger">Clear Storage</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+  <!-- <script src="main.js"></script> -->
+</body>
+
+</html>
