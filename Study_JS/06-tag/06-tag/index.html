@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://unpkg.com/@yaireo/tagify"></script>
+<script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+<link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <input id="input" name='basic' value=''>
+    <button type='button'>Gửi</button>
+
+    <script>
+        // The DOM element you wish to replace with Tagify
+        var input = document.querySelector('input[name=basic]');
+
+        // initialize Tagify on the above input node reference
+        new Tagify(input)
+    </script>
+</body>
+</html>

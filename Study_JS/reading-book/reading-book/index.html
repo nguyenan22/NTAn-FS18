@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Book</title>
+
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container py-3">
+        <div class="card card-body shadow">
+            <div id="settings" class="d-flex flex-wrap justify-content-center text-center">
+                <div id="font-size" class="p-2 border">
+                    <p class="fw-bold">Size chữ </p>
+                    <button class="btn btn-outline-danger btn-font-size decrease" id="btn-desc">-</button>
+                    <button class="btn btn-outline-info btn-font-size increase" id="btn-asc">+</button>
+                </div>
+                <div id="background-color" class="p-2 border">
+                    <p class="fw-bold">Màu nền </p>
+                    <button class="btn btn-light btn-background" data-value="#f8f9fa">White</button>
+                    <button class="btn btn-primary btn-background" data-value="#0d6efd">Blue</button>
+                    <button class="btn btn-success btn-background" data-value="#198754">Green</button>
+                    <button class="btn btn-danger btn-background" data-value="#dc3545">Red</button>
+                    <button class="btn btn-warning btn-background" data-value="#ffc107">Gold</button>
+                </div>
+                <div id="line-height" class="p-2 border">
+                    <p class="fw-bold">Chiều cao dòng </p>
+                    <select id="slb-line-height" class="form-select">
+                        <option value="1.5">Bình thường</option>
+                        <option value="1">Nhỏ</option>
+                        <option value="2">Lớn</option>
+                    </select>
+                </div>
+                <div id="text-align" class="p-2 border">
+                    <p class="fw-bold">Canh lề </p>
+                    <select id="slb-text-align" class="form-select">
+                        <option value="left">Trái</option>
+                        <option value="right">Phải</option>
+                        <option value="center">Giữa</option>
+                        <option value="justify">Đều</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="content" class="card card-body shadow mt-3">
+            <div>
+                <h1>LẬP TRÌNH VIÊN FRONTEND</h1>
+                <h3>Nội dung chính trong khóa học</h3>
+                <p><strong>Khóa học lập trình Frontend </strong>phù hợp với các bạn muốn theo con đường <strong>lập
+                        trình web</strong>, cho dù bạn lựa chọn theo mảng Frontend hay Backend thì kiến thức trong khóa
+                    học này là <strong>điều bắt buộc bạn phải có</strong>. S<strong>au khi tham gia khóa học sẽ có được
+                        nền tảng vững chắc về HTML CSS, Javascript, jQuery, Bootstrap.</strong></p>
+                <p><strong>Đối tượng phù hợp tham gia chương trình học này</strong></p>
+                <ul>
+                    <li>Sinh viên muốn tiếp cận với ngành lập trình Web một cách bài bản.</li>
+                    <li>Người đi làm có hứng thú với lập trình và muốn học chuyên sâu chuyển ngành.</li>
+                    <li>Đã có kiến thức nhưng chưa vững, chưa có sản phẩm thực tế, cần thực hành và tiếp cận nhiều với
+                        dự án thực tế.</li>
+                </ul>
+                <p><strong>Hình thức học</strong></p>
+                <ul>
+                    <li>Kết hợp cả hai hình thức học <strong>Online</strong> và <strong>Offline</strong>.</li>
+                    <li>Học Online là hình thức được tặng kèm các khoá học có liên quan với chương trình hiện tại
+                        trên hệ thống ZendVN. Học viên sẽ xem trước lý thuyết tại nhà thông qua video bài giảng quay sẵn
+                        trước khi tới lớp.</li>
+                    <li>Trong buổi Offline sẽ ôn tập, đào sâu, và thực hành với các dự án kèm các tình huống thực tế để
+                        nâng cao và khắc sâu kiến thức.</li>
+                </ul>
+                <p><strong>Kết quả đạt được sau khi tham gia khóa học</strong></p>
+                <ul>
+                    <li>Có tư duy lập trình cốt lõi của một người Front End Developer.</li>
+                    <li>Có khả năng xây dựng và phân tích dự án Front End từ bước nhận file thiết kế, ước lượng thời
+                        gian hoàn thành đến bước hiện thực giao diện bằng các công nghệ đã học.</li>
+                    <li>Nắm cực chắc các kiến thức nền tảng và hoàn toàn có khả năng rút ngắn thời gian học thêm các
+                        công nghệ mới (React, Vue, Angular, …).</li>
+                    <li>Rèn luyện và có khả năng tra cứu thông tin, đọc tài liệu liên quan tới Front End.</li>
+                    <li>Được tiếp cận và học hỏi với nhiều kỹ thuật hay và khó từ giảng viên thông qua các dự án thực
+                        tế.</li>
+                    <li>Tự xây dựng được giao diện các trang Website đáp ứng nhu cầu doanh nghiệp</li>
+                </ul>
+                <ul></ul>
+                <p><strong>Các kiến thức khác được hướng dẫn</strong></p>
+                <ul>
+                    <li>Học viên sẽ được cung cấp miễn phí toàn bộ bản thiết kế Website bằng Photoshop để luyện tập.
+                    </li>
+                    <li>Được chia sẻ và định hướng từ giảng viên đã và đang có kinh nghiệm đi làm thực tế.</li>
+                    <li>Luôn cập nhật kiến thức và tư duy lập trình mới nhất tính tới thời điểm hiện tại phù hợp với
+                        mong muốn tuyển dụng của doanh nghiệp hiện nay.</li>
+                    <li>Rèn luyện tư duy giải quyết vấn đề và tự tra cứu tài liệu.</li>
+                    <li>Tư vấn viết CV và kinh nghiệm phỏng vấn.</li>
+                </ul>
+                <h3>Cam kết trong khóa học</h3>
+                <ul>
+                    <li><strong>Giới hạn chỉ 8 học viên / 1 lớp</strong>, cầm tay chỉ việc từng học viên, đảm bảo
+                        học viên được kèm cặp sát và nắm kiến thức tại mỗi buổi học</li>
+                    <li><strong>Hạn chế học lý thuyết, tăng thực hành thực tế: </strong>Học viên được<strong> cấp
+                            các video</strong> để học lý thuyết khi ở nhà, vào lớp học viên sẽ làm các bài tập
+                        thực tế và mở rộng </li>
+                    <li>Học viên được hướng dẫn cách <strong>tư duy</strong> giải quyết bài toán, đọc <strong>nghiên
+                            cứu</strong> tài liệu, <strong>tìm kiếm</strong> trên Google</li>
+                    <li>Học viên được cấp giấy <strong>chứng nhận hoàn thành khóa học</strong>, <strong>giấy
+                            xác nhận thực tập doanh nghiệp</strong> do Công ty Lập trình Zend Việt Nam cấp</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/main.js"></script>
+</body>
+
+</html>

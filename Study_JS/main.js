@@ -813,18 +813,142 @@ const detailNews=[
 // button.addEventListener('click',()=>{
 //   console.log(names.value,email.value,career.value)
 // })
-let number=document.getElementById('number')
-let saves=document.getElementById('saved-number')
-console.log(saves)
-let decrease=()=>{
-  if (number.textContent >0)
-   number.innerHTML--
-}
-let increase=()=>{
-  number.innerHTML++
-}
-let save=()=>{
-  saves.innerText="Save Number: "+ number.innerHTML
+// let number=document.getElementById('number')
+// let saves=document.getElementById('saved-number')
+// console.log(saves)
+// let decrease=()=>{
+//   if (number.textContent >0)
+//    number.innerText--
+// }
+// let increase=()=>{
+//   number.innerText++
+// }
+// let save=()=>{
+//   saves.innerText="Save Number: "+ ` <h1>${number.innerText}</h1>`
   
   
+// }
+// let light=document.getElementsByClassName('image')[0]
+// console.log(light.src)
+// light.addEventListener("click",()=>{
+//   if (light.src=="http://127.0.0.1:5500/img/off.jpg"){
+//     light.src="./img/on.jpg"
+//     console.log(light.src)
+//     console.log('on')
+//   }
+//   else {
+//     light.src="./img/off.jpg"
+//     console.log(light.src)
+//     console.log('off')
+//   }
+// })
+// let h2 = document.querySelector("#headingOne")
+// let hidden=document.querySelector("#collapseOne")
+// h2.onclick=() =>{
+//   hidden.classList.contains("collapse") ? hidden.classList.replace("collapse","show"): hidden.classList.replace("show","collapse")
+// }
+// let light=document.getElementsByClassName('image')[0]
+// console.log(light)
+// console.log(light.src)
+// light.addEventListener("click",()=>{
+//   if (light.scr==="http://127.0.0.1:5500/img/off.jpg"){
+//     console.log(light.src)
+//     light.scr="./img/on.jpg"
+//     console.log("on")
+//   }
+//   else {
+//     light.scr="http://127.0.0.1:5500/img/on.jpg"
+//     console.log("off")
+//   }
+// })
+// const align = document.querySelector("#slb-text-align")
+// const content = document.querySelector("#content")
+// align.onchange = () =>{
+//     content.style.textAlign = align.value
+// }
+// const height=document.querySelector("#slb-line-height")
+// console.log(height)
+// height.onchange = () =>{
+//   content.style.lineHeight = height.value+"rem"
+//   console.log(height.value)
+// }
+// const color=document.querySelectorAll(".btn-background")
+// for (const i in color){
+//     color[i].onclick = () =>{
+//     content.style.backgroundColor = color[i].getAttribute("data-value")
+// }}
+// // const background = document.querySelector("#background-color")
+// // console.log(background)
+// // for (let index = 0; index < background.children.length; index++) {
+// //     background.children[index].onclick = (e)=>{
+// //         content.style.backgroundColor = e.target.innerText;
+// //         };
+// // }
+// const desc=document.getElementById('btn-desc')
+// const incr=document.getElementById('btn-asc')
+// const styles_applied = window.getComputedStyle(content);
+// let size = parseInt(styles_applied.fontSize);
+// desc.onclick=()=>{
+//   content.style.fontSize=--size + "px"
+// }
+
+// incr.onclick=()=>{
+//   content.style.fontSize=++size + "px"
+// }
+let numberOne=document.querySelector("#number-one")
+let numberTwo=document.querySelector("#number-two")
+// let btnSum=document.querySelector("#btn-sum")
+let result=document.querySelector("#result")
+// let btnSub=document.querySelector("#btn-subtract")
+// let btnMul=document.querySelector("#btn-multiply")
+// let btnDiv=document.querySelector("#btn-divide")
+console.log(numberOne)
+numberOne.onclick=() =>{
+  if (numberOne.value < 0) {
+      numberOne.value = 0
+  }
+}
+numberTwo.onclick=() =>{
+  if (numberTwo.value < 0) {
+      numberTwo.value = 0
+  }
+}
+// btnSum.onclick=() =>{
+//   sum=parseInt(numberOne.value)+parseInt(numberTwo.value)
+//   result.innerHTML="Result: "+ sum
+// }
+// btnSub.onclick=() =>{
+//   sub=parseInt(numberOne.value)-parseInt(numberTwo.value)
+//   result.innerHTML="Result: "+ sub
+// }
+// btnMul.onclick=() =>{
+//   mul=parseInt(numberOne.value)*parseInt(numberTwo.value)
+//   result.innerHTML="Result: "+ mul
+// }
+// btnDiv.onclick=() =>{
+//   div=parseInt(numberOne.value)/parseInt(numberTwo.value)
+//   result.innerHTML="Result: "+ div
+// }
+let btn=document.querySelectorAll("button")
+console.log(btn)
+for(const i of btn) {
+  console.log(i.id)
+  i.onclick=() =>{
+    if (i.id=="btn-sum"){
+      sum=parseInt(numberOne.value)+parseInt(numberTwo.value)
+      result.innerHTML="Result: "+ sum
+    }
+    else if (i.id=="btn-subtract"){
+      sub=parseInt(numberOne.value)-parseInt(numberTwo.value)
+      result.innerHTML="Result: "+ sub
+    }
+    else if(i.id=="btn-multiply"){
+      mul=parseInt(numberOne.value)*parseInt(numberTwo.value)
+      result.innerHTML="Result: "+ mul
+    }
+    else if (i.id=="btn-divide"){
+      div=parseInt(numberOne.value)/parseInt(numberTwo.value)
+      result.innerHTML="Result: "+ div
+    }
+  }
 }
