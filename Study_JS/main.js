@@ -895,24 +895,24 @@ const detailNews=[
 // incr.onclick=()=>{
 //   content.style.fontSize=++size + "px"
 // }
-let numberOne=document.querySelector("#number-one")
-let numberTwo=document.querySelector("#number-two")
+// let numberOne=document.querySelector("#number-one")
+// let numberTwo=document.querySelector("#number-two")
 // let btnSum=document.querySelector("#btn-sum")
-let result=document.querySelector("#result")
+// let result=document.querySelector("#result")
 // let btnSub=document.querySelector("#btn-subtract")
 // let btnMul=document.querySelector("#btn-multiply")
 // let btnDiv=document.querySelector("#btn-divide")
-console.log(numberOne)
-numberOne.onclick=() =>{
-  if (numberOne.value < 0) {
-      numberOne.value = 0
-  }
-}
-numberTwo.onclick=() =>{
-  if (numberTwo.value < 0) {
-      numberTwo.value = 0
-  }
-}
+// console.log(numberOne)
+// numberOne.onclick=() =>{
+//   if (numberOne.value < 0) {
+//       numberOne.value = 0
+//   }
+// }
+// numberTwo.onclick=() =>{
+//   if (numberTwo.value < 0) {
+//       numberTwo.value = 0
+//   }
+// }
 // btnSum.onclick=() =>{
 //   sum=parseInt(numberOne.value)+parseInt(numberTwo.value)
 //   result.innerHTML="Result: "+ sum
@@ -929,26 +929,154 @@ numberTwo.onclick=() =>{
 //   div=parseInt(numberOne.value)/parseInt(numberTwo.value)
 //   result.innerHTML="Result: "+ div
 // }
-let btn=document.querySelectorAll("button")
-console.log(btn)
-for(const i of btn) {
-  console.log(i.id)
-  i.onclick=() =>{
-    if (i.id=="btn-sum"){
-      sum=parseInt(numberOne.value)+parseInt(numberTwo.value)
-      result.innerHTML="Result: "+ sum
-    }
-    else if (i.id=="btn-subtract"){
-      sub=parseInt(numberOne.value)-parseInt(numberTwo.value)
-      result.innerHTML="Result: "+ sub
-    }
-    else if(i.id=="btn-multiply"){
-      mul=parseInt(numberOne.value)*parseInt(numberTwo.value)
-      result.innerHTML="Result: "+ mul
-    }
-    else if (i.id=="btn-divide"){
-      div=parseInt(numberOne.value)/parseInt(numberTwo.value)
-      result.innerHTML="Result: "+ div
-    }
+// let numberOne=document.querySelector("#number-one")
+// let numberTwo=document.querySelector("#number-two")
+// let result=document.querySelector("#result")
+// numberOne.onclick=() =>{
+//   if (numberOne.value < 0) {
+//       numberOne.value = 0
+//   }
+// }
+// numberTwo.onclick=() =>{
+//   if (numberTwo.value < 0) {
+//       numberTwo.value = 0
+//   }
+// }
+// let btn=document.querySelectorAll("button")
+// for(const i of btn) {
+//   i.onclick=() =>{
+//     if (i.id=="btn-sum"){
+//       sum=parseInt(numberOne.value)+parseInt(numberTwo.value)
+//       result.innerHTML="Result: "+ sum
+//     }
+//     else if (i.id=="btn-subtract"){
+//       sub=parseInt(numberOne.value)-parseInt(numberTwo.value)
+//       result.innerHTML="Result: "+ sub
+//     }
+//     else if(i.id=="btn-multiply"){
+//       mul=parseInt(numberOne.value)*parseInt(numberTwo.value)
+//       result.innerHTML="Result: "+ mul
+//     }
+//     else if (i.id=="btn-divide"){
+//       div=parseInt(numberOne.value)/parseInt(numberTwo.value)
+//       result.innerHTML="Result: "+ div
+//     }
+//   }
+// }
+
+// let score=document.querySelector(".box-score")
+// console.log(score.innerText)
+// let btn=document.querySelectorAll(".btn")
+// console.log(btn)
+// let process=(a,b)=>{
+//   return (parseInt(a.innerText)+parseInt(b.innerText)).toString().padStart(2,'0')
+// }
+// for (const i of btn){
+//   if (i.id=="btnHome1"){
+//     i.onclick=() =>{
+//     score.innerText=process(score,i)
+//   }
+// }
+//   else if (i.id=="btnHome2"){
+//     i.onclick=() =>{
+//       score.innerText=process(score,i)
+//     }
+//   }
+//   else {
+//     i.onclick=() =>{
+//       score.innerText=process(score,i)
+//     }
+//   }
+// }
+
+let len=document.querySelector("#length")
+let inputLength=document.querySelector("#input-length")
+inputLength.oninput=() =>{
+  len.innerHTML=inputLength.value
+}
+const NUMBERS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const SYMBOLS = ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "[", "}", "]", ",", "|", ":", ";", "<", ">", ".", "?", "/"];
+let checkNumbers=document.querySelector("#checkbox-numbers")
+let checkLetters=document.querySelector("#checkbox-letters")
+let checkSymbols=document.querySelector("#checkbox-symbols")
+let result=document.querySelector("#result")
+let btnGenerate=document.querySelector("#btn-generate")
+console.log(checkNumbers)
+checkNumbers.classList.add("check")
+checkLetters.classList.add("check")
+checkSymbols.classList.add("check")
+let check=document.querySelectorAll(".check")
+let singleCheck=(arr) =>{
+  strings=arr.toString().replaceAll(",","")
+    var password = "";
+    for (let i = 0; i < len.innerHTML; i++) {
+      let randomNumber = Math.floor(Math.random() * strings.length);
+      password += strings.substring(randomNumber,randomNumber+1)
+     }
+     return password
+  }
+ 
+
+let doubleCheck=(arr1,arr2) =>{
+  strings=arr1.concat(arr2).toString().replaceAll(",","")
+  console.log(strings)
+    var password = "";
+    for (let i = 0; i < len.innerHTML; i++) {
+      let randomNumber = Math.floor(Math.random() * strings.length);
+      password += strings.substring(randomNumber,randomNumber+1)
+     }
+     return password
+  }
+ 
+let tripleCheck=(arr1,arr2,arr3) =>{
+  strings=arr1.concat(arr2).concat(arr3).toString().replaceAll(",","")
+  console.log(strings)
+    var password = "";
+    for (let i = 0; i < len.innerHTML; i++) {
+      let randomNumber = Math.floor(Math.random() * strings.length);
+      password += strings.substring(randomNumber,randomNumber+1)
+     }
+     return password
+  }
+let typeCheck=(type)=>{
+  if (type==="checkbox-numbers"){
+    return NUMBERS
+  }
+  else if(type==="checkbox-letters"){
+    return LETTERS
+  }
+  else if (type==="checkbox-symbols") {
+    return SYMBOLS
   }
 }
+btnGenerate.onclick=() =>{
+  let count=0
+  let arrCheck=[]
+  for (const i in check){
+      if (check[i].checked){
+        ++count
+        arrCheck[i]=check[i].id
+        
+      }
+}
+console.log(arrCheck.flat(0))
+arrChecks=arrCheck.flat(0)
+  if (count==0){
+    alert("You must choose at least one box")
+    result.innerHTML="$$$$$$$$$$$"
+  }
+  if (count===1){
+    result.innerHTML=singleCheck(typeCheck(arrChecks[0]))
+    console.log(inputLength.value)
+    console.log(len.innerHTML)
+  }
+  else if (count===2){
+    result.innerHTML=doubleCheck(typeCheck(arrChecks[0]),typeCheck(arrChecks[1]))
+  }
+  else{
+    result.innerHTML=tripleCheck(typeCheck(arrChecks[0]),typeCheck(arrChecks[1]),typeCheck(arrChecks[2]))
+  }
+  }
+
+
