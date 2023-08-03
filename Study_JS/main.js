@@ -989,94 +989,148 @@ const detailNews=[
 //   }
 // }
 
-let len=document.querySelector("#length")
-let inputLength=document.querySelector("#input-length")
-inputLength.oninput=() =>{
-  len.innerHTML=inputLength.value
-}
-const NUMBERS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-const LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-const SYMBOLS = ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "[", "}", "]", ",", "|", ":", ";", "<", ">", ".", "?", "/"];
-let checkNumbers=document.querySelector("#checkbox-numbers")
-let checkLetters=document.querySelector("#checkbox-letters")
-let checkSymbols=document.querySelector("#checkbox-symbols")
-let result=document.querySelector("#result")
-let btnGenerate=document.querySelector("#btn-generate")
-console.log(checkNumbers)
-checkNumbers.classList.add("check")
-checkLetters.classList.add("check")
-checkSymbols.classList.add("check")
-let check=document.querySelectorAll(".check")
-let singleCheck=(arr) =>{
-  strings=arr.toString().replaceAll(",","")
-    var password = "";
-    for (let i = 0; i < len.innerHTML; i++) {
-      let randomNumber = Math.floor(Math.random() * strings.length);
-      password += strings.substring(randomNumber,randomNumber+1)
-     }
-     return password
-  }
+// let len=document.querySelector("#length")
+// let inputLength=document.querySelector("#input-length")
+// inputLength.oninput=() =>{
+//   len.innerHTML=inputLength.value
+// }
+// const NUMBERS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+// const LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+// const SYMBOLS = ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "[", "}", "]", ",", "|", ":", ";", "<", ">", ".", "?", "/"];
+// let checkNumbers=document.querySelector("#checkbox-numbers")
+// let checkLetters=document.querySelector("#checkbox-letters")
+// let checkSymbols=document.querySelector("#checkbox-symbols")
+// let result=document.querySelector("#result")
+// let btnGenerate=document.querySelector("#btn-generate")
+// console.log(checkNumbers)
+// checkNumbers.classList.add("check")
+// checkLetters.classList.add("check")
+// checkSymbols.classList.add("check")
+// let check=document.querySelectorAll(".check")
+// let singleCheck=(arr) =>{
+//   strings=arr.toString().replaceAll(",","")
+//     var password = "";
+//     for (let i = 0; i < len.innerHTML; i++) {
+//       let randomNumber = Math.floor(Math.random() * strings.length);
+//       password += strings.substring(randomNumber,randomNumber+1)
+//      }
+//      return password
+//   }
  
 
-let doubleCheck=(arr1,arr2) =>{
-  strings=arr1.concat(arr2).toString().replaceAll(",","")
-  console.log(strings)
-    var password = "";
-    for (let i = 0; i < len.innerHTML; i++) {
-      let randomNumber = Math.floor(Math.random() * strings.length);
-      password += strings.substring(randomNumber,randomNumber+1)
-     }
-     return password
-  }
+// let doubleCheck=(arr1,arr2) =>{
+//   strings=arr1.concat(arr2).toString().replaceAll(",","")
+//   console.log(strings)
+//     var password = "";
+//     for (let i = 0; i < len.innerHTML; i++) {
+//       let randomNumber = Math.floor(Math.random() * strings.length);
+//       password += strings.substring(randomNumber,randomNumber+1)
+//      }
+//      return password
+//   }
  
-let tripleCheck=(arr1,arr2,arr3) =>{
-  strings=arr1.concat(arr2).concat(arr3).toString().replaceAll(",","")
-  console.log(strings)
-    var password = "";
-    for (let i = 0; i < len.innerHTML; i++) {
-      let randomNumber = Math.floor(Math.random() * strings.length);
-      password += strings.substring(randomNumber,randomNumber+1)
-     }
-     return password
-  }
-let typeCheck=(type)=>{
-  if (type==="checkbox-numbers"){
-    return NUMBERS
-  }
-  else if(type==="checkbox-letters"){
-    return LETTERS
-  }
-  else if (type==="checkbox-symbols") {
-    return SYMBOLS
-  }
-}
-btnGenerate.onclick=() =>{
-  let count=0
-  let arrCheck=[]
-  for (const i in check){
-      if (check[i].checked){
-        ++count
-        arrCheck[i]=check[i].id
+// let tripleCheck=(arr1,arr2,arr3) =>{
+//   strings=arr1.concat(arr2).concat(arr3).toString().replaceAll(",","")
+//   console.log(strings)
+//     var password = "";
+//     for (let i = 0; i < len.innerHTML; i++) {
+//       let randomNumber = Math.floor(Math.random() * strings.length);
+//       password += strings.substring(randomNumber,randomNumber+1)
+//      }
+//      return password
+//   }
+// let typeCheck=(type)=>{
+//   if (type==="checkbox-numbers"){
+//     return NUMBERS
+//   }
+//   else if(type==="checkbox-letters"){
+//     return LETTERS
+//   }
+//   else if (type==="checkbox-symbols") {
+//     return SYMBOLS
+//   }
+// }
+// btnGenerate.onclick=() =>{
+//   let count=0
+//   let arrCheck=[]
+//   for (const i in check){
+//       if (check[i].checked){
+//         ++count
+//         arrCheck[i]=check[i].id
         
-      }
-}
-console.log(arrCheck.flat(0))
-arrChecks=arrCheck.flat(0)
-  if (count==0){
-    alert("You must choose at least one box")
-    result.innerHTML="$$$$$$$$$$$"
-  }
-  if (count===1){
-    result.innerHTML=singleCheck(typeCheck(arrChecks[0]))
-    console.log(inputLength.value)
-    console.log(len.innerHTML)
-  }
-  else if (count===2){
-    result.innerHTML=doubleCheck(typeCheck(arrChecks[0]),typeCheck(arrChecks[1]))
-  }
-  else{
-    result.innerHTML=tripleCheck(typeCheck(arrChecks[0]),typeCheck(arrChecks[1]),typeCheck(arrChecks[2]))
-  }
-  }
+//       }
+// }
+// console.log(arrCheck.flat(0))
+// arrChecks=arrCheck.flat(0)
+//   if (count==0){
+//     alert("You must choose at least one box")
+//     result.innerHTML="$$$$$$$$$$$"
+//   }
+//   if (count===1){
+//     result.innerHTML=singleCheck(typeCheck(arrChecks[0]))
+//   }
+//   else if (count===2){
+//     result.innerHTML=doubleCheck(typeCheck(arrChecks[0]),typeCheck(arrChecks[1]))
+//   }
+//   else{
+//     result.innerHTML=tripleCheck(typeCheck(arrChecks[0]),typeCheck(arrChecks[1]),typeCheck(arrChecks[2]))
+//   }
+//   }
 
 
+
+//  type to js dùng JSON.stringify
+//  từ json to type thì dúng parse
+// const arr=[
+//   {
+//     "name":"An",
+//     "age":25,
+//     "sex":"Male",
+//     "location":"Viet Nam"
+//   },
+//   {
+//     "name":"Trang",
+//     "age":23,
+//     "sex":"Female",
+//     "location":"Viet Nam"
+//   }
+// ]
+// type=JSON.stringify(arr[0].name)
+// console.log(arr)
+// console.log(type)
+// console.log(typeof(type))
+// fetch("http://apiforlearning.zendvn.com/api/get-gold")
+// .then(x => x.text())
+// .then(price => {
+//   let result=`  <tr>
+//                 <th>BUY</th>
+//                 <th>SELL</th>
+//                 <th>TYPE</th>
+//               </tr>`
+//   let arr=JSON.parse(price)
+//   for (const i of arr){
+//     result+= `  <tr>
+//                   <td>${i.buy}</td>
+//                   <td>${i.sell}</td>
+//                   <td>${i.type}</td>
+//                 </tr>`
+//   }
+//   return document.getElementById("customers").innerHTML=result
+// });
+
+
+fetch("https://apiforlearning.zendvn.com/public/api/v2/categories_news")
+.then(x => x.text())
+.then(price => {
+  let arr=JSON.parse(price)
+  let result=''
+  let a =''
+    for (const i of arr.data){
+      if (i.id < 7) {
+        result+=`<li class="menu-active"><a href="index.html">${i.name}</a></li>`}
+      else {
+        a +=`<li><a href="#">${i.name}</a></li>`}}
+      result +=`<li class="menu-has-children"><a href="">Khác</a>
+        <ul>${a}</ul>`
+  return document.querySelector(".nav-menu").innerHTML=result}
+)
