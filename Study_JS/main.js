@@ -1122,7 +1122,9 @@ const detailNews=[
 fetch("https://apiforlearning.zendvn.com/public/api/v2/categories_news")
 .then(x => x.text())
 .then(price => {
+  console.log(price)
   let arr=JSON.parse(price)
+  console.log(arr.data)
   let result=''
   let a =''
     for (const i of arr.data){
@@ -1134,3 +1136,71 @@ fetch("https://apiforlearning.zendvn.com/public/api/v2/categories_news")
         <ul>${a}</ul>`
   return document.querySelector(".nav-menu").innerHTML=result}
 )
+// in giá vàng
+fetch("http://apiforlearning.zendvn.com/api/get-gold")
+.then(x => x.text())
+.then(prices => {
+// console.log(document.getElementsByClassName("most-popular-widget"))
+  let arrs=JSON.parse(prices)
+  let dynamic=''
+  for (const i of arrs){
+    dynamic+= `  <tr>
+                  <td>${i.buy}</td>
+                  <td>${i.sell}</td>
+                  <td>${i.type}</td>
+                </tr>`
+  }
+  let results=
+                `<h6 class="title">Giá vàng</h6>
+                <table id="customers">
+                <tr>
+                  <th>BUY</th>
+                  <th>SELL</th>
+                  <th>TYPE</th>
+                </tr>
+                ${dynamic}
+                </table>`
+
+  return document.getElementsByClassName("most-popular-widget")[0].innerHTML=results
+});
+
+fetch("https://apiforlearning.zendvn.com/public/api/v2/categories_news/articles?page=1")
+.then(response =>response.json())
+.then(news =>{
+  let count=0
+  let dynamicNews=""
+  for (const i of news.data) {
+    for (const a of i.articles) {
+      count++
+      if (count <5 ){
+      dynamicNews +=`
+                      <div class="single-latest-post row align-items-center">
+                      <div class="col-lg-5 post-left">
+                        <div class="feature-img relative">
+                          <div class="overlay overlay-bg"></div>
+                          <img class="img-fluid" src="img/l1.jpg" alt="">
+                        </div>
+                        <ul class="tags">
+                          <li><a href="${a.link}">Detail</a></li>
+                        </ul> 
+                      </div>
+                      <div class="col-lg-7 post-right">
+                        <a href="image-post.html">
+                          <h4>${a.title}</h4>
+                        </a>
+                        <ul class="meta">
+                          <li><a href="#"><span class="lnr lnr-user"></span>${a.author}</a></li>
+                          <li><a href="#"><span class="lnr lnr-calendar-full"></span>${a.publish_date}</a></li>
+                          <li><a href="#"><span class="lnr lnr-bubble"></span>06 Comments</a></li>
+                        </ul>
+                        <p class="excert">
+                          ${a.description}
+                        </p>
+                      </div>
+                      </div>
+    `
+    
+    }}}
+  let newS=`<h4 class="cat-title">Latest News</h4>${dynamicNews}`
+  return document.getElementsByClassName("latest-post-wrap")[0].innerHTML=newS
+})
