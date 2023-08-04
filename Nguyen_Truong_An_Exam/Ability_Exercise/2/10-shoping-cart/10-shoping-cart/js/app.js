@@ -147,19 +147,13 @@ let btn=document.querySelectorAll(".btn-primary")
 let formControl=document.querySelectorAll(".form-control")
 let btnAdd=document.querySelectorAll(".mt-1")
 let objName=document.querySelectorAll("h6")
-let cartBody=document.querySelector('tbody')
+let cartProducts=document.querySelector('#cardProducts')
 let addQuantity=document.querySelectorAll("td input")
 let subTotal=document.querySelector("#toTal")
 let count=document.querySelector("#count")
-// console.log(btnAdd)
-// console.log(formControl)
-// console.log(btnAdd)
-// console.log(objName[0].textContent)
-// console.log(cartBody)
-// console.log(addQuantity)
+
 let objectProduct=[]
 let objPrice=[20,20,20,20]
-
 
 let render=(arr)=>{
   let result=''
@@ -176,11 +170,12 @@ let render=(arr)=>{
                   <button type="button" class="btn btn-link btn-sm btn-rounded btn-block update">Update</button>
                   <button type="button" class="btn btn-link btn-sm btn-rounded btn-block delete">Delete</button>
                 </td>
-              </tr>`
+              </tr>
+              `
   }
-  return cartBody.innerHTML=result
-}
 
+  return cartProducts.innerHTML=result
+}
 let createObj=(i) =>{
   const objProduct={
     id: createId(),
@@ -201,41 +196,95 @@ let toTal =(arr) =>{
   }
   subTotal.textContent="$"+`${sum}`
 }
-let updateObject=(arr) =>{
-  let btnUp=document.querySelectorAll(".update")
-  let updateQuantity=document.querySelectorAll(".add-quantity")
-  
-  for (const i in arr){
-    btnUp[i].addEventListener('click',() =>{
-      arr[i].quantity=updateQuantity[i].value
+let updateObject=(arr,btnUp,quantity) =>{
+  for (const i in btnUp){
+    btnUp[i].onclick=() =>{
+      arr[i].quantity=quantity[i].value
       arr[i].subTotal=parseInt(arr[i].quantity)*objPrice[i]
-      toTal(objectProduct)
-      render(objectProduct)
-      console.log("update")
-  })}}
-
-let removeObject=(arr,i) =>{
-  return arr.splice(arr.indexOf(arr[i]), 1); 
+      saveLocalStorage(objectProduct)
+      toTal(arr)
+      render(arr)
+      updateObject(objectProduct,document.querySelectorAll(".update"),document.querySelectorAll(".add-quantity"))
+      deleteObject(objectProduct,document.querySelectorAll(".delete"))
+    }
+}
 }
 
-let deleteObject=(arr) =>{
-  let btnDe=document.querySelectorAll(".delete")
-  
+let deleteObject=(arr,btnDe) =>{
   for (const i in arr){
-    btnDe[i].addEventListener('click',() =>{
-      removeObject(arr,i)
+  btnDe[i].onclick=() =>{
+      removeLocalStorage(arr,i)
+      arr.splice(arr.indexOf(arr[i]), 1); 
+      toTal(arr)
+      counter(arr)
       render(arr)
-      console.log("delete")
-  })}}
+      deleteObject(arr,document.querySelectorAll(".delete"),counter,render)
+      updateObject(arr,document.querySelectorAll(".update"),document.querySelectorAll(".add-quantity"))
+      toTal(arr)
+  }}}
 
-let countes=(arr) =>{
+let addData =(arr) =>{
+  for (const i in Object.entries(localStorage)){
+    arr.push(JSON.parse(localStorage.getItem(Object.entries(localStorage)[i][0])))
+  }
+  return arr
+}
+
+let saveLocalStorage =(arr)=>{
+  for (const i in arr){
+    localStorage.setItem(arr[i].id,JSON.stringify(arr[i]))
+}}
+
+let removeLocalStorage =(arr,i)=>{
+    localStorage.removeItem(arr[i].id)
+  }
+  
+let counter=(arr) =>{
   return count.innerHTML=arr.length
 }
+// let updateFeatures=(arr,check,i) =>{
+//     if (arr[i].name="Fushigidane"){
+//         arr[i].quantity=parseInt(check[i].value) + parseInt(formControl[0].value)
+//         check[i].value=parseInt(arr[i].quantity)
+//         arr[i].subTotal=parseInt(arr[i].quantity)*objPrice[i]
+//         toTal(arr)
+//         render(arr)
+//         saveLocalStorage(arr)
+//         removeLocalStorage(arr,i+1)
+        
+//         }
+
+//     else if (arr[i].name="Zenigame"){
+//       arr[i].quantity=parseInt(check[i].value) + parseInt(formControl[1].value)
+//       check[i].value=parseInt(arr[i].quantity)
+//       arr[i].subTotal=parseInt(arr[i].quantity)*objPrice[i]
+//       toTal(arr)
+//       render(arr)
+//       saveLocalStorage(arr)
+//       removeLocalStorage(arr,i+1)}}
+
+    // else if (arr[i].name==="Pikachu"){
+    //   arr[i].quantity=parseInt(check[i].value) + parseInt(formControl[2].value)
+    //   check[i].value=parseInt(arr[i].quantity)
+    //   arr[i].subTotal=parseInt(arr[i].quantity)*objPrice[i]
+    //   toTal(arr)
+    //   render(arr)
+    //   saveLocalStorage(arr)
+    //   removeLocalStorage(arr,i+1)}
+    // else if (arr[i].name==="Purin"){
+    //   arr[i].quantity=parseInt(check[i].value) + parseInt(formControl[3].value)
+    //   check[i].value=parseInt(arr[i].quantity)
+    //   arr[i].subTotal=parseInt(arr[i].quantity)*objPrice[i]
+    //   toTal(arr)
+    //   render(arr)
+    //   saveLocalStorage(arr)
+    //   removeLocalStorage(arr,i+1)}
+      
 
 btn[0].onclick=()=>{
   if (formControl[0].value > 0)
     formControl[0].value--
-}
+      }
 
 btn[1].onclick=()=>{
   formControl[0].value++
@@ -265,16 +314,25 @@ btn[6].onclick=()=>{
 btn[7].onclick=()=>{
   formControl[3].value++
 }
-
   for (const i in btnAdd) {
     btnAdd[i].onclick =() =>{
       createObj(i)
       render(objectProduct)
+      // updateFeatures(objectProduct,document.querySelectorAll(".add-quantity"),i)
       toTal(objectProduct)
-      countes(objectProduct)
-    }
-  }
+      counter(objectProduct)
 
+      saveLocalStorage(objectProduct)
+      updateObject(objectProduct,document.querySelectorAll(".update"),document.querySelectorAll(".add-quantity"))
+      deleteObject(objectProduct,document.querySelectorAll(".delete"),counter,render)
+      
+    }}
+addData(objectProduct)
+toTal(objectProduct) 
+render(objectProduct)
+counter(objectProduct)
+updateObject(objectProduct,document.querySelectorAll(".update"),document.querySelectorAll(".add-quantity"))
+deleteObject(objectProduct,document.querySelectorAll(".delete"),counter,render)
 
 
 
