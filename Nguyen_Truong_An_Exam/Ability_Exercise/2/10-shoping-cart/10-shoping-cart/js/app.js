@@ -142,24 +142,49 @@ let carts = [
       quantity: 1,
     },
 ];
-
+let listProducts=document.querySelector("#listProducts")
+let renderListProducts=(arr)=>{
+  let result=''
+  for (const i in arr){
+  result +=`<div class="row align-items-center">
+  <div class="col-6 col-md-4">
+    <img src="img/${arr[i].thumb}" alt="" class="img-fluid">
+  </div>
+  <div class="col-6 col-md-8">
+    <h6>${arr[i].name}</h6>
+    <div class="form-group">
+      <div class="d-flex">
+        <button class="btn btn-primary"> - </button>
+        <input type="text" class="form-control mx-1" value="1" min="1">
+        <button class="btn btn-primary"> + </button>
+      </div>
+      <button class="btn btn-danger btn-block mt-1 btn-add-to-cart">$${arr[i].price}</button>
+    </div>
+  </div>
+</div> `
+}
+  return listProducts.innerHTML=result
+}
+renderListProducts(PRODUCTS)
 let btn=document.querySelectorAll(".btn-primary")
 let formControl=document.querySelectorAll(".form-control")
 let btnAdd=document.querySelectorAll(".mt-1")
-let objName=document.querySelectorAll("h6")
+// let objName=document.querySelectorAll("h6")
 let cartProducts=document.querySelector('#cardProducts')
 let addQuantity=document.querySelectorAll("td input")
 let subTotal=document.querySelector("#toTal")
 let count=document.querySelector("#count")
 
 let objectProduct=[]
-let objPrice=[20,20,20,20]
+// let objPrice=[20,20,20,20]
+
 
 let render=(arr)=>{
   let result=''
   for (const i in arr){
+    let increaseItem=parseInt(i)
   result +=`  <tr>
-                <td>${arr[i].id}</td>
+                <td>${increaseItem+1}</td>
                 <td>${arr[i].name}</td>
                 <td>${arr[i].pri}</td>
                 <td>
@@ -179,10 +204,10 @@ let render=(arr)=>{
 let createObj=(i) =>{
   const objProduct={
     id: createId(),
-    name: objName[i].textContent,
-    pri: objPrice[i],
+    name: PRODUCTS[i].name,
+    pri: PRODUCTS[i].price,
     quantity: formControl[i].value,
-    subTotal:parseInt(formControl[i].value)*objPrice[i]
+    subTotal:parseInt(formControl[i].value)*PRODUCTS[i].price
   }
   objectProduct.push(objProduct)
   formControl[i].value=0
@@ -202,9 +227,10 @@ let updateObject=(arr) =>{
   for (const i in btnUp){
     btnUp[i].onclick=() =>{
       arr[i].quantity=quantity[i].value
-      arr[i].subTotal=parseInt(arr[i].quantity)*objPrice[i]
+      arr[i].subTotal=parseInt(arr[i].quantity)*arr[i].pri
       saveLocalStorage(objectProduct)
       toTal(arr)
+      counter(arr)
       render(arr)
       updateObject(arr)
       deleteObject(arr)
@@ -245,8 +271,13 @@ let removeLocalStorage =(arr,i)=>{
   }
   
 let counter=(arr) =>{
-  return count.innerHTML=arr.length
+  let numberItems=0
+  for (const i in arr){
+    numberItems+=parseInt(arr[i].quantity)
+  }
+  return count.innerHTML=numberItems
 }
+
 
 btn[0].onclick=()=>{
   if (formControl[0].value > 0)
@@ -281,6 +312,13 @@ btn[6].onclick=()=>{
 btn[7].onclick=()=>{
   formControl[3].value++
 }
+btn[8].onclick=()=>{
+  if (formControl[4].value > 0)
+  formControl[4].value--
+}
+btn[9].onclick=()=>{
+  formControl[4].value++
+}
   for (const i in btnAdd) {
     btnAdd[i].onclick =() =>{
       createObj(i)
@@ -292,6 +330,7 @@ btn[7].onclick=()=>{
       deleteObject(objectProduct)
       
     }}
+
 addData(objectProduct)
 toTal(objectProduct) 
 render(objectProduct)
