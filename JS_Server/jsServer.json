@@ -1,0 +1,46 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "javascript",
+      "author": "nojsdngnds",
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "title": "sdcdcd",
+      "author": "assads",
+      "id": 4
+    },
+    {
+      "title": "sdcdcd",
+      "author": "assads",
+      "id": 5
+    },
+    {
+      "title": "methodPost",
+      "author": "AN",
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "title": "methodPost",
+      "author": "AN1",
+      "id": 10
+    }
+  ]
+}

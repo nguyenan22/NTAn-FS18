@@ -1,0 +1,24 @@
+Coder/Dev: 
+CRUD: task --> leader --> tester -->
+
+
+create: tạo, thêm                   --> POST
+
+Read: Đọc dữ liệu, hiển thị dữ liệu --> GET
+Update: chỉnh sửa, cập nhât         --> PUT/PATCH
+Delete: xóa                         --> DELETE
+
+KH: Chức năng
+Bình luận --> 500k, 1tr
+Mua hàng: 8 9 --> 2tr
+Đăng tin/story
+
+các status code:
+1xx: mã thông tin
+2xx: mã thành công
+3xx: mã load lại
+4xx: mã lỗi 
+5xx: lỗi server
+
+
+json-server -->fake/mock -->api ảo --> test html  --> team FE
