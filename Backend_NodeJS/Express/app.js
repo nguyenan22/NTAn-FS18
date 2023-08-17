@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 // var logger = require('morgan');
 const systemConfig=require('./config/system')
 const mongoose=require('mongoose')
-const schema=require('./schemas/items')
+
 // var indexRouter = ;
 // var usersRouter = ;
 // var videoRouter = ;
@@ -33,13 +33,7 @@ mongoose.connect('mongodb+srv://nguyenan22021996:2411996An@cluster0.ubyknfq.mong
 // silence.save()
 
 // Find dữ liệu
-schema.find({})
-.then(function (models) {
-  console.log(models);
-})
-.catch(function (err) {
-  console.log(err);
-});
+
 
 
 
