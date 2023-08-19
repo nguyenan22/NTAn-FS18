@@ -2,16 +2,24 @@ var express = require('express');
 var router = express.Router();
 const schema=require('../../schemas/items');
 const { models } = require('mongoose');
+const ultilsHelpers=require('../../helpers/utils')
 /* GET home page. */
-router.get('/', async function(req, res, next) {
-
-  await schema.find({})
+router.get('(/status/:status)?', async function(req, res, next) {
+  let currentStatus = req.params.status
+  let statusFillters=await ultilsHelpers.createStatusFilter(currentStatus)
+  // for (let index = 0; index < statusFillters.length; index++) {
+  //   let objwhere = {}   //all
+  //   let item = statusFillters[index]
+  //   if (item.value !== 'all') {objwhere = {status: item.value}} //active, inactive
+  //  await schema.count(objwhere).then((data)=>{
+  //     statusFillters[index].count = data
+  //   })   
+  // }
+  let objwhere = {}
+  if (currentStatus !== 'all' ) {objwhere = {status: currentStatus}}
+  console.log(objwhere)
+  await schema.find(objwhere)
   .then(function (models) {
-    let statusFillters = [
-      {name: 'ALL', value: 'all',   count: 4,   class: 'default',   link: '#' }, 
-      {name: 'ACTIVE', value: 'active',   count: 4,   class: 'success',   link: '#' },
-      {name: 'INACTIVE', value: 'inactive',   count: 4,   class: 'default',   link: '#' }
-    ]
     console.log(models);
     res.render('pages/item/list', { pageTitle: 'Item List Manager', data:models, statusFillters:statusFillters });
   })
