@@ -1,0 +1,22 @@
+<!-- <% statusHelper = (status,link) => { %>
+    <a href="#">
+        <% if(status == 'active'){ %>
+            <span class="label label-success"><%= status %></span>
+        <% }else {%>
+            <span class="label label-warning"><%= status %></span>
+        <%}%>
+    </a>
+<%}  %> -->
+
+
+<% 
+statusHelper = (status) => { 
+    let link = '#'
+    let xhtml = ''
+    if(status == 'active'){
+        xhtml =  `<span class="label label-success">${status}</span>`
+    }else{
+        xhtml =  ` <span class="label label-warning">${status}</span>`
+    }
+    return `<a href="${link}">${xhtml}</a> ` 
+}%>
