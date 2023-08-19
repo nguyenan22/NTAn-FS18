@@ -34,3 +34,10 @@ mark {
 .bg-success {
     background-color: #78f7ab !important;
 }
+.btn-none {
+    display: none;
+}
+.taskname-input{
+    border: 1px solid #bdbdbd;
+    border-radius: .25rem;
+}
