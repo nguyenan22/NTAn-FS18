@@ -46,7 +46,7 @@ let taskAPI='http://localhost:3000/task'
             level: levelStatus,
            }
            saveTask(data,function(){
-            getTask(renderTask)
+            // getTask(renderTask)
            })
         }}
 
@@ -81,7 +81,7 @@ function deleteHandle (id){
     fetch(taskAPI+"/"+id,option)
     .then(res => res.json())
     .then(function() {
-        getTask(renderTask)
+        // getTask(renderTask)
     })
 }}
 
@@ -116,7 +116,7 @@ function putHandle (id,data){
     fetch(taskAPI+"/"+id,option)
     .then(res => res.json())
     .then(function() {
-        getTask(renderTask)
+        // getTask(renderTask)
     })
 }
 
