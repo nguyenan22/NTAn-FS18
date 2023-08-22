@@ -4,7 +4,7 @@ const mongoose=require('mongoose')
 const kittySchema = new mongoose.Schema({
     name: String,
     status:String,
-    odering:String
+    ordering:String
   });
 
 

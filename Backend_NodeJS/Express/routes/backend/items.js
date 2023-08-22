@@ -3,29 +3,28 @@ var router = express.Router();
 const schema=require('../../schemas/items');
 const { models } = require('mongoose');
 const ultilsHelpers=require('../../helpers/utils')
+const paramHelpers=require('../../helpers/getParam')
 /* GET home page. */
 router.get('(/status/:status)?', async function(req, res, next) {
-  let currentStatus = req.params.status
+  let currentStatus =paramHelpers.getParam(req.params,"status","all")
   let statusFillters=await ultilsHelpers.createStatusFilter(currentStatus)
-  // for (let index = 0; index < statusFillters.length; index++) {
-  //   let objwhere = {}   //all
-  //   let item = statusFillters[index]
-  //   if (item.value !== 'all') {objwhere = {status: item.value}} //active, inactive
-  //  await schema.count(objwhere).then((data)=>{
-  //     statusFillters[index].count = data
-  //   })   
-  // }
+  let keyword = paramHelpers.getParam(req.query,'keyword','')
+  console.log(keyword)
+
   let objwhere = {}
-  if (currentStatus !== 'all' ) {objwhere = {status: currentStatus}}
-  console.log(objwhere)
+if (currentStatus !== 'all') { objwhere = {status: currentStatus}}
+if (keyword !== '') { objwhere.name = new RegExp(keyword, 'i')}
+
   await schema.find(objwhere)
+  .sort({ordering: 'asc' }) ///LỖI
   .then(function (models) {
-    console.log(models);
-    res.render('pages/item/list', { pageTitle: 'Item List Manager', data:models, statusFillters:statusFillters });
+    console.log(models)
+    res.render('pages/item/list', { pageTitle: 'Item List Manager', data:models, statusFillters:statusFillters, currentStatus,keyword });
   })
   .catch(function (err) {
     console.log(err);
-  });
+  })
+  
   // res.render('pages/item/list', { pageTitle: 'Item List Manager', data:models });
   // res.send("Hiển thị")
 });

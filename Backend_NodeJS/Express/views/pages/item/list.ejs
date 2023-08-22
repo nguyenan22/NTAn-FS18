@@ -13,7 +13,7 @@
       <div class="panel panel-info">
           <div class="panel-heading">
               Search & Filter
-              <a href="admin123/item">
+              <a href="<%= systemConfig.prefixAdmin %>/<%= collection %>">
               <span id="icon-reload" class="glyphicon glyphicon-refresh"></span>
               </a>
           </div>
@@ -29,15 +29,15 @@
                     <% })%> -->
                   </div>
                   <div class="col-sm-6">
-                      <form action="admin123/item/all" method="GET">
+                      <form action="<%= systemConfig.prefixAdmin %>/<%= collection %>/status/<%= currentStatus %>" method="GET">
                           <div class="input-group">
-                              <input type="text" class="form-control" name="search" placeholder="Search for..." value="">
+                              <input type="text" class="form-control" name="keyword" placeholder="Search for..." value="<%=keyword%>">
                               <input type="hidden" value="all">
                               <span class="input-group-btn">
                               <button class="btn btn-info" type="submit">Search</button>
                               </span>
                               <span class="input-group-btn">
-                              <button class="btn btn-success" type="button"><a href="admin123/group/all">Clear</a></button>
+                              <button class="btn btn-success" type="button"><a href="<%= systemConfig.prefixAdmin %>/<%= collection %>/status/<%= currentStatus %>">Clear</a></button>
                               </span>
                           </div>
                       </form>
@@ -99,7 +99,7 @@
                                     <td><%= item.name %></td> 
                                     <!-- <td><% statusHelper(item.status, '#') %></td> -->
                                     <td> <%- statusHelper(item.status) %></td>
-                                    <td><input type="number" value="<%= item.odering %>" class="text-center ordering"></td>
+                                    <td><input type="number" value="<%= item.ordering %>" class="text-center ordering"></td>
                                     <td>
                                         <a href="admin123/item/form/5a9e5a96da67bc078421d7d6" type="button" class="btn btn-warning btn-sm">Edit</a>
                                         <a href="admin123/item/delete/5a9e5a96da67bc078421d7d6" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>
