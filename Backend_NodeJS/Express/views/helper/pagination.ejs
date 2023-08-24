@@ -1,0 +1,53 @@
+<!-- <%=(JSON.stringify(pagination))%> -->
+<% paginationHelper=(pagination)=> {
+    let totalItems = pagination.totalItems
+    let totalItemsPerPage = pagination.totalItemsPerPage
+    let totalPages = Math.ceil(totalItems/totalItemsPerPage)
+    let link = systemConfig.prefixAdmin + "/" + collection
+    let currentPage=pagination.currentPage
+    let xhtmStart=''
+    let xhtmPrev=''
+    let xhtmEnd=''
+    let xhtmNext=''
+    let xhtmNumber=''
+
+    if(currentPage > 1){
+        xhtmStart = `<li><a href="${link}?page=1">Start</a></li>`
+        xhtmPrev = `<li><a href="${link}?page=${currentPage-1}">Prev</a></li>`
+    }
+
+    if(currentPage < totalPages ){
+        xhtmEnd = `<li><a href="${link}?page=${totalPages}">End</a></li>`
+        xhtmNext = `<li><a href="${link}?page=${currentPage+1}">Next</a></li>`
+    }
+    for(let i = 1; i<= totalPages; i++){
+        if(currentPage == i) {
+            xhtmNumber += `<li class="active"><a>${i}</a></li>`
+        }else{
+            xhtmNumber += `<li><a href="${link}?page=${i}">${i}</a></li>`
+        }
+      
+    }
+    let xhtml=`<ul class="pagination text-center">`+xhtmStart + xhtmPrev + xhtmNext + xhtmEnd + xhtmNumber + `</ul>`
+    return `
+    <div class="col-lg-12">
+        <div class="panel panel-info" id="pagination">
+            <div class="panel-heading">
+                Pagination 
+                <span>^</span>
+                <span class="label label-warning">Total pages: ${totalPages}</span>
+                <span class="label label-danger">Total entries: ${totalItems}</span>
+            </div>
+            <div class="panel-body">
+                <div class="infor-pagination">
+                    <p>Number of elements on the page: <span>${totalItemsPerPage}</span></p>
+                    <p>Showing <span>${pagination.totalItemsPerPage*(pagination.currentPage-1)+1}</span> to <span>${pagination.totalItemsPerPage*pagination.currentPage > pagination.totalItems?pagination.totalItems:pagination.totalItemsPerPage*pagination.currentPage} </span> of <span>${totalItems}</span> entries</p>
+                </div>
+                <div class="ad-pagination">
+                    ${xhtml}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>`
+}%>

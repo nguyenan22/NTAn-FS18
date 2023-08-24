@@ -9,17 +9,30 @@ router.get('(/status/:status)?', async function(req, res, next) {
   let currentStatus =paramHelpers.getParam(req.params,"status","all")
   let statusFillters=await ultilsHelpers.createStatusFilter(currentStatus)
   let keyword = paramHelpers.getParam(req.query,'keyword','')
-  console.log(keyword)
+  // console.log(keyword)
+  let pagination = {
+    totalItems: 1,
+    totalItemsPerPage: 3,
+    currentPage: 1
+}
+
+pagination.currentPage = parseInt(paramHelpers.getParam(req.query,'page', 1))
 
   let objwhere = {}
 if (currentStatus !== 'all') { objwhere = {status: currentStatus}}
 if (keyword !== '') { objwhere.name = new RegExp(keyword, 'i')}
 
+  await schema.count(objwhere).then((data)=>{
+    pagination.totalItems = data
+  })
+  console.log(pagination)
   await schema.find(objwhere)
-  .sort({ordering: 'asc' }) ///LỖI
+  .sort({ordering: 'asc' })
+  .skip(pagination.totalItemsPerPage*(pagination.currentPage-1))
+  .limit(pagination.totalItemsPerPage)
   .then(function (models) {
-    console.log(models)
-    res.render('pages/item/list', { pageTitle: 'Item List Manager', data:models, statusFillters:statusFillters, currentStatus,keyword });
+    // console.log(models)
+    res.render('pages/item/list', { pageTitle: 'Item List Manager', data:models, statusFillters:statusFillters, currentStatus,keyword,pagination });
   })
   .catch(function (err) {
     console.log(err);
