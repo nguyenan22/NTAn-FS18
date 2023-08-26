@@ -12,8 +12,9 @@ router.get('(/status/:status)?', async function(req, res, next) {
   // console.log(keyword)
   let pagination = {
     totalItems: 1,
-    totalItemsPerPage: 3,
-    currentPage: 1
+    totalItemsPerPage: 2,
+    currentPage: 1,
+    pageRange:5
 }
 
 pagination.currentPage = parseInt(paramHelpers.getParam(req.query,'page', 1))

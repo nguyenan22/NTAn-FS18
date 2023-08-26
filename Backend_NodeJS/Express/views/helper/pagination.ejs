@@ -1,50 +1,75 @@
-<!-- <%=(JSON.stringify(pagination))%> -->
-<% paginationHelper=(pagination)=> {
+<% paginationHelper=(pagination,collection,currentStatus,keyword)=> {
+    
     let totalItems = pagination.totalItems
     let totalItemsPerPage = pagination.totalItemsPerPage
     let totalPages = Math.ceil(totalItems/totalItemsPerPage)
-    let link = systemConfig.prefixAdmin + "/" + collection
-    let currentPage=pagination.currentPage
-    let xhtmStart=''
-    let xhtmPrev=''
-    let xhtmEnd=''
-    let xhtmNext=''
-    let xhtmNumber=''
-
-    if(currentPage > 1){
-        xhtmStart = `<li><a href="${link}?page=1">Start</a></li>`
-        xhtmPrev = `<li><a href="${link}?page=${currentPage-1}">Prev</a></li>`
-    }
-
-    if(currentPage < totalPages ){
-        xhtmEnd = `<li><a href="${link}?page=${totalPages}">End</a></li>`
-        xhtmNext = `<li><a href="${link}?page=${currentPage+1}">Next</a></li>`
-    }
-    for(let i = 1; i<= totalPages; i++){
-        if(currentPage == i) {
-            xhtmNumber += `<li class="active"><a>${i}</a></li>`
+    let currentPage = pagination.currentPage
+    let pageRange = pagination.pageRange
+    let to = totalItemsPerPage*currentPage
+    let from = to - totalItemsPerPage + 1 
+    if(to > totalItems ) to = totalItems
+    let xhtmPagination = '';
+    
+    if(totalPages > 1){
+        let xhtmStart = ''
+        let xhtmPrev = ''
+        let xhtmNumber = ''
+        let xhtmNext = ''
+        let xhtmEnd = ''
+        let link = systemConfig.prefixAdmin + "/" + collection + "/status/" + currentStatus
+        if(keyword !== ''){
+            link += "?keyword="+keyword + "&page="
         }else{
-            xhtmNumber += `<li><a href="${link}?page=${i}">${i}</a></li>`
+            link += "&page="
         }
-      
+        if(currentPage > 1){
+            xhtmStart = `<li><a href="${link}1">Start</a></li>`
+            xhtmPrev = `<li><a href="${link}${currentPage-1}">Prev</a></li>`
+        }
+    
+        if(currentPage < totalPages ){
+            xhtmEnd = `<li><a href="${link}${totalPages}">End</a></li>`
+            xhtmNext = `<li><a href="${link}${currentPage+1}">Next</a></li>`
+        }
+    
+        let milde = Math.floor(pageRange/2);
+        let min = currentPage - milde;
+        let max =  min + pageRange - 1;
+    
+        if(currentPage < (pageRange - 1)){
+                min  = 1;
+                max = min + pageRange - 1;
+        }
+        if(currentPage > (totalPages - milde)){
+            max = totalPages;
+            min = (max - pageRange + 1) <= 1 ? 1 : (max - pageRange + 1);
+        }
+    
+        for(let i = min; i<= max; i++){
+            if(currentPage == i) {
+                xhtmNumber += `<li class="active"><a>${i}</a></li>`
+            }else{
+                xhtmNumber += `<li><a href="${link}${i}">${i}</a></li>`
+            }
+        }
+        xhtmPagination = '<ul class="pagination text-center">' + xhtmStart + xhtmPrev + xhtmNumber + xhtmNext + xhtmEnd + '</ul>'
     }
-    let xhtml=`<ul class="pagination text-center">`+xhtmStart + xhtmPrev + xhtmNext + xhtmEnd + xhtmNumber + `</ul>`
+    
     return `
     <div class="col-lg-12">
         <div class="panel panel-info" id="pagination">
             <div class="panel-heading">
-                Pagination 
-                <span>^</span>
+                Pagination
                 <span class="label label-warning">Total pages: ${totalPages}</span>
                 <span class="label label-danger">Total entries: ${totalItems}</span>
             </div>
             <div class="panel-body">
                 <div class="infor-pagination">
                     <p>Number of elements on the page: <span>${totalItemsPerPage}</span></p>
-                    <p>Showing <span>${pagination.totalItemsPerPage*(pagination.currentPage-1)+1}</span> to <span>${pagination.totalItemsPerPage*pagination.currentPage > pagination.totalItems?pagination.totalItems:pagination.totalItemsPerPage*pagination.currentPage} </span> of <span>${totalItems}</span> entries</p>
+                    <p>Showing <span>  ${from} </span> to <span> ${to}</span> of <span> ${totalItems}</span> entries</p>
                 </div>
                 <div class="ad-pagination">
-                    ${xhtml}
+                    ${xhtmPagination}
                 </div>
             </div>
         </div>
