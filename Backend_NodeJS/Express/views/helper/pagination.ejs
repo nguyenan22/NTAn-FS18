@@ -9,7 +9,7 @@
     let from = to - totalItemsPerPage + 1 
     if(to > totalItems ) to = totalItems
     let xhtmPagination = '';
-    
+    console.log("totalItem=",totalItems,"totalItemsPerpage=",totalItemsPerPage,"totalPages=",totalPages)
     if(totalPages > 1){
         let xhtmStart = ''
         let xhtmPrev = ''
@@ -44,8 +44,8 @@
             max = totalPages;
             min = (max - pageRange + 1) <= 1 ? 1 : (max - pageRange + 1);
         }
-    
-        for(let i = min; i<= max; i++){
+        console.log("min=",min,"max=",max)
+        for(let i = min; i <= max; i++){
             if(currentPage == i) {
                 xhtmNumber += `<li class="active"><a>${i}</a></li>`
             }else{
@@ -53,6 +53,7 @@
             }
         }
         xhtmPagination = '<ul class="pagination text-center">' + xhtmStart + xhtmPrev + xhtmNumber + xhtmNext + xhtmEnd + '</ul>'
+        console.log("min=",min,"max=",max)
     }
     
     return `

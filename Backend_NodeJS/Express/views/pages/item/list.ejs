@@ -99,11 +99,11 @@
                                     <td><%= index +1 %></td>
                                     <td><%= item.name %></td> 
                                     <!-- <td><% statusHelper(item.status, '#') %></td> -->
-                                    <td> <%- statusHelper(item.status) %></td>
+                                    <td> <%- statusHelper(collection,item.id,item.status) %></td>
                                     <td><input type="number" value="<%= item.ordering %>" class="text-center ordering"></td>
                                     <td>
                                         <a href="admin123/item/form/5a9e5a96da67bc078421d7d6" type="button" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="admin123/item/delete/5a9e5a96da67bc078421d7d6" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>
+                                        <a href=" <%= systemConfig.prefixAdmin %>/items/delete/<%= item.id %>" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>
                                     </td>
                                 </tr>
                             <% })%>
@@ -142,4 +142,4 @@
       </div>
   </div>
 </div> -->
-<%- paginationHelper(pagination) %>
+<%- paginationHelper(pagination,collection,currentStatus,keyword) %>

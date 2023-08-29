@@ -4,27 +4,49 @@ const schema=require('../../schemas/items');
 const { models } = require('mongoose');
 const ultilsHelpers=require('../../helpers/utils')
 const paramHelpers=require('../../helpers/getParam')
+const systemConfig = require('./../../config/system')
+let linkIndex = "/" + systemConfig.prefixAdmin + "/items"
 /* GET home page. */
 router.get('(/status/:status)?', async function(req, res, next) {
   let currentStatus =paramHelpers.getParam(req.params,"status","all")
-  let statusFillters=await ultilsHelpers.createStatusFilter(currentStatus)
-  let keyword = paramHelpers.getParam(req.query,'keyword','')
-  // console.log(keyword)
+  await console.log(currentStatus)
   let pagination = {
     totalItems: 1,
     totalItemsPerPage: 2,
     currentPage: 1,
     pageRange:5
 }
+  if ((currentStatus.length) > 8) {
+    if (currentStatus.substr(0,3)==="all") {
+      pagination.currentPage=currentStatus.slice(-1)
+      currentStatus="all"
+    }
+    else if (currentStatus.substr(0,6)==="active") {
+      pagination.currentPage=currentStatus.slice(-1)
+      currentStatus="active"}
+    else {
+      pagination.currentPage=currentStatus.slice(-1)
+      currentStatus="inactive"
+    }
+  }
 
-pagination.currentPage = parseInt(paramHelpers.getParam(req.query,'page', 1))
+  let statusFillters=await ultilsHelpers.createStatusFilter(currentStatus)
+  let keyword = paramHelpers.getParam(req.query,'keyword','')
+  // console.log(keyword)
 
-  let objwhere = {}
+// console.log("currentPages=",pagination.currentPage)
+// pagination.currentPage = parseInt(paramHelpers.getParam(req.query,'page', 1))
+// pagination.currentPage= page
+console.log("currentPages=",pagination.currentPage)
+let objwhere = {}
 if (currentStatus !== 'all') { objwhere = {status: currentStatus}}
 if (keyword !== '') { objwhere.name = new RegExp(keyword, 'i')}
 
   await schema.count(objwhere).then((data)=>{
+    console.log(objwhere)
+    console.log(pagination)
     pagination.totalItems = data
+    console.log(pagination.totalItems)
   })
   console.log(pagination)
   await schema.find(objwhere)
@@ -48,15 +70,20 @@ router.get('/add', function(req, res, next) {
   // res.send("Thêm phần tử")
 });
 
-// router.get('/edit', function(req, res, next) {
-//   // res.render('index', { title: 'Express' });
-//   res.send("Chỉnh sửa")
-// });
+router.get('/change-status/:id/:status',async function(req, res, next) {
+  let currentStatus = paramHelpers.getParam(req.params,'status', 'active')
+  let id = paramHelpers.getParam(req.params,'id', '')
+  let status = (currentStatus === 'active') ? "inactive" : 'active'
+  await schema.updateOne({_id: id},{ status: status}).then((result)=>{
+      res.redirect(linkIndex)
+  })
+});
 
-
-// router.get('/delete', function(req, res, next) {
-//   // res.render('index', { title: 'Express' });
-//   res.send("Xóa")
-// });
+router.get('/delete/:id',async function(req, res, next) {
+  let id = paramHelpers.getParam(req.params,'id', '')
+  await schema.deleteOne({_id: id}).then((result)=>{
+    res.redirect(linkIndex)
+  })
+});
 
 module.exports = router;
