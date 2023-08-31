@@ -65,10 +65,10 @@ if (keyword !== '') { objwhere.name = new RegExp(keyword, 'i')}
   // res.send("Hiển thị")
 });
 
-router.get('/add', function(req, res, next) {
-  res.render('pages/item/add', { pageTitle: 'Item Manager - Add' });
-  // res.send("Thêm phần tử")
-});
+// router.get('/add', function(req, res, next) {
+//   res.render('pages/item/add', { pageTitle: 'Item Manager - Add' });
+//   // res.send("Thêm phần tử")
+// });
 
 router.get('/change-status/:id/:status',async function(req, res, next) {
   let currentStatus = paramHelpers.getParam(req.params,'status', 'active')
@@ -79,11 +79,29 @@ router.get('/change-status/:id/:status',async function(req, res, next) {
   })
 });
 
-router.get('/delete/:id',async function(req, res, next) {
-  let id = paramHelpers.getParam(req.params,'id', '')
-  await schema.deleteOne({_id: id}).then((result)=>{
+router.post('/change-ordering',async function(req, res, next) {
+  let cids = req.body.cid
+  let orderings = req.body.ordering
+  if(typeof cids === 'object' ){ //thay đổi ordering của nhiều phần tử
+    for (let index = 0; index < cids.length; index++) {
+      await schema.updateOne({_id: cids[index]},{ ordering: parseInt(orderings[index])})
+    }
+  }else{ // thay đổi ordering của 1 phần tử
+      await schema.updateOne({_id: cids},{ ordering: parseInt(orderings)})
+  }
+  res.redirect(linkIndex)
+});
+
+
+router.post('/change-status/:status',async function(req, res, next) {
+  let currentStatus = paramHelpers.getParam(req.params,'status', 'active')
+  await schema.updateMany({_id:{$in:req.body.cid}},{ status: currentStatus}).then(()=>{
     res.redirect(linkIndex)
   })
 });
 
+router.get('/add', function(req, res, next) {
+  req.flash('info', 'hahaa nghỉ lễ rôif')
+  // res.render('pages/items/form', { pageTitle: 'Items Add Manager' });
+});
 module.exports = router;

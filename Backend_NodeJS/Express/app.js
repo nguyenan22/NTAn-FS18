@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 // var logger = require('morgan');
 const systemConfig=require('./config/system')
 const mongoose=require('mongoose')
-
+const flash = require('express-flash-notification');
+const session = require('express-session');
 // var indexRouter = ;
 // var usersRouter = ;
 // var videoRouter = ;
@@ -54,7 +55,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+}))
+app.use(flash(app));
 
 // Router
 app.locals.systemConfig=systemConfig
