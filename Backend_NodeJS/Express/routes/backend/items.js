@@ -26,13 +26,11 @@ if (keyword !== '') { objwhere.name = new RegExp(keyword, 'i')}
   await schema.count(objwhere).then((data)=>{
     pagination.totalItems = data
   })
-  console.log(pagination)
   await schema.find(objwhere)
   .sort({ordering: 'asc' })
   .skip(pagination.totalItemsPerPage*(pagination.currentPage-1))
   .limit(pagination.totalItemsPerPage)
   .then(function (models) {
-    // console.log(models)
     res.render('pages/item/list', { pageTitle: 'Item List Manager', data:models, statusFillters:statusFillters, currentStatus,keyword,pagination });
   })
   .catch(function (err) {
