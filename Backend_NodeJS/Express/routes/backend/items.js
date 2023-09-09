@@ -86,7 +86,17 @@ router.post('/change-ordering',async function(req, res, next) {
   res.redirect(linkIndex)
 });
 
-
+router.post('/save',async function(req, res, next){
+  console.log(req.body)
+  let data=[{
+    name:req.body.name, 
+    ordering: req.body.ordering,
+    status:req.body.status
+  }]
+  await schema.insertMany(data)
+  console.log("Insert Successfully")
+  res.redirect(linkIndex)
+})
 router.post('/change-status/:status',async function(req, res, next) {
   let currentStatus = paramHelpers.getParam(req.params,'status', 'active')
   await schema.updateMany({_id:{$in:req.body.cid}},{ status: currentStatus}).then(()=>{
@@ -101,6 +111,29 @@ router.post('/delete',async function(req, res, next) {
     res.redirect(linkIndex)
   })
 });
+
+router.get('/delete/:id',async function(req, res, next) {
+  let id = paramHelpers.getParam(req.params,'id', '')
+  await schema.deleteOne({_id:id})
+  console.log("Delete Successfully")
+  res.redirect(linkIndex)
+});
+
+
+router.get('/form/:id',async function(req, res, next) {
+  let id = paramHelpers.getParam(req.params,'id', '')
+  data=await schema.findOne({_id:id})
+  console.log(data)
+  res.render('pages/item/edit', { pageTitle: 'Item Edit Manager',data,id})
+})
+
+router.post('/form/:id/save',async function(req, res, next) {
+  let  id = paramHelpers.getParam(req.params,'id', '')
+  await schema.updateOne({_id:id},{name:req.body.name,ordering:req.body.ordering,status:req.body.status}).then(()=>{
+    console.log(req.body)
+    res.redirect(linkIndex)
+  })
+})
 
 router.get('/adds', function(req, res, next) {
   req.flash('', 'Thay đổi Status thành công')

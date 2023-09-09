@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const prefixAdmin=require('../../config/system')
 
 router.use('/items', require('./items'));
 router.use('/list', require('./list'));

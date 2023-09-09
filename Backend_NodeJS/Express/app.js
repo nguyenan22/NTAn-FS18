@@ -21,28 +21,10 @@ mongoose.connect('mongodb+srv://nguyenan22021996:2411996An@cluster0.ubyknfq.mong
   })
   .catch(err => console.log(err));
 
-//Create object
-// const kittySchema = new mongoose.Schema({
-//     name: String,
-//     age:String,
-//     sex:String,
-//     phone:String
-//   });
-
-// const Kitten = mongoose.model('objectTable', kittySchema);
-// const silence = new Kitten({ name: 'An',age:18,sex:'Male',phone:'012345678' });
-// silence.save()
-
-// Find dữ liệu
-
-
-
-
 var app = express();
 
 
 var expressLayouts = require('express-ejs-layouts');
-// const { default: mongoose } = require('mongoose');
 app.use(expressLayouts);
 app.set('layout', 'list-exercise');
 
@@ -64,7 +46,6 @@ app.use(flash(app));
 
 // Router
 app.locals.systemConfig=systemConfig
-// console.log(systemConfig.prefixAdmin)
 app.use(`/${systemConfig.prefixAdmin}`, require('./routes/backend/index'));
 // app.use('/admin', require('./routes/index'));
 // app.use('/items', require('./routes/items'));
