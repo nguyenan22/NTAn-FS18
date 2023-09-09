@@ -10,8 +10,8 @@
 
 
 <% 
-statusHelper = (status) => { 
-    let link = '#'
+statusHelper = (collection,id,status) => { 
+    let link  = systemConfig.prefixAdmin + "/" + collection + "/change-status/" + id + "/" + status
     let xhtml = ''
     if(status == 'active'){
         xhtml =  `<span class="label label-success">${status}</span>`
