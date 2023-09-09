@@ -37,16 +37,12 @@ router.get('(/status/:status)?', async function(req, res, next) {
 // console.log("currentPages=",pagination.currentPage)
 // pagination.currentPage = parseInt(paramHelpers.getParam(req.query,'page', 1))
 // pagination.currentPage= page
-console.log("currentPages=",pagination.currentPage)
 let objwhere = {}
 if (currentStatus !== 'all') { objwhere = {status: currentStatus}}
 if (keyword !== '') { objwhere.name = new RegExp(keyword, 'i')}
 
   await schema.count(objwhere).then((data)=>{
-    console.log(objwhere)
-    console.log(pagination)
     pagination.totalItems = data
-    console.log(pagination.totalItems)
   })
   console.log(pagination)
   await schema.find(objwhere)
@@ -100,8 +96,20 @@ router.post('/change-status/:status',async function(req, res, next) {
   })
 });
 
-router.get('/add', function(req, res, next) {
-  req.flash('info', 'hahaa nghỉ lễ rôif')
+
+
+router.post('/delete',async function(req, res, next) {
+  await schema.deleteMany({_id:{$in:req.body.cid}}).then (() =>{
+    res.redirect(linkIndex)
+  })
+});
+
+router.get('/adds', function(req, res, next) {
+  req.flash('', 'Thay đổi Status thành công')
   // res.render('pages/items/form', { pageTitle: 'Items Add Manager' });
+});
+
+router.get('/add', function(req, res, next) {
+  res.render('pages/item/add', { pageTitle: 'Items Add Manager' });
 });
 module.exports = router;
