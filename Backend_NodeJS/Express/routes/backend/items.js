@@ -6,6 +6,7 @@ const ultilsHelpers=require('../../helpers/utils')
 const paramHelpers=require('../../helpers/getParam')
 const systemConfig = require('./../../config/system')
 let linkIndex = "/" + systemConfig.prefixAdmin + "/items"
+const {body,validationResult}=require('express-validator')
 /* GET home page. */
 router.get('(/status/:status)?', async function(req, res, next) {
   let currentStatus =paramHelpers.getParam(req.params,"status","all")
@@ -69,7 +70,8 @@ router.get('/change-status/:id/:status',async function(req, res, next) {
   let id = paramHelpers.getParam(req.params,'id', '')
   let status = (currentStatus === 'active') ? "inactive" : 'active'
   await schema.updateOne({_id: id},{ status: status}).then((result)=>{
-      res.redirect(linkIndex)
+    req.flash('success','Thay đổi trạng thái status thành công',linkIndex)
+      
   })
 });
 
@@ -86,16 +88,33 @@ router.post('/change-ordering',async function(req, res, next) {
   res.redirect(linkIndex)
 });
 
-router.post('/save',async function(req, res, next){
-  console.log(req.body)
+router.post('/save',body('name')
+.isLength({ min: 5 })
+.withMessage('Nhập lớn hơn 5 kí tự'),
+body('ordering')
+.isLength({ min: 1 })
+.withMessage('Chọn 1 số dương'),
+body('status')
+.isLength({ min: 5 })
+.withMessage('Bạn vui lòng chọn 1 trạng thái'),async function(req, res, next){
+console.log(req.body)
+const error = validationResult(req);
   let data=[{
     name:req.body.name, 
     ordering: req.body.ordering,
     status:req.body.status
   }]
-  await schema.insertMany(data)
-  console.log("Insert Successfully")
-  res.redirect(linkIndex)
+  console.log(error.errors)
+  if (error.errors.length >=1){
+    res.render('pages/item/add', { pageTitle: 'Items Add Manager', showError:error.errors });
+  }
+  else {
+    await schema.insertMany(data)
+    console.log("Insert Successfully")
+    req.flash('success','Thêm phần tử thành công',linkIndex)
+  }
+  
+
 })
 router.post('/change-status/:status',async function(req, res, next) {
   let currentStatus = paramHelpers.getParam(req.params,'status', 'active')
@@ -116,7 +135,8 @@ router.get('/delete/:id',async function(req, res, next) {
   let id = paramHelpers.getParam(req.params,'id', '')
   await schema.deleteOne({_id:id})
   console.log("Delete Successfully")
-  res.redirect(linkIndex)
+  req.flash('warning','Xóa thành công',linkIndex)
+  
 });
 
 
@@ -131,16 +151,21 @@ router.post('/form/:id/save',async function(req, res, next) {
   let  id = paramHelpers.getParam(req.params,'id', '')
   await schema.updateOne({_id:id},{name:req.body.name,ordering:req.body.ordering,status:req.body.status}).then(()=>{
     console.log(req.body)
-    res.redirect(linkIndex)
+    req.flash('success','Lưu thành công',linkIndex)
   })
 })
 
 router.get('/adds', function(req, res, next) {
-  req.flash('', 'Thay đổi Status thành công')
-  // res.render('pages/items/form', { pageTitle: 'Items Add Manager' });
+  const error = validationResult(req);
+  if(error.errors.length >=1 ){
+    req.flash('success','Thay đổi status thành công',linkIndex)
+    console.log(error.errors)
+  }
+  
 });
 
 router.get('/add', function(req, res, next) {
-  res.render('pages/item/add', { pageTitle: 'Items Add Manager' });
+  const error = validationResult(req);
+  res.render('pages/item/add', { pageTitle: 'Items Add Manager',showError:error.errors});
 });
 module.exports = router;
