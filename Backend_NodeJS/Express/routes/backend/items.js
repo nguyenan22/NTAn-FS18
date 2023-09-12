@@ -92,11 +92,17 @@ router.post('/save',body('name')
 .isLength({ min: 5 })
 .withMessage('Nhập lớn hơn 5 kí tự'),
 body('ordering')
-.isLength({ min: 1 })
+.isInt({min:1})
+// .isLength({ min: 1 })
 .withMessage('Chọn 1 số dương'),
 body('status')
 .isLength({ min: 5 })
-.withMessage('Bạn vui lòng chọn 1 trạng thái'),async function(req, res, next){
+.custom(async value =>{
+  if (await value==="novalue"){
+    throw new Error('Vui lòng chọn một trạng thái')
+  }
+})
+,async function(req, res, next){
 console.log(req.body)
 const error = validationResult(req);
   let data=[{
@@ -141,19 +147,38 @@ router.get('/delete/:id',async function(req, res, next) {
 
 
 router.get('/form/:id',async function(req, res, next) {
+  const error = validationResult(req);
   let id = paramHelpers.getParam(req.params,'id', '')
   data=await schema.findOne({_id:id})
   console.log(data)
-  res.render('pages/item/edit', { pageTitle: 'Item Edit Manager',data,id})
+  res.render('pages/item/edit', { pageTitle: 'Item Edit Manager',data,id,showError:error.errors})
 })
 
-router.post('/form/:id/save',async function(req, res, next) {
+router.post('/form/:id/save',body('name')
+.isLength({ min: 5 })
+.withMessage('Nhập lớn hơn 5 kí tự'),
+body('ordering')
+.isInt({min:1})
+.withMessage('Chọn 1 số dương'),
+body('status')
+.isLength({ min: 5 })
+.custom(async value =>{
+  if (await value==="novalue"){
+    throw new Error('Vui lòng chọn một trạng thái')
+  }
+})
+,async function(req, res, next) {
   let  id = paramHelpers.getParam(req.params,'id', '')
+  const error = validationResult(req);
+  if (error.errors.length >=1){
+    res.render('pages/item/edit', { pageTitle: 'Items Add Manager',data,id,showError:error.errors });
+  }
+  else {
   await schema.updateOne({_id:id},{name:req.body.name,ordering:req.body.ordering,status:req.body.status}).then(()=>{
     console.log(req.body)
     req.flash('success','Lưu thành công',linkIndex)
   })
-})
+}})
 
 router.get('/adds', function(req, res, next) {
   const error = validationResult(req);

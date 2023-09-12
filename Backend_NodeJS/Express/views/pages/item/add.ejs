@@ -16,7 +16,7 @@
                       <div class="alert alert-danger" role="alert">
                           <ul>
                                 <% showError.forEach(element=>{%>
-                                       <li><%= element.path%>: <%= element.msg%></li>
+                                       <li><%= element.path.charAt(0).toUpperCase() + element.path.slice(1)%>: <%= element.msg%></li>
                                 <% }) %>
                               <!-- <li>Name: không được rỗng</li>
                               <li>Status: chọn một trạng thái</li> -->

@@ -10,12 +10,17 @@
           <div class="panel-body">
               <div class="row">
                   <div class="col-lg-6">
-                      <div class="alert alert-danger" role="alert">
-                          <ul>
-                              <li>Name: không được rỗng</li>
-                              <li>Status: chọn một trạng thái</li>
-                          </ul>
-                      </div>
+                    <% if (showError.length>=1) {%>
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                  <% showError.forEach(element=>{%>
+                                         <li><%= element.path.charAt(0).toUpperCase() + element.path.slice(1)%>: <%= element.msg%></li>
+                                  <% }) %>
+                                <!-- <li>Name: không được rỗng</li>
+                                <li>Status: chọn một trạng thái</li> -->
+                            </ul>
+                        </div>
+                      <% } %>
                   </div>
               </div>
               <div class="row">
