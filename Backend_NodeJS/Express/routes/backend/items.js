@@ -108,13 +108,17 @@ const error = validationResult(req);
   let data=[{
     name:req.body.name, 
     ordering: req.body.ordering,
-    status:req.body.status
+    status:req.body.status,
   }]
   console.log(error.errors)
   if (error.errors.length >=1){
     res.render('pages/item/add', { pageTitle: 'Items Add Manager', showError:error.errors });
   }
   else {
+    data.create={
+      user_name:"admin",
+      user_id:"1"
+    }
     await schema.insertMany(data)
     console.log("Insert Successfully")
     req.flash('success','Thêm phần tử thành công',linkIndex)
@@ -171,10 +175,10 @@ body('status')
   let  id = paramHelpers.getParam(req.params,'id', '')
   const error = validationResult(req);
   if (error.errors.length >=1){
-    res.render('pages/item/edit', { pageTitle: 'Items Add Manager',data,id,showError:error.errors });
+    res.render('pages/item/edit', { pageTitle: 'Items Edit Manager',data,id, showError:error.errors });
   }
   else {
-  await schema.updateOne({_id:id},{name:req.body.name,ordering:req.body.ordering,status:req.body.status}).then(()=>{
+  await schema.updateOne({_id:id},{name:req.body.name,ordering:parent(req.body.ordering),status:req.body.status}).then(()=>{
     console.log(req.body)
     req.flash('success','Lưu thành công',linkIndex)
   })

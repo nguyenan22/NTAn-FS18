@@ -18,5 +18,6 @@ statusHelper = (collection,id,status) => {
     }else{
         xhtml =  ` <span class="label label-warning">${status}</span>`
     }
-    return `<a href="${link}">${xhtml}</a> ` 
+    return `<a href="javascript:" onClick="changeStatus('${status}','${id}','${link}')">${xhtml}</a> `
 }%>
+

@@ -1,0 +1,13 @@
+<% showErrorHelper=(error=>{
+    let html=''
+     if (error.length>=1) {
+         error.forEach(element=>{ 
+         html+=`<div class="alert alert-danger" role="alert">
+            <ul>
+                <li>${element.path.charAt(0).toUpperCase() + element.path.slice(1)} : ${element.msg}</li>
+            </ul>
+        </div> `
+
+    })
+      return html
+}})%>
