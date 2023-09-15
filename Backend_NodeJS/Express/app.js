@@ -3,16 +3,28 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 // var logger = require('morgan');
-const systemConfig=require('./config/system')
+
 const mongoose=require('mongoose')
 const flash = require('express-flash-notification');
 const session = require('express-session');
+
+const pathConfigs=require('./path')
 // var indexRouter = ;
 // var usersRouter = ;
 // var videoRouter = ;
 
+
+global.__base=__dirname +'/';
+global.__path_app=__base + pathConfigs.folder_app + '/';
+global.__path_configs=__path_app + pathConfigs.folder_configs + '/';
+global.__path_routes=__path_app + pathConfigs.folder_routes + '/';
+global.__path_views=__path_app + pathConfigs.folder_views + '/';
+global.__path_helpers=__path_app + pathConfigs.folder_helpers + '/';
+global.__path_schemas=__path_app + pathConfigs.folder_schemas + '/';
+const systemConfig=require(__path_configs +'system')
+const databaseConfig=require(__path_configs +'database')
 // Connect MongoDB
-mongoose.connect('mongodb+srv://nguyenan22021996:2411996An@cluster0.ubyknfq.mongodb.net/project', {
+mongoose.connect(`mongodb+srv://${databaseConfig.username}:${databaseConfig.password}@cluster0.ubyknfq.mongodb.net/${databaseConfig.databaseName}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -26,7 +38,7 @@ var app = express();
 
 var expressLayouts = require('express-ejs-layouts');
 app.use(expressLayouts);
-app.set('layout', 'list-exercise');
+app.set('layout', __path_views +'list-exercise');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,11 +54,13 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }))
-app.use(flash(app));
+app.use(flash(app,{
+  viewName:__path_views +'elements/notify'
+}));
 
 // Router
 app.locals.systemConfig=systemConfig
-app.use(`/${systemConfig.prefixAdmin}`, require('./routes/backend/index'));
+app.use(`/${systemConfig.prefixAdmin}`, require(__path_routes + 'backend/index'));
 // app.use('/admin', require('./routes/index'));
 // app.use('/items', require('./routes/items'));
 // app.use('/users', require('./routes/users'));
@@ -66,7 +80,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('pages/error',{pageTitle:'Page Not Found'});
+  res.render(__path_views +'pages/error',{pageTitle:'Page Not Found'});
 });
 
 module.exports = app;

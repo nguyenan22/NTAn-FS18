@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-
+const databaseConfig=require(__path_configs +'/database')
 //Create object
 const kittySchema = new mongoose.Schema({
     name: String,
@@ -17,5 +17,5 @@ const kittySchema = new mongoose.Schema({
   {timestamps:true});
 
 
-module.exports=mongoose.model('objectTable', kittySchema)
+module.exports=mongoose.model(databaseConfig.COL_ITEM, kittySchema)
 
