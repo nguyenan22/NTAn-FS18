@@ -89,6 +89,7 @@
                                   <th>Status</th>
                                   <!-- <th width="30%">Content</th> -->
                                   <th>Ordering</th>
+                                  <th>Create</th>
                                   <th>Action</th>
                               </tr>
                           </thead>
@@ -101,6 +102,10 @@
                                     <!-- <td><% statusHelper(item.status, '#') %></td> -->
                                     <td> <%- statusHelper(collection,item.id,item.status) %></td>
                                     <td><input type="number" value="<%= item.ordering %>" class="text-center ordering"></td>
+                                    <td>
+                                        <p><i class="fa-regular fa-user"></i></p>
+                                        <p><i class="fa-regular fa-clock"></i></p>
+                                    </td>
                                     <td>
                                         <a href="<%= linkPrefix %>/form/<%= item.id %>" type="button" class="btn btn-warning btn-sm">Edit</a>
                                         <a href="<%= linkPrefix %>/delete/<%= item.id %>" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>

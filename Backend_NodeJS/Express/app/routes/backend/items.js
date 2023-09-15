@@ -56,6 +56,7 @@ if (keyword !== '') { objwhere.name = new RegExp(keyword, 'i')}
   .limit(pagination.totalItemsPerPage)
   .then(function (models) {
     res.render(__path_views +'pages/item/list', { pageTitle: pageTitle, data:models, statusFillters:statusFillters, currentStatus,keyword,pagination });
+    console.log(req.params,req.body)
   })
   .catch(function (err) {
     console.log(err);
