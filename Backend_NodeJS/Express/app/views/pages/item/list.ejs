@@ -103,8 +103,9 @@
                                     <td> <%- statusHelper(collection,item.id,item.status) %></td>
                                     <td><input type="number" value="<%= item.ordering %>" class="text-center ordering"></td>
                                     <td>
-                                        <p><i class="fa-regular fa-user"></i></p>
-                                        <p><i class="fa-regular fa-clock"></i></p>
+                                        <p><i class="fa-regular fa-user"></i> <%= item.create.user_name %></p>
+                                        <p><i class="fa-regular fa-clock"></i> <%= item.createdAt %></p>
+                                        <p><i class="fa-regular fa-pen-to-square"></i> <%= item.updatedAt %></p>
                                     </td>
                                     <td>
                                         <a href="<%= linkPrefix %>/form/<%= item.id %>" type="button" class="btn btn-warning btn-sm">Edit</a>

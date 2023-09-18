@@ -56,7 +56,7 @@ if (keyword !== '') { objwhere.name = new RegExp(keyword, 'i')}
   .limit(pagination.totalItemsPerPage)
   .then(function (models) {
     res.render(__path_views +'pages/item/list', { pageTitle: pageTitle, data:models, statusFillters:statusFillters, currentStatus,keyword,pagination });
-    console.log(req.params,req.body)
+    
   })
   .catch(function (err) {
     console.log(err);
@@ -117,16 +117,16 @@ const error = validationResult(req);
     name:req.body.name, 
     ordering: req.body.ordering,
     status:req.body.status,
+    create:{
+      user_name:"admin",
+      user_id:"1"
+    }
   }]
   console.log(error.errors)
   if (error.errors.length >=1){
     res.render(__path_views +'pages/item/add', { pageTitle: pageTitleAdd, showError:error.errors });
   }
   else {
-    data.create={
-      user_name:"admin",
-      user_id:"1"
-    }
     await schema.insertMany(data)
     console.log("Insert Successfully")
     req.flash('success',notifyConfig.ADD_ITEMS,linkIndex)
@@ -217,6 +217,13 @@ router.get('/adds', function(req, res, next) {
 
 router.get('/add', function(req, res, next) {
   const error = validationResult(req);
+  console.log(error)
   res.render(__path_views + 'pages/item/add', { pageTitle: pageTitleAdd,showError:error.errors});
+});
+
+router.put('/:id', async function(req, res, next) {
+  let  id = paramHelpers.getParam(req.params,'id', '')
+  result=await schema.findById(id)
+  console.log(result)
 });
 module.exports = router;
