@@ -15,12 +15,13 @@ const util=require('node:util')
 // const Toastify =require('toastify-js');
 // import "toastify-js/src/toastify.css"
 /* GET home page. */
+
 router.get('(/status/:status)?', async function(req, res, next) {
   let currentStatus =paramHelpers.getParam(req.params,"status","all")
   await console.log(currentStatus)
   let pagination = {
     totalItems: 1,
-    totalItemsPerPage: 2,
+    totalItemsPerPage: 5,
     currentPage: 1,
     pageRange:5
 }
@@ -40,8 +41,10 @@ router.get('(/status/:status)?', async function(req, res, next) {
 
   let statusFillters=await ultilsHelpers.createStatusFilter(currentStatus)
   let keyword = paramHelpers.getParam(req.query,'keyword','')
-  // console.log(keyword)
-
+  const sortField = paramHelpers.getParam(req.session,'sort_field','ordering')
+  const sortType = paramHelpers.getParam(req.session,'sort_type','asc')
+  let sort = {}
+  sort[sortField] = sortType
 // console.log("currentPages=",pagination.currentPage)
 // pagination.currentPage = parseInt(paramHelpers.getParam(req.query,'page', 1))
 // pagination.currentPage= page
@@ -53,12 +56,12 @@ if (keyword !== '') { objwhere.name = new RegExp(keyword, 'i')}
     pagination.totalItems = data
   })
   await schema.find(objwhere)
-  .sort({ordering: 'asc' })
+  .sort(sort)
   .skip(pagination.totalItemsPerPage*(pagination.currentPage-1))
   .limit(pagination.totalItemsPerPage)
   .then(function (models) {
     
-    res.render(__path_views +'pages/item/list', { pageTitle: pageTitle, data:models, statusFillters:statusFillters, currentStatus,keyword,pagination });
+    res.render(__path_views +'pages/item/list', { pageTitle: pageTitle, data:models, statusFillters:statusFillters, currentStatus,keyword,pagination,sortType,sortField });
     
   })
   .catch(function (err) {
@@ -78,7 +81,6 @@ router.get('/change-status/:id/:status',async function(req, res, next) {
   let currentStatus = paramHelpers.getParam(req.params,'status', 'active')
   let id = paramHelpers.getParam(req.params,'id', '')
   let status = (currentStatus === 'active') ? "inactive" : 'active'
-  console.log(req.param,req.body)
   await schema.updateOne({_id: id},{ status: status}).then((result)=>{
     // req.flash('success',notifyConfig.CHANGE_STATUS_SUCCESS,linkIndex)
     res.redirect(linkIndex)
@@ -125,6 +127,10 @@ const error = validationResult(req);
     create:{
       user_name:"admin",
       user_id:"1"
+    },
+    modify:{
+      user_name:"tester",
+      user_id:"2"
     }
   }]
   console.log(error.errors)
@@ -148,11 +154,11 @@ router.post('/change-status/:status',async function(req, res, next) {
 
 
 
-// router.post('/delete',async function(req, res, next) {
-//   await schema.deleteMany({_id:{$in:req.body.cid}}).then (() =>{
-//     req.flash('warning',util.format(notifyConfig.DELETE_ITEMS_MULTI,req.body.cid.length),linkIndex)
-//   })
-// });
+router.get('/sort/:sort_field/:sort_type', async function(req, res, next) {
+  req.session.sort_field  = paramHelpers.getParam(req.params,'sort_field', 'ordering')
+  req.session.sort_type = paramHelpers.getParam(req.params,'sort_type', 'asc')
+  res.redirect(linkIndex)
+});
 
 router.post('/delete',async function(req, res, next) {
   let cids = req.body.cid
@@ -206,7 +212,6 @@ body('status')
   }
   else {
   await schema.updateOne({_id:id},{name:req.body.name,ordering:parseInt(req.body.ordering),status:req.body.status}).then(()=>{
-    console.log(req.body)
     req.flash('success',notifyConfig.SAVE_ITEMS,linkIndex)
   })
 }})

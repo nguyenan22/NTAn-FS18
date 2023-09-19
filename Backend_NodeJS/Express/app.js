@@ -8,6 +8,7 @@ const flash = require('express-flash-notification');
 const session = require('express-session');
 const toastr = require('express-toastr')
 const pathConfigs=require('./path')
+const moment=require('moment')
 // var indexRouter = ;
 // var usersRouter = ;
 // var videoRouter = ;
@@ -61,6 +62,7 @@ app.use(toastr());
 
 // Router
 app.locals.systemConfig=systemConfig
+app.locals.moment=moment
 app.use(`/${systemConfig.prefixAdmin}`, require(__path_routes + 'backend/index'));
 // app.use('/admin', require('./routes/index'));
 // app.use('/items', require('./routes/items'));

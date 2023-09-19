@@ -1,0 +1,9 @@
+
+<% 
+formatTimeHelper = (admin,editer,create,update) => { 
+    return `<p><i class="fa-regular fa-user"></i> ${admin}</p>
+             <p><i class="fa-solid fa-user-pen"></i> ${editer}</p>
+             <p><i class="fa-regular fa-clock"></i> ${ moment(create).format(systemConfig.date) }</p>
+             <p><i class="fa-regular fa-pen-to-square"></i> ${moment(update).format(systemConfig.date)}</p>`
+}%>
+

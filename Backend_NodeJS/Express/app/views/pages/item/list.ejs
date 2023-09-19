@@ -3,6 +3,8 @@
 <% include ../../helper/filter-status %>
 <% include ./../../helper/pagination %>
 <% include ./../../helper/action %>
+<% include ./../../helper/formatTime %>
+<% include ./../../helper/sort %>
 <%
     const collection = 'items'
     let linkPrefix = systemConfig.prefixAdmin + `/${collection}`
@@ -85,29 +87,31 @@
                                       <input type="checkbox" class="cbAll" />
                                   </th>
                                   <th>#</th>
-                                  <th>Name</th>
-                                  <th>Status</th>
+                                  <%- sortHelper('Name', collection, 'name', sortType, sortField) %>
+                                  <%- sortHelper('Status', collection, 'status', sortType, sortField) %>
                                   <!-- <th width="30%">Content</th> -->
-                                  <th>Ordering</th>
-                                  <th>Create</th>
-                                  <th>Action</th>
+                                  <%- sortHelper('Ordering', collection, 'ordering', sortType, sortField) %>
+                                  <th class="text-center pointer">
+                                    <a href="#" class="title_col">Create<i class="fa fa-fw "></i></a>
+                                  </th>
+                                  <th class="text-center pointer">
+                                    <a href="#" class="title_col">Action<i class="fa fa-fw "></i></a>
+                                  </th>
                               </tr>
                           </thead>
                           <tbody>
                             <% data.forEach((item,index)=>{ %>
                                 <tr>
-                                    <td><input type="checkbox" name="cid" value="<%= item.id %>" /></td>
-                                    <td><%= index +1 %></td>
-                                    <td><%= item.name %></td> 
+                                    <td class="align"><input type="checkbox" name="cid" value="<%= item.id %>" /></td>
+                                    <td class="text-center align"><%= index +1 %></td>
+                                    <td class="text-center align"><%= item.name %></td> 
                                     <!-- <td><% statusHelper(item.status, '#') %></td> -->
-                                    <td> <%- statusHelper(collection,item.id,item.status) %></td>
-                                    <td><input type="number" value="<%= item.ordering %>" class="text-center ordering"></td>
-                                    <td>
-                                        <p><i class="fa-regular fa-user"></i> <%= item.create.user_name %></p>
-                                        <p><i class="fa-regular fa-clock"></i> <%= item.createdAt %></p>
-                                        <p><i class="fa-regular fa-pen-to-square"></i> <%= item.updatedAt %></p>
+                                    <td class="text-center align"> <%- statusHelper(collection,item.id,item.status) %></td>
+                                    <td class="text-center align"><input type="number" value="<%= item.ordering %>" class="text-center ordering"></td>
+                                    <td class="text-center">
+                                        <%- formatTimeHelper(item.create.user_name,item.modify.user_name,item.createdAt,item.updateAt) %>
                                     </td>
-                                    <td>
+                                    <td class="text-center align">
                                         <a href="<%= linkPrefix %>/form/<%= item.id %>" type="button" class="btn btn-warning btn-sm">Edit</a>
                                         <a href="<%= linkPrefix %>/delete/<%= item.id %>" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>
                                     </td>
