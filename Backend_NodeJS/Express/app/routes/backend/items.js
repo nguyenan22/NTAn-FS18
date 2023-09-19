@@ -12,6 +12,8 @@ const pageTitleAdd=pageTitle +' Add'
 const pageTitleEdit=pageTitle +' Edit'
 const notifyConfig=require(__path_configs +'notify')
 const util=require('node:util')
+// const Toastify =require('toastify-js');
+// import "toastify-js/src/toastify.css"
 /* GET home page. */
 router.get('(/status/:status)?', async function(req, res, next) {
   let currentStatus =paramHelpers.getParam(req.params,"status","all")
@@ -55,6 +57,7 @@ if (keyword !== '') { objwhere.name = new RegExp(keyword, 'i')}
   .skip(pagination.totalItemsPerPage*(pagination.currentPage-1))
   .limit(pagination.totalItemsPerPage)
   .then(function (models) {
+    
     res.render(__path_views +'pages/item/list', { pageTitle: pageTitle, data:models, statusFillters:statusFillters, currentStatus,keyword,pagination });
     
   })
@@ -75,9 +78,11 @@ router.get('/change-status/:id/:status',async function(req, res, next) {
   let currentStatus = paramHelpers.getParam(req.params,'status', 'active')
   let id = paramHelpers.getParam(req.params,'id', '')
   let status = (currentStatus === 'active') ? "inactive" : 'active'
+  console.log(req.param,req.body)
   await schema.updateOne({_id: id},{ status: status}).then((result)=>{
-    req.flash('success',notifyConfig.CHANGE_STATUS_SUCCESS,linkIndex)
-      
+    // req.flash('success',notifyConfig.CHANGE_STATUS_SUCCESS,linkIndex)
+    res.redirect(linkIndex)
+    
   })
 });
 
@@ -221,9 +226,7 @@ router.get('/add', function(req, res, next) {
   res.render(__path_views + 'pages/item/add', { pageTitle: pageTitleAdd,showError:error.errors});
 });
 
-router.put('/:id', async function(req, res, next) {
-  let  id = paramHelpers.getParam(req.params,'id', '')
-  result=await schema.findById(id)
-  console.log(result)
+router.put('/addst', async function(req, res, next) {
+  console.log(req.params,req.body)
 });
 module.exports = router;

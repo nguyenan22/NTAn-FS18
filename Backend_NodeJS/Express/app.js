@@ -3,11 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 // var logger = require('morgan');
-
 const mongoose=require('mongoose')
 const flash = require('express-flash-notification');
 const session = require('express-session');
-
+const toastr = require('express-toastr')
 const pathConfigs=require('./path')
 // var indexRouter = ;
 // var usersRouter = ;
@@ -57,6 +56,8 @@ app.use(session({
 app.use(flash(app,{
   viewName:__path_views +'elements/notify'
 }));
+
+app.use(toastr());
 
 // Router
 app.locals.systemConfig=systemConfig
