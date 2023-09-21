@@ -1,7 +1,7 @@
 <% 
-sortHelper = (col_name, collection, sortField, sortTypeCurrent, sortFieldCurrent) => { 
+sortHelper = (col_name, linkPrefix, sortField, sortTypeCurrent, sortFieldCurrent) => { 
     let order = (sortTypeCurrent == 'asc') ? 'desc' : 'asc'
-    let link = `${systemConfig.prefixAdmin}/${collection}/sort/${sortField}/${order}`
+    let link = `${linkPrefix}/sort/${sortField}/${order}`
     let icon = '<i class="fa fa-fw fa-sort"></i>'
     if(sortField == sortFieldCurrent){
          icon = `<i class="fa fa-fw fa-sort-${sortTypeCurrent}"></i>`

@@ -1,6 +1,6 @@
 <% include ./../../helper/showError %>
 <%
-    const collection = 'items'
+    const collection = 'groups'
     let linkPrefix = systemConfig.prefixAdmin + `/${collection}`
 %>
 
@@ -35,6 +35,11 @@
                                   <option value="inactive"  >Inactive</option>
                               </select>
                           </div>
+                          <div class="form-group">
+                            <label>Group-ACP</label> <br>
+                            <label for="">Yes</label> <input type="radio" name="group-acp" value="yes">
+                            <label for="">No</label> <input type="radio" name="group-acp" value="no">
+                        </div>
                           <div class="form-group">
                               <label>Content</label>
                               <textarea class="form-control" name="editor" rows="2"  id="editor" ></textarea>

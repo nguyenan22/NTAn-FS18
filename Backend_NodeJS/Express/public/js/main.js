@@ -5,9 +5,9 @@ $(document).ready( function() {
         "closeButton": true,
         "debug": false,
         "newestOnTop": true,
-        "progressBar": false,
+        "progressBar": true,
         "positionClass": "toast-top-right",
-        "preventDuplicates": true,
+        "preventDuplicates": false,
         "onclick": null,
         "showDuration": "300",
         "hideDuration": "1000",
@@ -22,8 +22,10 @@ $(document).ready( function() {
             url:  link,
             type: 'GET',
             success: function (result) {
-                $('body').html(result)
+                $(`#wrapper`).html(result)
                 toastr.success("Thay đổi trạng thái thành công","Success",toastr.options)
+                
+                
             },
             error: function(error){
                 toastr.error("Thay đổi trạng thái không thành công","Error",toastr.options)

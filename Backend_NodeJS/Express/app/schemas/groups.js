@@ -18,5 +18,5 @@ const kittySchema = new mongoose.Schema({
   {timestamps:true});
 
 
-module.exports=mongoose.model(databaseConfig.COL_ITEM, kittySchema)
+module.exports=mongoose.model(databaseConfig.COL_GROUPS, kittySchema)
 

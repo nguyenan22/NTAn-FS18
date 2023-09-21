@@ -6,7 +6,7 @@
     let currentPage = pagination.currentPage
     let pageRange = pagination.pageRange
     let to = totalItemsPerPage*currentPage
-    let from = to - totalItemsPerPage + 1 
+    let from = ((to - totalItemsPerPage + 1) > 1) ? (to - totalItemsPerPage + 1) : 0
     if(to > totalItems ) to = totalItems
     let xhtmPagination = '';
     console.log("totalItem=",totalItems,"totalItemsPerpage=",totalItemsPerPage,"totalPages=",totalPages)

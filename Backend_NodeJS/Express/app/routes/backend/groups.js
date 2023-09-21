@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
+
 const { models } = require('mongoose');
 const ultilsHelpers=require(__path_helpers +'utils')
 const paramHelpers=require(__path_helpers +'getParam')
 const systemConfig = require(__path_configs +'system')
-const colName='items'
-const itemsServer=require(__path_schemas + colName);
-let linkIndex = "/" + systemConfig.prefixAdmin +'/'+ colName
+const colName='groups'
+const groupsServer=require(__path_schemas + colName);
+let linkIndex = "/" + systemConfig.prefixAdmin + colName
 const {body,validationResult}=require('express-validator')
-const pageTitle='Item  Manager'
+const pageTitle='Groups  Manager'
 const pageTitleAdd=pageTitle +' Add'
 const pageTitleEdit=pageTitle +' Edit'
 const notifyConfig=require(__path_configs +'notify')
@@ -53,16 +54,16 @@ let objwhere = {}
 if (currentStatus !== 'all') { objwhere = {status: currentStatus}}
 if (keyword !== '') { objwhere.name = new RegExp(keyword, 'i')}
 
-  await itemsServer.count(objwhere).then((data)=>{
+  await groupsServer.count(objwhere).then((data)=>{
     pagination.totalItems = data
   })
-  await itemsServer.find(objwhere)
+  await groupsServer.find(objwhere)
   .sort(sort)
   .skip(pagination.totalItemsPerPage*(pagination.currentPage-1))
   .limit(pagination.totalItemsPerPage)
   .then(function (models) {
     
-    res.render(__path_views +'pages/item/list', { pageTitle: pageTitle, data:models, statusFillters:statusFillters, currentStatus,keyword,pagination,sortType,sortField });
+    res.render(__path_views +'pages/groups/list', { pageTitle: pageTitle, data:models, statusFillters:statusFillters, currentStatus,keyword,pagination,sortType,sortField });
     
   })
   .catch(function (err) {
@@ -82,11 +83,10 @@ router.get('/change-status/:id/:status',async function(req, res, next) {
   let currentStatus = paramHelpers.getParam(req.params,'status', 'active')
   let id = paramHelpers.getParam(req.params,'id', '')
   let status = (currentStatus === 'active') ? "inactive" : 'active'
-  await itemsServer.updateOne({_id: id},{ status: status}).then((result)=>{
+  await groupsServer.updateOne({_id: id},{ status: status}).then((result)=>{
     // req.flash('success',notifyConfig.CHANGE_STATUS_SUCCESS,linkIndex)
     // res.send({success:true})
     // console.log(result)
-    
     res.redirect(linkIndex)
     // console.log(result)
   
@@ -99,11 +99,11 @@ router.post('/change-ordering',async function(req, res, next) {
   let orderings = req.body.ordering
   if(typeof cids === 'object' ){ //thay đổi ordering của nhiều phần tử
     for (let index = 0; index < cids.length; index++) {
-      await itemsServer.updateOne({_id: cids[index]},{ ordering: parseInt(orderings[index])})
+      await groupsServer.updateOne({_id: cids[index]},{ ordering: parseInt(orderings[index])})
     }
     req.flash('success',util.format(notifyConfig.CHANGE_ORDERING_MULTI,cids.length),linkIndex)
   }else{ // thay đổi ordering của 1 phần tử
-      await itemsServer.updateOne({_id: cids},{ ordering: parseInt(orderings)})
+      await groupsServer.updateOne({_id: cids},{ ordering: parseInt(orderings)})
       req.flash('success',notifyConfig.CHANGE_ORDERING,linkIndex)
   }
 
@@ -142,11 +142,11 @@ const error = validationResult(req);
   }]
   console.log(error.errors)
   if (error.errors.length >=1){
-    res.render(__path_views +'pages/item/add', { pageTitle: pageTitleAdd, showError:error.errors });
+    res.render(__path_views +'pages/groups/add', { pageTitle: pageTitleAdd, showError:error.errors });
   }
   else {
     console.log(data)
-    await itemsServer.insertMany(data)
+    await groupsServer.insertMany(data)
     console.log("Insert Successfully")
     req.flash('success',notifyConfig.ADD_ITEMS,linkIndex)
   }
@@ -155,7 +155,7 @@ const error = validationResult(req);
 })
 router.post('/change-status/:status',async function(req, res, next) {
   let currentStatus = paramHelpers.getParam(req.params,'status', 'active')
-  await itemsServer.updateMany({_id:{$in:req.body.cid}},{ status: currentStatus}).then(()=>{
+  await groupsServer.updateMany({_id:{$in:req.body.cid}},{ status: currentStatus}).then(()=>{
     req.flash('success',util.format(notifyConfig.CHANGE_STATUS_SUCCESS_MULTI,req.body.cid.length),linkIndex)
   })
 });
@@ -171,11 +171,11 @@ router.get('/sort/:sort_field/:sort_type', async function(req, res, next) {
 router.post('/delete',async function(req, res, next) {
   let cids = req.body.cid
   if(typeof cids === 'object' ){ //thay đổi ordering của nhiều phần tử
-    await itemsServer.deleteMany({_id:{$in:cids}}).then (() =>{
+    await groupsServer.deleteMany({_id:{$in:cids}}).then (() =>{
       req.flash('warning',util.format(notifyConfig.DELETE_ITEMS_MULTI,req.body.cid.length),linkIndex)
     })}
     else {
-      await itemsServer.deleteOne({_id:cids})
+      await groupsServer.deleteOne({_id:cids})
       console.log("Delete Successfully")
       req.flash('warning',notifyConfig.DELETE_ITEMS,linkIndex)
     }
@@ -183,7 +183,7 @@ router.post('/delete',async function(req, res, next) {
 
 router.get('/delete/:id',async function(req, res, next) {
   let id = paramHelpers.getParam(req.params,'id', '')
-  await itemsServer.deleteOne({_id:id})
+  await groupsServer.deleteOne({_id:id})
   console.log("Delete Successfully")
   req.flash('warning',notifyConfig.DELETE_ITEMS,linkIndex)
   
@@ -193,9 +193,9 @@ router.get('/delete/:id',async function(req, res, next) {
 router.get('/form/:id',async function(req, res, next) {
   const error = validationResult(req);
   let id = paramHelpers.getParam(req.params,'id', '')
-  data=await itemsServer.findOne({_id:id})
+  data=await groupsServer.findOne({_id:id})
   console.log(data)
-  res.render(__path_views + 'pages/item/edit', { pageTitle: pageTitleEdit,data,id,showError:error.errors})
+  res.render(__path_views + 'pages/groups/edit', { pageTitle: pageTitleEdit,data,id,showError:error.errors})
 })
 
 router.post('/form/:id/save',body('name')
@@ -215,11 +215,11 @@ body('status')
   let  id = paramHelpers.getParam(req.params,'id', '')
   const error = validationResult(req);
   if (error.errors.length >=1){
-    res.render(__path_views + 'pages/item/edit', { pageTitle: pageTitleEdit,data,id, showError:error.errors });
+    res.render(__path_views + 'pages/groups/edit', { pageTitle: pageTitleEdit,data,id, showError:error.errors });
     console.log("test")
   }
   else {
-  await itemsServer.updateOne({_id:id},{name:req.body.name,ordering:parseInt(req.body.ordering),status:req.body.status}).then(()=>{
+  await groupsServer.updateOne({_id:id},{name:req.body.name,ordering:parseInt(req.body.ordering),status:req.body.status}).then(()=>{
     req.flash('success',notifyConfig.SAVE_ITEMS,linkIndex)
   })
 }})
@@ -236,7 +236,7 @@ router.get('/adds', function(req, res, next) {
 router.get('/add', function(req, res, next) {
   const error = validationResult(req);
   console.log(error)
-  res.render(__path_views + 'pages/item/add', { pageTitle: pageTitleAdd,showError:error.errors});
+  res.render(__path_views + 'pages/groups/add', { pageTitle: pageTitleAdd,showError:error.errors});
 });
 
 router.put('/addst', async function(req, res, next) {
