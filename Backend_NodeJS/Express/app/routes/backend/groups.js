@@ -7,7 +7,7 @@ const paramHelpers=require(__path_helpers +'getParam')
 const systemConfig = require(__path_configs +'system')
 const colName='groups'
 const groupsServer=require(__path_schemas + colName);
-let linkIndex = "/" + systemConfig.prefixAdmin + colName
+let linkIndex = "/" + systemConfig.prefixAdmin +'/'+ colName
 const {body,validationResult}=require('express-validator')
 const pageTitle='Groups  Manager'
 const pageTitleAdd=pageTitle +' Add'
@@ -41,7 +41,8 @@ router.get('(/status/:status)?', async function(req, res, next) {
     }
   }
 
-  let statusFillters=await ultilsHelpers.createStatusFilter(currentStatus)
+  let statusFillters=await ultilsHelpers.createStatusFilter(currentStatus,groupsServer)
+  console.log(statusFillters)
   let keyword = paramHelpers.getParam(req.query,'keyword','')
   const sortField = paramHelpers.getParam(req.session,'sort_field','ordering')
   const sortType = paramHelpers.getParam(req.session,'sort_type','asc')
@@ -124,13 +125,14 @@ body('status')
   }
 })
 ,async function(req, res, next){
-console.log(req.body)
+// console.log(req.body)
 const error = validationResult(req);
   let data=[{
     name:req.body.name, 
     ordering: req.body.ordering,
     status:req.body.status,
-    editor:req.body.editor,
+    groups_acp: req.body['groups-acp'],
+    description:req.body['description'],
     create:{
       user_name:"admin",
       user_id:"1"
@@ -140,12 +142,11 @@ const error = validationResult(req);
       user_id:"2"
     }
   }]
-  console.log(error.errors)
   if (error.errors.length >=1){
     res.render(__path_views +'pages/groups/add', { pageTitle: pageTitleAdd, showError:error.errors });
   }
   else {
-    console.log(data)
+    // console.log(req.body)
     await groupsServer.insertMany(data)
     console.log("Insert Successfully")
     req.flash('success',notifyConfig.ADD_ITEMS,linkIndex)

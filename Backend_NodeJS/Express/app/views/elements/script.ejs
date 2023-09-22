@@ -18,10 +18,14 @@
             console.log(editor);
         })
 
-        document.querySelector('#submit').addEventListener('click', (e)=>{
+       const el = document.querySelector('#submit')
+       if (el){
+        el.addEventListener('click', (e)=>{
         // e.preventDefault()
         const editorData = editor.getData();
         console.log(editorData)})
+       }
+
         // document.querySelector('#submit').onclick= (e) =>{
         // // e.preventDefault()
         // const content = editor.getData();

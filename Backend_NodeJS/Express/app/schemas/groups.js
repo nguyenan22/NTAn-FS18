@@ -5,7 +5,8 @@ const kittySchema = new mongoose.Schema({
     name: String,
     status:String,
     ordering:Number,
-    editor:String,
+    groups_acp:String,
+    description:String,
     create: {
       user_name: String,
       user_id:Number

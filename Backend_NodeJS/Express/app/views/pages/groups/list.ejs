@@ -22,7 +22,6 @@
           <div class="panel-body">
               <div class="row">
                   <div class="status-list col-sm-6 pl0">
-                    <!-- <% filterStatusHelper(statusFillters) %> -->
                     <%- filterStatusHelper(statusFillters,collection) %>
                     <!-- <% statusFillters.forEach(( statusFillter)=>{ %>
                         <a class="btn m-b-sm btn-<%= statusFillter.class %> btn-sm" href="<%= statusFillter.link %>">
@@ -95,6 +94,12 @@
                                     <a href="#" class="title_col">Create<i class="fa fa-fw "></i></a>
                                   </th>
                                   <th class="text-center pointer">
+                                    <a href="#" class="title_col">Permission<i class="fa fa-fw "></i></a>
+                                  </th>
+                                  <th class="text-center pointer">
+                                    <a href="#" class="title_col">Description<i class="fa fa-fw "></i></a>
+                                  </th>
+                                  <th class="text-center pointer">
                                     <a href="#" class="title_col">Action<i class="fa fa-fw "></i></a>
                                   </th>
                               </tr>
@@ -111,6 +116,8 @@
                                     <td class="text-center">
                                         <%- formatTimeHelper(item.create.user_name,item.modify.user_name,item.createdAt,item.updateAt) %>
                                     </td>
+                                    <td class="text-center align"><%= item.groups_acp %></td>
+                                    <td class="text-center align"><%= item.description %></td>
                                     <td class="text-center align">
                                         <a href="<%= linkPrefix %>/form/<%= item.id %>" type="button" class="btn btn-warning btn-sm">Edit</a>
                                         <a href="<%= linkPrefix %>/delete/<%= item.id %>" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>

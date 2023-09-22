@@ -40,7 +40,7 @@ router.get('(/status/:status)?', async function(req, res, next) {
     }
   }
 
-  let statusFillters=await ultilsHelpers.createStatusFilter(currentStatus)
+  let statusFillters=await ultilsHelpers.createStatusFilter(currentStatus,itemsServer)
   let keyword = paramHelpers.getParam(req.query,'keyword','')
   const sortField = paramHelpers.getParam(req.session,'sort_field','ordering')
   const sortType = paramHelpers.getParam(req.session,'sort_type','asc')

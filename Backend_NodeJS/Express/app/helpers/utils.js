@@ -1,6 +1,6 @@
-const schema = require('../schemas/items')
 
-const createStatusFilter = async (currentStatus) => {
+
+const createStatusFilter = async (currentStatus,schema) => {
 
     let statusFillters = [
         {name: 'ALL', value: 'all',   count: 4,   class: 'default',   link: '#' }, 
@@ -20,7 +20,6 @@ const createStatusFilter = async (currentStatus) => {
 
     return statusFillters
 }
-
 module.exports = {
     createStatusFilter
 }

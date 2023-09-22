@@ -22,6 +22,7 @@ $(document).ready( function() {
             url:  link,
             type: 'GET',
             success: function (result) {
+                console.log(result)
                 $(`#wrapper`).html(result)
                 toastr.success("Thay đổi trạng thái thành công","Success",toastr.options)
                 
