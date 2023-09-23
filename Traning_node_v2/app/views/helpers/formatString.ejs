@@ -1,0 +1,6 @@
+<% 
+formatStringHelper = (content) => { 
+    if (content =='') return ''
+ return content.replace( /(<[^>]+>)/igm , "")
+}%>
+
