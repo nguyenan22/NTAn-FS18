@@ -10,6 +10,7 @@ const schema = new mongoose.Schema({
       id: String,
       name: String
     },
+    groups_acp:String,
     status: String,
     ordering: Number,
     editorData:String,

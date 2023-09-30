@@ -9,8 +9,8 @@ var expressLayouts = require('express-ejs-layouts');
 const flash = require('express-flash-notification');
 const session = require('express-session');
 const moment = require('moment');
-
 const pathConfigs = require('./path');
+
 global.__base = __dirname + '/';
 global.__path_app = __base + pathConfigs.folder_app + '/';
 global.__path_configs = __path_app + pathConfigs.folder_configs +'/';
@@ -18,8 +18,8 @@ global.__path_routes = __path_app + pathConfigs.folder_routes + '/';
 global.__path_views = __path_app + pathConfigs.folder_views + '/';
 global.__path_helpers = __path_app + pathConfigs.folder_helpers + '/';
 global.__path_shemas = __path_app + pathConfigs.folder_shemas +'/';
-
-
+global.__path_public = __base + pathConfigs.folder_public +'/';
+global.__path_uploads = __path_public + pathConfigs.folder_uploads +'/';
 
 const systemConfig = require(__path_configs +'system')
 const databaseConfig = require(__path_configs +'database')

@@ -5,18 +5,44 @@ const util = require('node:util');
 const { body,validationResult  } = require('express-validator');
 
 const colName = 'users'
-
+var paths = require('path');
 const userServer = require(__path_shemas + colName)
 const utilsHelpers = require(__path_helpers + 'utils')
 const paramsHelpers = require(__path_helpers +'getParam')
 const systemConfig = require(__path_configs +'system')
 const notifyConfig = require(__path_configs +'notify');
-
+const groupServer=require(__path_shemas+ 'groups')
 let linkIndex = `/${systemConfig.prefixAdmin}/${colName}`  
 let pageTitle = `Users Manager`
 let pageTitleAdd = pageTitle + ' Add'
 let pageTitleEdit = pageTitle + ' Edit'
 const folderView = __path_views +`pages/${colName}/`
+const multer  = require('multer')
+const randomstring=require('randomstring');
+const path = require('../../../path');
+const { Console } = require('node:console');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, __path_uploads + 'users')
+  },
+  filename: function (req, file, cb) {
+    cb(null, randomstring.generate(10) + paths.extname(file.originalname))
+  }
+})
+const upload = multer({ storage: storage,
+  limits: { fileSize: 1 * 1024 *1024},
+  fileFilter: function (req,file,cb){
+    const fileTyles=new RegExp('jpeg|jpg|png|gif')
+    const extname=fileTyles.test(paths.extname(file.originalname).toLowerCase())
+    const mimetype=fileTyles.test(file.mimetype)
+    if (mimetype && extname ){
+      cb(null,true)
+    }
+    else {
+      return cb(new Error(notifyConfig.ERROR_FILE))
+    }
+  }
+})
 
 // list Items
 router.get('(/status/:status)?', async function(req, res, next) {
@@ -137,22 +163,32 @@ router.post('/delete/', async function(req, res, next) {
 // form
 router.get('/form(/:id)?', async function(req, res, next) {
   let id = paramsHelpers.getParam(req.params,'id', '')
-  let item = {name: '', ordering: 0, status:'novalue'}
+  let item = {fullName: '',userName: '',password:'',avatar:'',group:'',groups_acp:'', ordering: 0, status:'novalue'}
   let showError = null
-  let groupItems=await userServer.find({status:'active'},{id:1,name:1})
-  console.log(groupItems)
+  let groupItems=await groupServer.find({status:'active'},{id:1,name:1})
+  groupItems.unshift({id:'allgroup',name: 'Choose Group' })
   if (id === '') { //add
-    res.render(`${folderView}form`, { pageTitle: pageTitleAdd, item, showError,groupItems });
+    let option=''
+    console.log(option)
+    res.render(`${folderView}form`, { pageTitle: pageTitleAdd, item, showError,groupItems,option });
   } else { //edit
+    let groupId=await userServer.find({_id:id},{group:1})
+    let option=groupId[0].group.id
     await userServer.findById(id).then((item)=>{
-    res.render(`${folderView}form`, { pageTitle: pageTitleEdit, item, showError, groupItems });
+    res.render(`${folderView}form`, { pageTitle: pageTitleEdit, item, showError, groupItems,option });
    })
   }
 });
 
 // save
 router.post('/save/', 
-body('name')
+body('fullName')
+  .isLength({ min: 5, max:100 })
+  .withMessage(util.format(notifyConfig.ERROR_NAME,5,100)),
+  body('userName')
+  .isLength({ min: 5, max:100 })
+  .withMessage(util.format(notifyConfig.ERROR_NAME,5,100)),
+  body('password')
   .isLength({ min: 5, max:100 })
   .withMessage(util.format(notifyConfig.ERROR_NAME,5,100)),
 body('ordering')
@@ -174,14 +210,18 @@ async function(req, res, next) {
         showError:errors.errors 
       });
     }else{ // kh lỗi
+      let groupItems=await groupServer.find({_id:item.group},{id:1,name:1})
       await userServer.updateOne({_id:item.id}, {
         fullName: item.fullName,
         userName:item.userName,
         password:item.password,
-        avatar:"sdfds",
+        avatar:item.avatar,
         ordering: parseInt(item.ordering),
         status: item.status,
-        group:item.group,
+        group:{
+          id:groupItems[0].id,
+          name:groupItems[0].name
+        },
         editorData:item.editorData,
         groups_acp:item.groups_acp,
         modify: {
@@ -200,6 +240,12 @@ async function(req, res, next) {
         showError:errors.errors 
       });
     } else { // không lỗi
+      let groupItems=await groupServer.find({_id:req.body.group},{id:1,name:1})
+      // let id = paramsHelpers.getParam(req.params,'id', '')
+      item.group={
+        id:groupItems[0].id,
+        name:groupItems[0].name
+      }
       delete item.id
       item.created = {
         user_name: 'admin',
@@ -236,5 +282,17 @@ router.get('/sort/:sort_field/:sort_type', async function(req, res, next) {
   res.redirect(linkIndex)
 });
 
+router.get('/uploads', async function(req, res, next) {
+  res.render(`${folderView}upload`, { 
+    pageTitle: pageTitle,
+   });
+})
+//upload 
+router.post('/uploads/',upload.single('avatar'), async function (req,res,next){
+  
+  res.render(`${folderView}upload`, { 
+    pageTitle: pageTitle, fileName
+   });
+ });
 
 module.exports = router;

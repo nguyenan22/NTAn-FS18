@@ -9,4 +9,5 @@ module.exports = {
     ERROR_NAME: 'Vui lòng nhập tên trong khoảng %d đến %d kí tự!',
     ERROR_ORDERING: 'Vui lòng nhập ordering trong khoảng %d đến %d kí tự!',
     ERROR_STATUS: 'Vui lòng chọn 1 trạng thái!',
+    ERROR_FILE: 'Vui lòng chọn file khác'
 }

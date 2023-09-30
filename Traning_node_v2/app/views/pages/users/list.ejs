@@ -86,16 +86,16 @@
                                     <td><%= item.fullName %></td> 
                                     <td><%= item.userName %></td> 
                                     <td><%= item.password %></td> 
-                                    <td><%= item.avatar %></td> 
-                                    <td><%= item.group %></td> 
+                                    <td> <img src="/uploads/users/7EpghVlY4A.png" alt="" style="width:40px;height:40px; border-radius: 50%;"></td> 
+                                    <td><%= item.group.name %></td> 
                                     <td> <%- statusHelper(item.status,collection,item.id) %></td>
                                     <td><input type="number" value="<%= item.ordering %>" class="text-center ordering"></td>
                                     <td> <%- sortByHelper(item.createdAt,item.created.user_name) %></td>
                                     <td><%- sortByHelper(item.updatedAt,item.modify.user_name) %></td>
                                     <td>
-                                        <%- groupsHelper(item.groups_acp,linkPrefix,item.id) %> <%=item.groups_acp.toUpperCase() %>
+                                        <%- groupsHelper(item.groups_acp,linkPrefix,item.id) %> <%= item.groups_acp.toUpperCase() %>
                                     </td>
-                                    <td><%- formatStringHelper(item.description) %></td>
+                                    <td><%- formatStringHelper(item.editorData) %></td>
                                     <td>
                                         <a href="<%= linkPrefix %>form/<%= item.id %>" type="button" class="btn btn-warning btn-sm">Edit</a>
                                         <a href="<%= linkPrefix %>delete/<%= item.id %>" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>

@@ -1,5 +1,6 @@
-<h3><%= JSON.stringify(item);   %></h3>
+<%= option %>
 <% include ./../../helpers/showError %>
+<% include ./../../helpers/groupSelect %>
 <%
     const collection = 'users'
     const linkPrefix = systemConfig.prefixAdmin +`/${collection}/`
@@ -17,19 +18,19 @@
                       <form role="form" action="<%= linkPrefix %>save/" method="POST">
                           <div class="form-group">
                               <label>Full Name</label>
-                              <input class="form-control" name="name" value="<%=item.name %>" >
+                              <input class="form-control" name="fullName" value="<%=item.fullName %>" >
                           </div>
                           <div class="form-group">
                             <label>User Name</label>
-                            <input class="form-control" name="name" value="<%=item.name %>" >
+                            <input class="form-control" name="userName" value="<%=item.userName %>" >
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input class="form-control" name="name" value="<%=item.name %>" >
+                            <input class="form-control" name="password" value="<%=item.password %>" >
                         </div>
                         <div class="form-group">
-                            <label for="myfile">Avatar</label>
-                            <input type="file" id="myfile" name="myfile">
+                            <label for="myfile">Avatar</label> <br>
+                            <a type="button" href="<%= linkPrefix %>uploads" class="btn btn-primary">Upload Image</a>
                         </div>
                           <div class="form-group">
                               <label>Ordering</label>
@@ -39,25 +40,25 @@
                           <select name="status" class="form-control" >
                               <option value="novalue">Choose Status</option>
                               <option value="active" <%= (item.status==='active') ? 'selected="selected"' : '' %> >Active</option>
-                              <option value="inactive" <%= (item.status==='inactive') ? 'selected="selected"' : '' %>  >Inactive</option>
+                              <option value="inactive" <%= (item.status==='inactive') ? 'selected="selected"' : '' %> >Inactive</option>
                           </select>
                           <div class="form-group">
                               <label>Group</label>
-                              <select name="status" class="form-control" >
+                              <%- groupSelectHelper('group',groupItems,option) %>
+                              <!-- <select name="group.name" class="form-control" >
                                   <option value="novalue">Choose Group</option>
-                                  <option value="active" >Amitter</option>
-                                  <option value="inactive">Member</option>
-                                  <option value="inactive" >abc</option>
-                              </select>
+                                  <option value="amitter" <%= (item.group.name==='amitter') ? 'selected="selected"' : '' %>>Amitter</option>
+                                  <option value="member" <%= (item.group.name==='member') ? 'selected="selected"' : '' %>>Member</option>
+                              </select> -->
                           </div>
                           <div class="form-group">
                             <label>Group ACP</label> <br>
                             <label for=""><input type="radio" name="groups_acp" value="yes" <%= (item.groups_acp==='yes') ? 'checked="checked"' : '' %>> Yes</label>
-                            <label for=""><input type="radio" name="groups_acp" value="no"<%= (item.groups_acp==='no') ? 'checked="checked"' : '' %>> No</label>
+                            <label for=""><input type="radio" name="groups_acp" value="no" <%= (item.groups_acp==='no') ? 'checked="checked"' : '' %>> No</label>
                         </div>
                           <div class="form-group">
                             <label>Descrition</label> <br>
-                            <textarea class="form-control" name="description" id="editorData"><%=item.description %></textarea>
+                            <textarea class="form-control" name="editorData" id="editorData"><%=item.editorData %></textarea>
                         </div>
                           <input class="form-control" name="id" value="<%=item.id %>" type="hidden" >
                           <button type="submit" id="submit" class="btn btn-primary">Submit </button> 
