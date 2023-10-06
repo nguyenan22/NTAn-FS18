@@ -1,0 +1,114 @@
+<%= JSON.stringify(sortField);   %>
+<% include ./../../helpers/status %>
+<% include ./../../helpers/filter-status %>
+<% include ./../../helpers/pagination %>
+<% include ./../../helpers/action %>
+<% include ./../../helpers/sortBy %>
+<% include ./../../helpers/sort %>
+<% include ./../../helpers/groupSelect %>
+<%
+    const collection = 'users'
+    const linkPrefix = systemConfig.prefixAdmin +`/${collection}/`
+%>
+<%- locals.flash %>
+
+<div class="row">
+  <div class="col-lg-12">
+      <div class="panel panel-info">
+          <div class="panel-heading">
+              Search & Filter
+              <a href="<%= linkPrefix %>">
+              <span id="icon-reload" class="glyphicon glyphicon-refresh"></span>
+              </a>
+          </div>
+          <div class="panel-body">
+              <div class="row">
+                  <div class="status-list col-sm-4 pl0">
+                    <%- filterStatusHelper(statusFillters,collection,keyword) %>
+                     
+                  </div>
+                  <div class="status-list col-sm-3 pl0">
+                    <%- groupSelectHelper('filter-group',groupItems,groupID) %>
+                     
+                  </div>
+                  
+                  <div class="col-sm-5">
+                      <form action="<%= linkPrefix %>status/<%= currentStatus %>" method="GET">
+                          <div class="input-group">
+                              <input type="text" class="form-control" name="keyword" placeholder="Search for..." value="<%= keyword %>">
+                              <span class="input-group-btn">
+                              <button class="btn btn-info" type="submit">Search</button>
+                              </span>
+                              <span class="input-group-btn">
+                              <button class="btn btn-success" type="button"><a href="<%= linkPrefix %>status/<%= currentStatus %>">Clear</a></button>
+                              </span>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-12">
+      <div class="panel panel-info">
+          <div class="panel-heading">
+              List Items
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+              <form role="form" class="form-inline zt-form" id="zt-form" action="" method="post">
+                 <!-- action -->
+                 <%- actionHelper(collection) %>
+                  <div class="table-responsive">
+                      <table class="table table-striped">
+                          <thead>
+                              <tr>
+                                  <th>
+                                      <input type="checkbox" class="cbAll" />
+                                  </th>
+                                  <th>#</th>
+                                    <%- sortHelper('Full Name', linkPrefix, 'fullName', sortType, sortField) %>
+                                    <%- sortHelper('User Name', linkPrefix, 'userName', sortType, sortField) %>
+                                    <%- sortHelper('Email', linkPrefix, 'email', sortType, sortField) %>
+                                    <%- sortHelper('Status', linkPrefix, 'status', sortType, sortField) %>             
+                                  <!-- <th width="30%">Content</th> -->
+                                  <%- sortHelper('Ordering', linkPrefix, 'ordering', sortType, sortField) %>
+                                  <%- sortHelper('Group', linkPrefix, 'group_id', sortType, sortField) %>
+                                  <th>Create</th>
+                                  <th>Modify</th>
+                                  <th>Content</th>
+                                  <th>Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <% if (items.length > 0) {%>
+                            <% items.forEach((item,index)=>{ %>
+                                <tr>
+                                    <td><input type="checkbox" name="cid" value="<%= item.id %>" /></td>
+                                    <td><%= index +1 %></td>
+                                    <td><%= item.fullName %></td> 
+                                    <td><%= item.userName %></td> 
+                                    <td><%= item.email %></td> 
+                                    <td> <%- statusHelper(item.status,collection,item.id) %></td>
+                                    <td><input type="number" value="<%= item.ordering %>" class="text-center ordering"></td>
+                                    <td><%= item.group.name %></td> 
+                                    <td> <%- sortByHelper(item.createdAt,item.created.user_name) %></td>
+                                    <td><%- sortByHelper(item.updatedAt,item.modify.user_name) %></td>
+                                    <td><%=item.editorData %></td>
+                                    <td>
+                                        <a href="<%= linkPrefix %>form/<%= item.id %>" type="button" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="<%= linkPrefix %>delete/<%= item.id %>" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>
+                                    </td>
+                                </tr>
+                            <% })%>  
+                            <% } else { %>
+                            <td colspan="12">NO DATA</td>
+                            <% } %>
+                          </tbody>
+                      </table>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+  <%- paginationHelper(pagination,collection,currentStatus,keyword) %>

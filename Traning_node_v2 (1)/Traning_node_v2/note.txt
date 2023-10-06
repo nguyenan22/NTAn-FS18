@@ -1,0 +1,76 @@
+1   A   0   
+2   B   1 
+3   C   2   
+4   D   3
+5   E   4
+6   F   5   
+7   G   6
+8   H   7
+9   I   8
+
+totalItemsPerPage: 2
+currentPage: 1
+totalItems: 8
+
+
+(currentPage - 1) * totalItemsPerPage
+
+page 1 --> Showing 1 to 3 of 8 entries
+page 2 --> Showing 4 to 6 of 8 entries
+page 3 --> Showing 7 to 8 of 8 entries
+from? to?
+
+
+currentPage   from      to = currentPage*totalItemsPerPage       totalItemsPerPage        totalItems
+1               1       3                                            3                       8
+2               4       6                                              3                       8
+3               7       9(8)                                            3                       8
+
+if(to>totalItems) to =totalItems
+from = to - totalItemsPerPage + 1
+
+
+totalItemsPerPage: 1
+currentPage: 1
+totalItems: 8
+pageRange: 3
+
+1 2 3 4 5 6 7 8   page=1  1 2 3
+                  page=2  1 2 3
+                  page=3  2 3 4
+                  page=4  3 4 5
+                  page=5  4 5 6
+                  page=6  5 6 7
+                  page=7  6 7 8
+                  page=8  6 7 8
+
+totalItemsPerPage: 2  x
+currentPage: 1
+totalItems: 15        x
+totalpage: 8          x
+pageRange: 5         ceil(5/2) = 3
+milde:  ceil(pageRange/2) = 3
+
+page 1 2 3 4 5 6 7 8 
+
+currentPage        htmlPage        min = currentPage - milde + 1      max = min + pageRange - 1
+1                 1 2 3 4 5         1    1 - 3 + 1 = -1    1                   5     1  + 5 - 1  = 5
+2                 1 2 3 4 5         1    2 - 3 + 1 =  0    1                   5     1  + 5 - 1  = 5
+
+3                 1 2 3 4 5         1    3 - 3 + 1 =  1                        5      1 + 5 - 1 = 5  
+4                 2 3 4 5 6         2    4 - 3 + 1 =  2                        6      2 + 5 - 1 = 6
+5                 3 4 5 6 7         3    5 - 3 + 1 =  3                        7      3 + 5 - 1 = 7
+6                 4 5 6 7 8         4    5 - 3 + 1 =  4                        8      4 + 5 - 1 = 8
+
+7                 4 5 6 7 8         4    7 - 3 + 1 =  5                        8      5 + 5 -1  = 9 
+8                 4 5 6 7 8         4    8 - 3 + 1 =  6                        8      6 + 5 - 1 = 10
+
+user
+id pk
+tên --> fullName
+tài khoản --> userName
+mật khẩu  --> password
+hình đại diện --> avart
+role: --> groups_id, groups_name -- =//
+
+price product

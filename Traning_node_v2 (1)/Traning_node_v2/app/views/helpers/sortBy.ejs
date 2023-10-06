@@ -1,0 +1,7 @@
+<% 
+sortByHelper = (time,user_name) => { 
+    let html = `<span class="glyphicon glyphicon-time"> ${moment(time).format(systemConfig.formatTime)} </span> <br>
+                    <span class="glyphicon glyphicon-user"> ${user_name}</span> <br> `
+    return  html
+}%>
+
