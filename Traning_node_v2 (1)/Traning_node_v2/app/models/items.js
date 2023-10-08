@@ -6,11 +6,16 @@ const statusModels= async function(ItemServer,object) {
     await ItemServer.count(object.objwhere).then((data)=>{
         object.pagination.totalItems = data
        })
-    return object
+   return  await ItemServer
+    .find(object.objwhere)
+    .sort(object.sort)
+    .limit(object.pagination.totalItemsPerPage)
+    .skip((object.pagination.currentPage - 1) * object.pagination.totalItemsPerPage)
+    
     } 
 
 //single status items
-const changeStatusModels=  function(currentStatus){
+const changeStatusModels= async function(id,ItemServer,currentStatus){
     let status = (currentStatus === 'active') ? 'inactive' : 'active'
     let data = {
       status:status,
@@ -18,11 +23,11 @@ const changeStatusModels=  function(currentStatus){
         user_name: 'admin',
         user_id: 0
     }}
-    return data
+    return await ItemServer.updateOne({_id:id},data)
 }
 
-const deleteModels= async function() {
-
+const deleteModels= async function(id,ItemServer) {
+  return await ItemServer.deleteOne({_id:id})
 }
 
 const changeOrderingModels= async function(ItemServer,cids,ordering){
@@ -68,7 +73,7 @@ const formModels= async function() {
 }
 
 const saveEditModels= async function(ItemServer,item){
-    await ItemServer.updateOne({_id:item.id}, {
+ return  await ItemServer.updateOne({_id:item.id}, {
         name: item.name,
         ordering: parseInt(item.ordering),
         status: item.status,
@@ -81,13 +86,13 @@ const saveEditModels= async function(ItemServer,item){
 }
 
 
-const createNewItemModels= async function(item){
+const createNewItemModels= async function(ItemServer,item){
     delete item.id
     item.created = {
       user_name: 'admin',
       user_id: 0
     }
-    return item
+    return new ItemServer(item).save()
 }
 const sortModels= async function(){
 

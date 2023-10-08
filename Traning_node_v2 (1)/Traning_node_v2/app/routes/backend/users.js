@@ -20,7 +20,7 @@ let pageTitle = `Users Manager`
 let pageTitleAdd = pageTitle + ' Add'
 let pageTitleEdit = pageTitle + ' Edit'
 const folderView = __path_views +`pages/${colName}/`
-
+const usersModel=require('../../models/users')
 // list Items
 router.get('(/status/:status)?', async function(req, res, next) {
 let objwhere = {}
@@ -41,32 +41,19 @@ const groupID = paramsHelpers.getParam(req.session,'groupID','')
 let sort = {}
 sort[sortField] = sortType
 let groupItems = await groupsServer.find({status:'active'},{id:1,name:1})
+console.log(groupItems)
 groupItems.unshift({id:'allgroup',name: 'Choose Group' })
-
-if (currentStatus !== 'all') { objwhere = {status: currentStatus}}
-if (keyword !== '') { objwhere.name = new RegExp(keyword, 'i')}
-
-if (groupID==='allgroup') {objwhere={}}
-else if (groupID !=='') {objwhere={'group.id':groupID}}
-
-await usersServer.count(objwhere).then((data)=>{
-  pagination.totalItems = data
- })
- 
-    await usersServer
-    .find(objwhere)
-    .select('userName fullName email group status ordering created modify ')
-    .sort(sort)
-    .limit(pagination.totalItemsPerPage)
-    .skip((pagination.currentPage - 1) * pagination.totalItemsPerPage)
+let object={keyword,statusFillters,sort,pagination,objwhere,currentStatus}
+usersModel.statusModels(groupItems,groupID,usersServer,object)
     .then((items)=>{
+      console.log(items)
       res.render(`${folderView}list`, { 
         pageTitle: pageTitle,
         items,
         statusFillters,
         currentStatus,
         keyword,
-        pagination,
+        pagination:object.pagination,
         sortField,
         sortType,
         groupID,
@@ -79,14 +66,7 @@ await usersServer.count(objwhere).then((data)=>{
 router.get('/change-status/:status/:id', async function(req, res, next) {
   let currentStatus = paramsHelpers.getParam(req.params,'status', 'active')
   let id = paramsHelpers.getParam(req.params,'id', '')
-  let status = (currentStatus === 'active') ? 'inactive' : 'active'
-  let data = {
-    status:status,
-    modify: {
-      user_name: 'admin',
-      user_id: 0
-  }}
-  await usersServer.updateOne({_id:id},data).then(()=>{
+  usersModel.changeStatusModels(id,usersServer,currentStatus).then(()=>{
         req.flash('warning',notifyConfig.CHANGE_STATUS_SUCCESS ,linkIndex)
    })
 });
@@ -94,7 +74,7 @@ router.get('/change-status/:status/:id', async function(req, res, next) {
 // delete single
 router.get('/delete/:id', async function(req, res, next) {
   let id = paramsHelpers.getParam(req.params,'id', '')
-  await usersServer.deleteOne({_id:id}).then((data)=>{
+  usersModel.deleteModels(id,usersServer).then((data)=>{
     req.flash('warning',notifyConfig.DELETE_SUCCESS ,linkIndex)
    })
 });
@@ -103,36 +83,16 @@ router.get('/delete/:id', async function(req, res, next) {
 router.post('/change-ordering/', async function(req, res, next) {
   let cids = req.body.cid
   let ordering = req.body.ordering
-  if (Array.isArray(cids)) {
-    for (let index = 0; index < cids.length; index++) {
-      let data = {
-        ordering: parseInt(ordering[index]),
-        modify: {
-          user_name: 'admin',
-          user_id: 0
-      }}
-      await usersServer.updateOne({_id:cids[index]}, data )}
-    } else{
-      let data = {
-        ordering:parseInt(ordering),
-        modify: {
-          user_name: 'admin',
-          user_id: 0
-      }}
-    await usersServer.updateOne({_id:cids}, data)
-      }
-      req.flash('warning',notifyConfig.CHANGE_ORDERING_SUCCESS ,linkIndex)
+  usersModel.changeOrderingModels(usersServer,cids,ordering).then(() =>{
+    req.flash('warning',notifyConfig.CHANGE_ORDERING_SUCCESS ,linkIndex)
+  })
+    
 });
 
 // change status multi
 router.post('/change-status/:status', async function(req, res, next) {
   let currentStatus = paramsHelpers.getParam(req.params,'status', 'active')
-  let data = {
-    status:currentStatus,
-    modify: {
-      user_name: 'admin',
-      user_id: 0
-  }}
+  let data = usersModel.changeMultiStatusModels(currentStatus)
   await usersServer.updateMany({_id:{$in: req.body.cid}},data ).then((data)=>{
     req.flash('warning', util.format(notifyConfig.CHANGE_STATUS_MULTI_SUCCESS,data.matchedCount) ,linkIndex)
 })
@@ -148,17 +108,14 @@ router.post('/delete/', async function(req, res, next) {
 // form
 router.get('/form(/:id)?', async function(req, res, next) {
   let id = paramsHelpers.getParam(req.params,'id', '')
-  let item = {name: '', ordering: 0, status:'novalue'}
-  let showError = null
-  let groupItems = await groupsServer.find({status:'active'},{id:1,name:1})
-  groupItems.unshift({id:'allgroup',name: 'Choose Group' })
+ let data= await usersModel.formModels(groupsServer)
   if (id === '') { //add
     let group_id=''
-    res.render(`${folderView}form`, { pageTitle: pageTitleAdd, item, showError,groupItems,group_id });
+    res.render(`${folderView}form`, { pageTitle: pageTitleAdd, item:data.item, showError:data.showError,groupItems:data.groupItems,group_id });
   } else { //edit
     await usersServer.findById(id).then((item)=>{
      let group_id=item.group.id
-    res.render(`${folderView}form`, { pageTitle: pageTitleEdit, item, showError,groupItems,group_id });
+    res.render(`${folderView}form`, { pageTitle: pageTitleEdit, item, showError:data.showError,groupItems:data.groupItems,group_id });
    })
   }
 });
@@ -175,6 +132,7 @@ body('password')
   .isLength({ min: 5, max:100 })
   .withMessage(util.format(notifyConfig.ERROR_PASSWORD,5,100)),
 body('email')
+  .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
   .isLength({ min: 5, max:100 })
   .withMessage(util.format(notifyConfig.ERROR_EMAIL,5,100)),
 body('ordering')
@@ -184,9 +142,8 @@ body('status')
   .not()
   .isIn(['novalue'])
   .withMessage(util.format(notifyConfig.ERROR_STATUS)),
-  body('group_id')
-  .not()
-  .isIn(['allvalue'])
+  body('group_name')
+  .isIn(['member1','editor'])
   .withMessage(util.format(notifyConfig.ERROR_GROUP)),
 async function(req, res, next) {
   const errors = validationResult(req);
@@ -204,23 +161,7 @@ async function(req, res, next) {
         group_id
       });
     }else{ // kh lỗi
-      await usersServer.updateOne({_id:item.id}, {
-        fullName: item.fullName,
-        userName: item.userName,
-        password: item.password,
-        email: item.email,
-        ordering: parseInt(item.ordering),
-        group: {
-          id:item.group_id,
-          name:item.group_name,
-        },
-        status: item.status,
-        editorData:item.editorData,
-        modify: {
-          user_name: 'admin',
-          user_id: 0
-      }
-      }).then((data)=>{
+      usersModel.saveEditModels(usersServer,item).then((data)=>{
         req.flash('success', notifyConfig.EDIT_SUCCESS,linkIndex)
    })
     }
@@ -228,7 +169,7 @@ async function(req, res, next) {
     if (!errors.isEmpty()) { // có lỗi
       // let groupItems = await groupsServer.find({status:'active'},{id:1,name:1})
       let group_id=''
-  groupItems.unshift({id:'allgroup',name: 'Choose Group' })
+      groupItems.unshift({id:'allgroup',name: 'Choose Group' })
       res.render(`${folderView}form`, { 
         pageTitle: pageTitleAdd, 
         item, 
@@ -237,24 +178,11 @@ async function(req, res, next) {
         group_id
       });
     } else { // không lỗi
-      delete item.id
-      item.created = {
-        user_name: 'admin',
-        user_id: 0
-      }
-      item.group = {
-        id: item.group_id,
-        name: item.group_name
-      }
-      console.log(item);
-      new usersServer(item).save().then((result)=>{
+        usersModel.createNewGroupModels(usersServer,item).then((result)=>{
         req.flash('success', notifyConfig.ADD_SUCCESS,linkIndex)
       })
     }
   }
-  
-  
- 
   
 });
 

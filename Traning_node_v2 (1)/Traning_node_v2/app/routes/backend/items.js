@@ -38,21 +38,14 @@ router.get('(/status/:status)?', async function(req, res, next) {
   let object={keyword,statusFillters,sort,pagination,objwhere,currentStatus}
 
 // hàm xử lý
-  const objectsFinal= await itemsModel.statusModels(ItemServer,object)
-
-  await ItemServer
-  .find(objectsFinal.objwhere)
-  .sort(objectsFinal.sort)
-  .limit(objectsFinal.pagination.totalItemsPerPage)
-  .skip((objectsFinal.pagination.currentPage - 1) * objectsFinal.pagination.totalItemsPerPage)
-  .then((items)=>{
+ itemsModel.statusModels(ItemServer,object).then((items)=>{
       res.render(`${folderView}list`, { 
       pageTitle: pageTitle,
       items,
       statusFillters,
       currentStatus,
       keyword,
-      pagination:objectsFinal.pagination,
+      pagination:object.pagination,
       sortField,
       sortType
       });
@@ -65,9 +58,7 @@ router.get('/change-status/:status/:id', async function(req, res, next) {
   let id = paramsHelpers.getParam(req.params,'id', '')
 
   //hàm xử lý
-  let data = await itemsModel.changeStatusModels(currentStatus)
-
-  await ItemServer.updateOne({_id:id},data).then(()=>{
+   itemsModel.changeStatusModels(id,ItemServer,currentStatus).then(()=>{
     req.flash('warning',notifyConfig.CHANGE_STATUS_SUCCESS ,linkIndex)
 })
 });
@@ -75,7 +66,7 @@ router.get('/change-status/:status/:id', async function(req, res, next) {
 // delete single
 router.get('/delete/:id', async function(req, res, next) {
   let id = paramsHelpers.getParam(req.params,'id', '')
-  await ItemServer.deleteOne({_id:id}).then((data)=>{
+    itemsModel.deleteModels(id,ItemServer).then((data)=>{
     req.flash('warning',notifyConfig.DELETE_SUCCESS ,linkIndex)
    })
 });
@@ -85,9 +76,11 @@ router.post('/change-ordering/', async function(req, res, next) {
   let cids = req.body.cid
   let ordering = req.body.ordering
   //hàm xử lý
-  await itemsModel.changeOrderingModels(ItemServer,cids,ordering)
+  await itemsModel.changeOrderingModels(ItemServer,cids,ordering).then(() =>{
+    
+  })
 
-  req.flash('warning',notifyConfig.CHANGE_ORDERING_SUCCESS ,linkIndex)
+  
 });
 
 // change status multi
@@ -157,10 +150,8 @@ async function(req, res, next) {
           showError:errors.errors 
         });
       } else { // không lỗi
-
         //hàm xử lý
-        let items= await itemsModel.createNewItemModels(item)
-        new ItemServer(items).save().then((result)=>{
+        await itemsModel.createNewItemModels(ItemServer,item).then((result)=>{
           req.flash('success', notifyConfig.ADD_SUCCESS,linkIndex)
         })
       }

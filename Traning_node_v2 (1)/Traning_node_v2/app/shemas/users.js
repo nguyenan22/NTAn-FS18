@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const databaseConfig = require(__path_configs + 'database')
-
+const bcrypt =require('bcrypt')
 const schema = new mongoose.Schema({ 
     fullName: String, 
     userName:String,
@@ -24,6 +24,10 @@ const schema = new mongoose.Schema({
       }
 },
 { timestamps: true });
-
+schema.pre('save', function (next) {
+  const salt = bcrypt.genSaltSync(10);
+  this.password = bcrypt.hashSync(this.password, salt);
+  next()
+})
 
 module.exports = mongoose.model(databaseConfig.COL_USERS, schema);
