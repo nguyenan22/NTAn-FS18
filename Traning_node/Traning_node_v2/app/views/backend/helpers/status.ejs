@@ -1,0 +1,13 @@
+<% 
+statusHelper = (status, collection,id) => { 
+    <!-- let link = systemConfig.prefixAdmin + "/" + collection + "/change-status/" + status + "/" + id -->
+    let link = `${systemConfig.prefixAdmin}/${collection}/change-status/${status}/${id}`
+    let xhtml = ''
+    if(status == 'active'){
+        xhtml =  `<span class="label label-success">${status}</span>`
+    }else{
+        xhtml =  ` <span class="label label-warning">${status}</span>`
+    }
+    return `<a href="${link}">${xhtml}</a> ` 
+}%>
+

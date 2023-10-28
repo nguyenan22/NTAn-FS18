@@ -15,5 +15,5 @@ module.exports = {
     ERROR_USERNAME:'Vui lòng chọn tên đăng nhập hợp lệ!',
     ERROR_PASSWORD:'Vui lòng chọn tên mật khẩu hợp lệ!',
     ERROR_EMAIL:'Vui lòng chọn email hợp lệ!',
-    ERROR_GROUP:'Vui lòng chọn nhóm hợp lệ!',
+    ERROR_GROUP:'Vui lòng chọn nhóm hợp lệ ngoài nhóm Admin!',
 }

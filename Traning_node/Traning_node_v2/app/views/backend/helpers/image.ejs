@@ -1,0 +1,11 @@
+<% 
+imageHelper = (folder,avatarName,style='') => {
+    if(avatarName == null){
+        avatarName ='noimage.png'
+    }
+    if (style=='') {
+        return `<img id="include-image"  src="${folder+avatarName}" alt="" style="height:100px;width:100px">`
+    }
+    return `<img id="include-image"  src="${folder+avatarName}" alt="" style="height:50px;width:50px;border-radius:50%">`
+}
+%>

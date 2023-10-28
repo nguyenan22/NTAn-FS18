@@ -1,0 +1,104 @@
+<!-- <h3><%= JSON.stringify(showError);   %></h3> -->
+<% include ./../../helpers/showError %>
+<% include ./../../helpers/groupSelect %>
+<% include ./../../helpers/image %>
+<%
+    const collection = 'users'
+    const linkPrefix = systemConfig.prefixAdmin +`/${collection}/`
+    const folderUpload='uploads/users/'
+%>
+<div class="row">
+  <div class="col-lg-12">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              Form 
+          </div>
+          <div class="panel-body">
+            <%- showErrorHelper(showError) %>
+              <div class="row">
+                  <div class="col-lg-6">
+                      <form role="form" action="<%= linkPrefix %>save/" method="POST" enctype="multipart/form-data">
+                          <div class="form-group">
+                              <label>Full Name</label>
+                              <input class="form-control" name="fullName" value="<%=item.fullName %>" >
+                          </div>
+                          <div class="form-group">
+                            <label>User Name</label>
+                            <input class="form-control" name="userName" value="<%=item.userName %>" >
+                        </div>
+                        <div class="form-group">
+                            <label>Uploadsx</label>
+                            <input id="ImageAvatarUsers" type="file" class="form-control" name="avatar" value="" >
+                        </div>
+                        <div id="include-img">
+                            <% if(item.id !='' && item.id != undefined) {%>
+                                <%- imageHelper(folderUpload,item.avatar,item.userName,'img-table-responsive img-avatar-form') %>
+                            <% } %>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" name="email" value="<%=item.email %>" >
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input class="form-control" name="password" value="<%=item.password %>" >
+                        </div>
+                          <div class="form-group">
+                              <label>Ordering</label>
+                              <input class="form-control" type="number" name="ordering" value="<%=item.ordering %>" >
+                          </div>
+                          <div class="form-group">
+                            <label>Group</label>
+                            <%- groupSelectHelper('group_id',groupItems, item.group_id) %>
+                        </div>
+                          <div class="form-group">
+                              <label>Status</label>
+                              <select name="status" class="form-control" >
+                                  <option value="novalue">Choose Status</option>
+                                  <option value="active" <%= (item.status==='active') ? 'selected="selected"' : '' %> >Active</option>
+                                  <option value="inactive" <%= (item.status==='inactive') ? 'selected="selected"' : '' %>  >Inactive</option>
+                              </select>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label>Content</label> <br>
+                            <textarea class="form-control" name="editorData" id="editorData"><%=item.editorData %></textarea>
+                        </div>
+
+                          <input class="form-control" name="id" value="<%=item.id %>" type="hidden" >
+                          <input class="form-control" name="group_name" value="<%=item.group_name %>" type="hidden" >
+                          <input class="form-control" name="image_old" value="<%=item.avatar %>" type="hidden" >
+                          <input class="form-control" name="image_upload" value="" type="hidden" >
+                          <button type="submit" id="submit" class="btn btn-primary">Submit </button> 
+                          <a type="button" href="<%= linkPrefix %>" class="btn btn-default">Cancel</a>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<script>
+    let editor;
+    ClassicEditor
+        .create(document.querySelector('#editorData'))
+        .then( newEditor => {
+            editor = newEditor
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    document.querySelector('#submit').addEventListener('click', (e)=>{
+        const editorData = editor.getData();
+    });
+    ImageAvatarUsers.onchange = evt =>{
+        const [file] = ImageAvatarUsers.files
+        if(file){
+            // image_upload.setAttribute("value",'upload')
+            console.log('test');
+            document.getElementsByName('image_upload')[0].setAttribute('value','upload')
+        }else{
+            document.getElementsByName('image_old')[0].setAttribute('value','')
+        }
+    }
+</script>

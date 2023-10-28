@@ -41,12 +41,10 @@ const groupID = paramsHelpers.getParam(req.session,'groupID','')
 let sort = {}
 sort[sortField] = sortType
 let groupItems = await groupsServer.find({status:'active'},{id:1,name:1})
-console.log(groupItems)
 groupItems.unshift({id:'allgroup',name: 'Choose Group' })
 let object={keyword,statusFillters,sort,pagination,objwhere,currentStatus}
 usersModel.statusModels(groupItems,groupID,usersServer,object)
     .then((items)=>{
-      console.log(items)
       res.render(`${folderView}list`, { 
         pageTitle: pageTitle,
         items,
@@ -66,7 +64,7 @@ usersModel.statusModels(groupItems,groupID,usersServer,object)
 router.get('/change-status/:status/:id', async function(req, res, next) {
   let currentStatus = paramsHelpers.getParam(req.params,'status', 'active')
   let id = paramsHelpers.getParam(req.params,'id', '')
-  usersModel.changeStatusModels(id,usersServer,currentStatus).then(()=>{
+  usersModel.changeStatusModels(id,usersServer,currentStatus,'status-one').then(()=>{
         req.flash('warning',notifyConfig.CHANGE_STATUS_SUCCESS ,linkIndex)
    })
 });
@@ -74,7 +72,7 @@ router.get('/change-status/:status/:id', async function(req, res, next) {
 // delete single
 router.get('/delete/:id', async function(req, res, next) {
   let id = paramsHelpers.getParam(req.params,'id', '')
-  usersModel.deleteModels(id,usersServer).then((data)=>{
+  usersModel.deleteModels(id,usersServer,'delete-one').then((data)=>{
     req.flash('warning',notifyConfig.DELETE_SUCCESS ,linkIndex)
    })
 });
@@ -92,15 +90,17 @@ router.post('/change-ordering/', async function(req, res, next) {
 // change status multi
 router.post('/change-status/:status', async function(req, res, next) {
   let currentStatus = paramsHelpers.getParam(req.params,'status', 'active')
-  let data = usersModel.changeMultiStatusModels(currentStatus)
-  await usersServer.updateMany({_id:{$in: req.body.cid}},data ).then((data)=>{
+  let reqBody= req.body.cid
+  //hàm xử lý
+  usersModel.changeStatusModels(reqBody,usersServer,currentStatus,'status-multi').then((data)=>{
     req.flash('warning', util.format(notifyConfig.CHANGE_STATUS_MULTI_SUCCESS,data.matchedCount) ,linkIndex)
 })
 });
 
 // delete multi
 router.post('/delete/', async function(req, res, next) {
-  await usersServer.deleteMany({_id:{$in: req.body.cid}}).then((data)=>{
+  let reqBody= req.body.cid
+  usersModel.deleteModels(reqBody,usersServer,'delete-multi').then((data)=>{
     req.flash('warning',util.format( notifyConfig.DELETE_MULTI_SUCCESS,data.deletedCount),linkIndex)
 })
 });
@@ -143,7 +143,7 @@ body('status')
   .isIn(['novalue'])
   .withMessage(util.format(notifyConfig.ERROR_STATUS)),
   body('group_name')
-  .isIn(['member1','editor'])
+  .isIn(['Member'])
   .withMessage(util.format(notifyConfig.ERROR_GROUP)),
 async function(req, res, next) {
   const errors = validationResult(req);
@@ -153,14 +153,9 @@ async function(req, res, next) {
   if (item.id !=='' && item !== undefined) { //edit
     let group_id=item.group_id
     if (!errors.isEmpty()) { // có lỗi
-      res.render(`${folderView}form`, { 
-        pageTitle: pageTitleEdit, 
-        item, 
-        groupItems,
-        showError:errors.errors ,
-        group_id
-      });
+      res.render(`${folderView}form`, usersModel.form(pageTitleEdit,item,errors,groupItems,group_id));
     }else{ // kh lỗi
+      console.log(req.body)
       usersModel.saveEditModels(usersServer,item).then((data)=>{
         req.flash('success', notifyConfig.EDIT_SUCCESS,linkIndex)
    })
@@ -170,14 +165,9 @@ async function(req, res, next) {
       // let groupItems = await groupsServer.find({status:'active'},{id:1,name:1})
       let group_id=''
       groupItems.unshift({id:'allgroup',name: 'Choose Group' })
-      res.render(`${folderView}form`, { 
-        pageTitle: pageTitleAdd, 
-        item, 
-        showError:errors.errors,
-        groupItems,
-        group_id
-      });
+      res.render(`${folderView}form`,usersModel.form(pageTitleAdd,item,errors,groupItems,group_id));
     } else { // không lỗi
+        item.avatar=req.file.filename
         usersModel.createNewGroupModels(usersServer,item).then((result)=>{
         req.flash('success', notifyConfig.ADD_SUCCESS,linkIndex)
       })

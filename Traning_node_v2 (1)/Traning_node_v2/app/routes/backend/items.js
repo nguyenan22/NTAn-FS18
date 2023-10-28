@@ -58,7 +58,7 @@ router.get('/change-status/:status/:id', async function(req, res, next) {
   let id = paramsHelpers.getParam(req.params,'id', '')
 
   //hàm xử lý
-   itemsModel.changeStatusModels(id,ItemServer,currentStatus).then(()=>{
+   itemsModel.changeStatusModels(id,ItemServer,currentStatus,'status-one').then(()=>{
     req.flash('warning',notifyConfig.CHANGE_STATUS_SUCCESS ,linkIndex)
 })
 });
@@ -66,7 +66,7 @@ router.get('/change-status/:status/:id', async function(req, res, next) {
 // delete single
 router.get('/delete/:id', async function(req, res, next) {
   let id = paramsHelpers.getParam(req.params,'id', '')
-    itemsModel.deleteModels(id,ItemServer).then((data)=>{
+    itemsModel.deleteModels(id,ItemServer,'delete-one').then((data)=>{
     req.flash('warning',notifyConfig.DELETE_SUCCESS ,linkIndex)
    })
 });
@@ -77,28 +77,25 @@ router.post('/change-ordering/', async function(req, res, next) {
   let ordering = req.body.ordering
   //hàm xử lý
   await itemsModel.changeOrderingModels(ItemServer,cids,ordering).then(() =>{
-    
   })
-
-  
 });
 
 // change status multi
 router.post('/change-status/:status', async function(req, res, next) {
   let currentStatus = paramsHelpers.getParam(req.params,'status', 'active')
+  let reqBody= req.body.cid
   //hàm xử lý
-  let data=await itemsModel.changeMultiStatusModels(currentStatus)
-
-  await ItemServer.updateMany({_id:{$in: req.body.cid}},data ).then((data)=>{
+  itemsModel.changeStatusModels(reqBody,ItemServer,currentStatus,'status-multi').then((data)=>{
     req.flash('warning', util.format(notifyConfig.CHANGE_STATUS_MULTI_SUCCESS,data.matchedCount) ,linkIndex)
 })
 });
 
 // delete multi
 router.post('/delete/', async function(req, res, next) {
-      await ItemServer.deleteMany({_id:{$in: req.body.cid}}).then((data)=>{
-        req.flash('warning',util.format( notifyConfig.DELETE_MULTI_SUCCESS,data.deletedCount),linkIndex)
-    })
+  let reqBody= req.body.cid
+  itemsModel.deleteModels(reqBody,ItemServer,'delete-multi').then((data)=>{
+    req.flash('warning',util.format( notifyConfig.DELETE_MULTI_SUCCESS,data.deletedCount),linkIndex)
+})
 });
 
 // form
@@ -132,11 +129,7 @@ async function(req, res, next) {
     let item = Object.assign(req.body)
     if (item.id !=='' && item !== undefined) { //edit
       if (!errors.isEmpty()) { // có lỗi
-        res.render(`${folderView}form`, { 
-          pageTitle: pageTitleEdit, 
-          item, 
-          showError:errors.errors 
-        });
+        res.render(`${folderView}form`,form(pageTitleEdit,item,errors));
       }else{ // kh lỗi
         //hàm xử lý
         await itemsModel.saveEditModels(ItemServer,item)
@@ -144,11 +137,7 @@ async function(req, res, next) {
       }
     } else { //add
       if (!errors.isEmpty()) { // có lỗi
-        res.render(`${folderView}form`, { 
-          pageTitle: pageTitleAdd, 
-          item, 
-          showError:errors.errors 
-        });
+        res.render(`${folderView}form`,form(pageTitleAdd,item,errors));
       } else { // không lỗi
         //hàm xử lý
         await itemsModel.createNewItemModels(ItemServer,item).then((result)=>{

@@ -13,19 +13,30 @@ const statusModels= async function(groupServer,object) {
 } 
 
 //single status items
-const changeStatusModels= async function(id,groupServer,currentStatus){
+const changeStatusModels= async function(id,groupServer,currentStatus,option=''){
     let status = (currentStatus === 'active') ? 'inactive' : 'active'
     let data = {
-      status:status,
       modify: {
         user_name: 'admin',
         user_id: 0
     }}
-    return await groupServer.updateOne({_id:id},data)
+    if (option ==='status-one') {
+         data.status=status
+      return await groupServer.updateOne({_id:id},data)
+}    else if(option ==='status-multi') {
+        data.status=currentStatus
+    return await groupServer.updateMany({_id:{$in: id}},data )
+}
 }
 
-const deleteModels= async function(id,groupServer) {
-    return await groupServer.deleteOne({_id:id})
+const deleteModels= async function(id,groupServer,option='') {
+    if (option==='delete-one') {
+      return await groupServer.deleteOne({_id:id})
+    }
+    else if (option==='delete-multi') {
+      return  await groupServer.deleteMany({_id:{$in: id}})
+    }
+    
   }
 
 const changeOrderingModels= async function(groupServer,cids,ordering){
@@ -50,19 +61,6 @@ if (Array.isArray(cids)) {
     }
 }
 
-const changeMultiStatusModels=  function(currentStatus){
-    let data = {
-      status:currentStatus,
-      modify: {
-        user_name: 'admin',
-        user_id: 0
-    }}
-    return data
-}
-
-const deleteMultiModels=  function() {
-
-}
 
 const formModels= function() {
     let item = {name: '', ordering: 0, status:'novalue'}
@@ -70,8 +68,8 @@ const formModels= function() {
     return {item,showError}
 }
 
-const saveEditModels= async function(usersServer,groupServer,item){
-   await usersServer.updateOne({'group.id':item.id},{'group.name':item.name})
+const saveEditModels= async function(groupServer,item){
+   
    return  await groupServer.updateOne({_id:item.id}, {
         name: item.name,
         ordering: parseInt(item.ordering),
@@ -94,6 +92,14 @@ const createNewGroupModels= async function(groupServer,item){
     return new groupServer(item).save()
 }
 
+const form = function (pagesTitle,item,errors) {
+    return {
+      pageTitle: pagesTitle, 
+      item, 
+      showError:errors.errors 
+    }
+  }
+
 const sortModels= async function(){
 
 }
@@ -102,10 +108,9 @@ module.exports={
     changeStatusModels,
     deleteModels,
     changeOrderingModels,
-    changeMultiStatusModels,
-    deleteMultiModels,
     formModels,
     saveEditModels,
     createNewGroupModels,
+    form,
     sortModels
 }

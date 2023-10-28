@@ -14,20 +14,32 @@ const statusModels= async function(ItemServer,object) {
     
     } 
 
-//single status items
-const changeStatusModels= async function(id,ItemServer,currentStatus){
+//single/multi status items
+const changeStatusModels= async function(id,ItemServer,currentStatus,option=''){
     let status = (currentStatus === 'active') ? 'inactive' : 'active'
     let data = {
-      status:status,
       modify: {
         user_name: 'admin',
         user_id: 0
     }}
-    return await ItemServer.updateOne({_id:id},data)
+    if (option ==='status-one') {
+         data.status=status
+      return await ItemServer.updateOne({_id:id},data)
+}    else if(option ==='status-multi') {
+        data.status=currentStatus
+    return await ItemServer.updateMany({_id:{$in: id}},data )
+}
 }
 
-const deleteModels= async function(id,ItemServer) {
-  return await ItemServer.deleteOne({_id:id})
+// delete one/multi items
+const deleteModels= async function(id,ItemServer,option='') {
+  if (option==='delete-one') {
+    return await ItemServer.deleteOne({_id:id})
+  }
+  else if (option==='delete-multi') {
+    return  await ItemServer.deleteMany({_id:{$in: id}})
+  }
+  
 }
 
 const changeOrderingModels= async function(ItemServer,cids,ordering){
@@ -50,16 +62,6 @@ const changeOrderingModels= async function(ItemServer,cids,ordering){
         }}
       await ItemServer.updateOne({_id:cids}, data)
         }
-}
-
-const changeMultiStatusModels= async function(currentStatus){
-    let data = {
-      status:currentStatus,
-      modify: {
-        user_name: 'admin',
-        user_id: 0
-    }}
-    return data
 }
 
 const deleteMultiModels= async function() {
@@ -94,6 +96,14 @@ const createNewItemModels= async function(ItemServer,item){
     }
     return new ItemServer(item).save()
 }
+
+const form = function (pagesTitle,item,errors) {
+  return {
+    pageTitle: pagesTitle, 
+    item, 
+    showError:errors.errors 
+  }
+}
 const sortModels= async function(){
 
 }
@@ -102,10 +112,9 @@ module.exports={
     changeStatusModels,
     deleteModels,
     changeOrderingModels,
-    changeMultiStatusModels,
-    deleteMultiModels,
     formModels,
     saveEditModels,
     createNewItemModels,
+    form,
     sortModels
 }

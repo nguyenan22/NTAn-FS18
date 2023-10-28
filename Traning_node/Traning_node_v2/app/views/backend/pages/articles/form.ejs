@@ -1,0 +1,105 @@
+<!-- <h3><%= JSON.stringify(showError);   %></h3> -->
+<% include ./../../helpers/showError %>
+<% include ./../../helpers/groupSelect %>
+<% include ./../../helpers/image %>
+<%
+    const collection = 'articles'
+    const linkPrefix = systemConfig.prefixAdmin +`/${collection}/`
+    const folderUpload='uploads/articles/'
+%>
+<div class="row">
+  <div class="col-lg-12">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              Form 
+          </div>
+          <div class="panel-body">
+            <%- showErrorHelper(showError) %>
+              <div class="row">
+                  <div class="col-lg-6">
+                      <form role="form" action="<%= linkPrefix %>save/" method="POST" enctype="multipart/form-data">
+                          <div class="form-group">
+                              <label>Title</label>
+                              <input class="form-control" name="title" value="<%=item.title %>" >
+                          </div>
+                          <div class="form-group">
+                            <label>Slug</label>
+                            <input class="form-control" name="slug" value="<%=item.slug %>" id="change-slug" >
+                        </div>
+                        <div class="form-group">
+                            <label>Thumb</label>
+                            <input id="ImageThumb" type="file" class="form-control" name="thumb" value="" >
+                        </div>
+                        <div id="include-img">
+                            <% if(item.id !='' && item.id != undefined) {%>
+                                <%- imageHelper(folderUpload,item.thumb) %>
+                            <% } %>
+                        </div>
+                          <div class="form-group">
+                              <label>Ordering</label>
+                              <input class="form-control" type="number" name="ordering" value="<%=item.ordering %>" >
+                          </div>
+                          <div class="form-group">
+                            <label>Category</label>
+                            <%- groupSelectHelper('categoryId',categoriesItems, item.categoryId) %>
+                        </div>
+                          <div class="form-group">
+                              <label>Status</label>
+                              <select name="status" class="form-control" >
+                                  <option value="novalue">Choose Status</option>
+                                  <option value="active" <%= (item.status==='active') ? 'selected="selected"' : '' %> >Active</option>
+                                  <option value="inactive" <%= (item.status==='inactive') ? 'selected="selected"' : '' %>  >Inactive</option>
+                              </select>
+                          </div>
+                          <div class="form-group">
+                          <label>Position</label>
+                          <select name="position" class="form-control" >
+                              <option value="novalue">Choose Position</option>
+                              <option value="Top-Post" <%= (item.position==='Top-Post') ? 'selected="selected"' : '' %> >Top-Post</option>
+                              <option value="Normal" <%= (item.position==='Normal') ? 'selected="selected"' : '' %> >Normal</option>
+                          </select>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label>Content</label> <br>
+                            <textarea class="form-control" name="editorData" id="editorData"><%=item.editorData %></textarea>
+                        </div>
+
+                          <input class="form-control" name="id" value="<%=item.id %>" type="hidden" >
+                          <!-- <input class="form-control" name="group_name" value="<%=item.group_name %>" type="hidden" > -->
+                          <input class="form-control" name="image_old" value="<%=item.thumb %>" type="hidden" >
+                          <input class="form-control" name="image_upload" value="" type="hidden" >
+                          <button type="submit" id="submit" class="btn btn-primary">Submit </button> 
+                          <a type="button" href="<%= linkPrefix %>" class="btn btn-default">Cancel</a>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<script>
+    let editor;
+    ClassicEditor
+        .create(document.querySelector('#editorData'))
+        .then( newEditor => {
+            editor = newEditor
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    document.querySelector('#submit').addEventListener('click', (e)=>{
+        const editorData = editor.getData();
+    });
+
+    ImageThumb.onchange = evt =>{
+        const [file] = ImageThumb.files
+        if(file){
+            // image_upload.setAttribute("value",'upload')
+            console.log('test');
+            document.getElementsByName('image_upload')[0].setAttribute('value','upload')
+        }else{
+            document.getElementsByName('image_old')[0].setAttribute('value','')
+        }
+    }
+</script>

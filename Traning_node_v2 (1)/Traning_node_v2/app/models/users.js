@@ -18,20 +18,31 @@ const statusModels= async function(groupItems,groupID,usersServer,object) {
         .skip((object.pagination.currentPage - 1) * object.pagination.totalItemsPerPage)
 } 
 //single status users
-const changeStatusModels= async function(id,usersServer,currentStatus){
-    let status = (currentStatus === 'active') ? 'inactive' : 'active'
-    let data = {
-      status:status,
-      modify: {
-        user_name: 'admin',
-        user_id: 0
-    }}
+const changeStatusModels= async function(id,usersServer,currentStatus,option=''){
+  let status = (currentStatus === 'active') ? 'inactive' : 'active'
+  let data = {
+    modify: {
+      user_name: 'admin',
+      user_id: 0
+  }}
+  if (option ==='status-one') {
+       data.status=status
     return await usersServer.updateOne({_id:id},data)
+}    else if(option ==='status-multi') {
+      data.status=currentStatus
+  return await usersServer.updateMany({_id:{$in: id}},data )
+}
 }
 
-const deleteModels= async function(id,usersServer) {
+const deleteModels= async function(id,usersServer,option='') {
+  if (option==='delete-one') {
     return await usersServer.deleteOne({_id:id})
   }
+  else if (option==='delete-multi') {
+    return  await usersServer.deleteMany({_id:{$in: id}})
+  }
+  
+}
 
 const changeOrderingModels= async function(usersServer,cids,ordering){
     if (Array.isArray(cids)) {
@@ -54,19 +65,6 @@ const changeOrderingModels= async function(usersServer,cids,ordering){
           }
     }
 
-const changeMultiStatusModels=  function(currentStatus){
-    let data = {
-        status:currentStatus,
-        modify: {
-        user_name: 'admin',
-        user_id: 0
-    }}
-    return data
-}
-
-const deleteMultiModels=  function() {
-
-}
 
 const formModels= async function(groupsServer) {
     let item = {name: '', ordering: 0, status:'novalue'}
@@ -108,13 +106,22 @@ const saveEditModels= async function(usersServer,item){
     }
     return new usersServer(item).save()
 }
+
+const form = function (pagesTitle,item,errors,groupItems,group_id) {
+  return {
+    pageTitle: pagesTitle, 
+    item, 
+    showError:errors.errors,
+    groupItems,
+    group_id
+  }
+}
 module.exports={
     statusModels,
     changeStatusModels,
     deleteModels,
     changeOrderingModels,
-    changeMultiStatusModels,
-    deleteMultiModels,
+    form,
     formModels,
     saveEditModels,
     createNewGroupModels

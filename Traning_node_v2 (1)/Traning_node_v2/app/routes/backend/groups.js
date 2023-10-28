@@ -55,7 +55,7 @@ groupsModel.statusModels(groupServer,object).then((items)=>{
 router.get('/change-status/:status/:id', async function(req, res, next) {
   let currentStatus = paramsHelpers.getParam(req.params,'status', 'active')
   let id = paramsHelpers.getParam(req.params,'id', '')
-  groupsModel.changeStatusModels(id,groupServer,currentStatus).then(()=>{
+  groupsModel.changeStatusModels(id,groupServer,currentStatus,'status-one').then(()=>{
         req.flash('warning',notifyConfig.CHANGE_STATUS_SUCCESS ,linkIndex)
    })
 });
@@ -63,7 +63,7 @@ router.get('/change-status/:status/:id', async function(req, res, next) {
 // delete single
 router.get('/delete/:id', async function(req, res, next) {
   let id = paramsHelpers.getParam(req.params,'id', '')
-  groupsModel.deleteModels(id,groupServer).then((data)=>{
+  groupsModel.deleteModels(id,groupServer,'delete-one').then((data)=>{
     req.flash('warning',notifyConfig.DELETE_SUCCESS ,linkIndex)
    })
 });
@@ -79,15 +79,17 @@ router.post('/change-ordering/', async function(req, res, next) {
 // change status multi
 router.post('/change-status/:status', async function(req, res, next) {
   let currentStatus = paramsHelpers.getParam(req.params,'status', 'active')
-  let data = groupsModel.changeMultiStatusModels(currentStatus)
-  await groupServer.updateMany({_id:{$in: req.body.cid}},data ).then((data)=>{
+  let reqBody= req.body.cid
+  //hàm xử lý
+  groupsModel.changeStatusModels(reqBody,groupServer,currentStatus,'status-multi').then((data)=>{
     req.flash('warning', util.format(notifyConfig.CHANGE_STATUS_MULTI_SUCCESS,data.matchedCount) ,linkIndex)
 })
 });
 
 // delete multi
 router.post('/delete/', async function(req, res, next) {
-  await groupServer.deleteMany({_id:{$in: req.body.cid}}).then((data)=>{
+  let reqBody= req.body.cid
+  groupsModel.deleteModels(reqBody,groupServerServer,'delete-multi').then((data)=>{
     req.flash('warning',util.format( notifyConfig.DELETE_MULTI_SUCCESS,data.deletedCount),linkIndex)
 })
 });
@@ -123,23 +125,16 @@ async function(req, res, next) {
   let item = Object.assign(req.body)
   if (item.id !=='' && item !== undefined) { //edit
     if (!errors.isEmpty()) { // có lỗi
-      res.render(`${folderView}form`, { 
-        pageTitle: pageTitleEdit, 
-        item, 
-        showError:errors.errors 
-      });
+      res.render(`${folderView}form`, form(pageTitleEdit,item,errors));
     }else{ // kh lỗi
-      groupsModel.saveEditModels(usersServer,groupServer,item).then((data)=>{
+      await usersServer.updateOne({'group.id':item.id},{'group.name':item.name})
+      groupsModel.saveEditModels(groupServer,item).then((data)=>{
         req.flash('success', notifyConfig.EDIT_SUCCESS,linkIndex)
    })
     }
   } else { //add
     if (!errors.isEmpty()) { // có lỗi
-      res.render(`${folderView}form`, { 
-        pageTitle: pageTitleAdd, 
-        item, 
-        showError:errors.errors 
-      });
+      res.render(`${folderView}form`, form(pageTitleAdd,item,errors))
     } else { // không lỗi
         groupsModel.createNewGroupModels(groupServer,item).then((result)=>{
         req.flash('success', notifyConfig.ADD_SUCCESS,linkIndex)

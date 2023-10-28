@@ -1,0 +1,12 @@
+<% 
+positionHelper = (position, collection,id) => { 
+    let link = `${systemConfig.prefixAdmin}/${collection}/change-position/${position}/${id}`
+    let xhtml = ''
+    if(position == 'Top-Post'){
+        xhtml =  `<span class="label label-success">${position}</span>`
+    }else{
+        xhtml =  ` <span class="label label-warning">${position}</span>`
+    }
+    return `<a href="${link}">${xhtml}</a> ` 
+}%>
+
