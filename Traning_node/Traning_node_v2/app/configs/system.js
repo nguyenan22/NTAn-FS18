@@ -1,5 +1,5 @@
 module.exports = {
     prefixAdmin: 'adminHHH',
-    prefixFrontend:'baomoi',
+    prefixFrontend:'',
     formatTime: 'DD-MM-YYYY'
 }

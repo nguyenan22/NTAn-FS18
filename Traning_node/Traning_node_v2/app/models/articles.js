@@ -4,7 +4,6 @@ const articlesService = require(__path_shemas + 'articles')
 const categoriesService = require(__path_shemas + 'categories')
 const fs=require('fs')
 const fileHelper=require('../helpers/file')
-const { log } = require('console')
 
 module.exports = {
     listItems: (params,option = null) => {
@@ -21,6 +20,30 @@ module.exports = {
             .sort(sort)
             .limit(params.pagination.totalItemsPage)
             .skip((params.pagination.currentPage - 1)*params.pagination.totalItemsPage)
+    },
+    listItemsFrontEnd :(params,option=null) =>{
+      if(option.task=='special-item') {
+        return articlesService
+                .find({position:'Top-Post',status:'active'})
+                .sort({ordering:'asc'})
+                .limit(3)
+
+      }
+      if(option.task=='latest-item') {
+        return articlesService
+                .find({status:'active'})
+                .sort({ordering:'asc',createdAt:'desc'})
+                .limit(5)
+
+      }
+
+      if(option.task=='mostPopular-item') {
+        return articlesService
+                .find({position:'Normal',status:'active'})
+                .sort({ordering:'asc'})
+                .limit(5)
+
+      }
     },
     getItems:(id,option = null) =>  {
       return articlesService.findById(id)

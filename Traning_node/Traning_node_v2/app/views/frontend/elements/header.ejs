@@ -1,3 +1,4 @@
+>
 <header>
 
     <div class="header-top">
@@ -74,18 +75,11 @@
                     <li class="menu-has-children">
                         <a href="" class="sf-with-ul">Category</a>
                         <ul style="display: none;">
-                            <li>
-                                <a href="#">Category1</a>
-                            </li>
-                            <li>
-                                <a href="#">Category2</a>
-                            </li>
-                            <li>
-                                <a href="#">Category3</a>
-                            </li>
-                            <li>
-                                <a href="#">Category4</a>
-                            </li>
+                            <% category.forEach(data =>{%>
+                                <li>
+                                    <a href="<%= systemConfig.prefixFrontend +'/category/' + data.slug.replaceAll(' ','')  %>"><%= data.name  %></a>
+                                </li>
+                            <% })  %>
                         </ul>
                     </li>
                     <li>

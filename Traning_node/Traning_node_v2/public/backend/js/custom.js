@@ -217,7 +217,7 @@ $(document).ready(function () {
             slug = '@' + slug + '@';
             slug = slug.replace(/\@\-|\-\@|\@/gi, '');
             //In slug ra textbox có id “slug”
-            return slug
+            return slug.replaceAll(' ','')
         }
         
 $('input[name="name"]').keyup(function(){
