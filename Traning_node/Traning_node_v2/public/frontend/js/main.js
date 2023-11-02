@@ -153,7 +153,7 @@ $(document).ready(function() {
             'id': ''
         });
         $('body .main-menu').append($mobile_nav);
-        $('body .main-menu').prepend('<button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i><span class="menu-title">Menu</span> </button>');
+        // $('body .main-menu').prepend('<button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i><span class="menu-title">Menu</span> </button>');
         $('body .main-menu').append('<div id="mobile-body-overly"></div>');
         $('#mobile-nav').find('.menu-has-children').prepend('<i class="lnr lnr-chevron-down"></i>');
 
@@ -451,4 +451,75 @@ $(document).ready(function() {
         $("#thumbnail_container").hide();
         player.playVideo();
     });
+
+
+    ///
+
+    function formatStringHelper(content,count) { 
+        if (content=='') return ''
+        let formatString = content.replace( /(<[^>]+>)/igm , "")
+        if (formatString.length < count) return formatString
+        return content.replace( /(<[^>]+>)/igm , "").substring(0,count)+ '...'}
+
+    $(document).ready(function(){
+        const items_per_page=2
+        let page=2
+        $('.primary-btn').click(function() {
+            let html=''
+            const folderUpload='uploads/articles/'
+            $.ajax({
+                url: `${window.location.href}/${page}/${items_per_page}`,
+                type: 'GET',
+                dataType: 'json', // added data type
+                success: function(res) {
+                    res.slice(0,items_per_page).forEach(data =>{
+                        console.log(res.length)
+                        page +=1
+                        
+                        html += `            <div class="single-latest-post row align-items-center">
+                        <div class="col-lg-5 post-left">
+                            <div class="feature-img relative">
+                                <div class="overlay overlay-bg"></div>
+                                <img class="img-fluid" src="${folderUpload}/${data.thumb}" alt="">
+                            </div>
+                            <ul class="tags">
+                                <li>
+                                    <a href="${window.location.href}">${$('#category-name').text()}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-7 post-right">
+                            <a href="${'/post/'+ data.slug }">
+                                <h4>${data.title} </h4>
+                            </a>
+                            <ul class="meta">
+                                <li>
+                                    <a href="#">
+                                        <span class="lnr lnr-user"></span>${data.created.user_name}  </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="lnr lnr-calendar-full"></span>${data.createdAt} </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="lnr lnr-bubble"></span>06 Comments</a>
+                                </li>
+                            </ul>
+                            <p class="excert">
+                                ${formatStringHelper(data.editorData,100)}
+                            </p>
+                        </div>
+                    </div>`
+                    }
+                    )
+                    if (res.length <= items_per_page) {
+                        $('.primary-btn').remove()
+                    }
+                    $('#load-more').append(html)
+                }
+            })
+            
+        })
+    })
 

@@ -17,6 +17,8 @@ module.exports = {
     ERROR_EMAIL:'Vui lòng chọn email hợp lệ!',
     ERROR_GROUP:'Vui lòng chọn nhóm hợp lệ!',
     ERROR_NOT_IMAGE:'Vui lòng chọn ảnh',
+    ERROR_PASSWORD:'Vui lòng nhập mật khẩu',
+    ERROR_USERNAME:'Vui lòng nhập user name',
     ERROR_UPLOAD_FILE:'Vui lòng Upload lại file',
     ERROR_CATEGORY:'Vui lòng chọn loại bản tin',
     ERROR_POSTION:'Vui lòng chọn một vị trí ',

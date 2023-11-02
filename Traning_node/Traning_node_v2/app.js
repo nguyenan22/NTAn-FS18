@@ -22,7 +22,7 @@ global.__path_shemas = __path_app + pathConfigs.folder_shemas +'/';
 global.__path_models = __path_app + pathConfigs.folder_models +'/';
 global.__path_public = __base + pathConfigs.folder_public +'/';
 global.__path_uploads =__path_public +  pathConfigs.folder_uploads +'/';
-
+const categoriesService = require(__path_shemas + 'categories')
 const systemConfig = require(__path_configs +'system')
 const databaseConfig = require(__path_configs +'database')
 
@@ -67,14 +67,25 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(async function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  let layout =__path_views_frontend +'frontend'
+  if(systemConfig.env ==='production') {
+      // render the error page
+    res.status(err.status || 500);
+    let category = await categoriesService.find({status:'active'})
+                                        .sort({ordering:'asc'})
+    res.render(__path_views_frontend + 'pages/error',{
+    layout : layout,
+    top_post:false,slide_bar:false,
+    category});
+  }
+  if (systemConfig.env ==='dev') {
   // render the error page
   res.status(err.status || 500);
-  res.render(__path_views_backend + 'pages/error', { pageTitle: 'Page Not Found' });
-});
+  res.render(__path_views_backend + 'pages/error',{pageTitle:"Page Not Found"});
+}});
 
 module.exports = app;

@@ -1,11 +1,11 @@
 <% 
-showErrorHelper = (errors) => { 
+showErrorHelper = (errors,className='col-lg-6') => { 
     if(!errors) return;
     let xhtml = ''
     errors.forEach((error)=>{
         let name = error.path.charAt(0).toUpperCase() + error.path.slice(1)
         xhtml += `<div class="row">
-            <div class="col-lg-6">
+            <div class="${className}">
                 <div class="alert alert-danger" role="alert">
                     <ul>
                         <li><b>${name}</b>: ${error.msg}</li>

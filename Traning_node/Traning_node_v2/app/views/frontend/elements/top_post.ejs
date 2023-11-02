@@ -7,15 +7,15 @@
 <section class="top-post-area pt-10">
     <div class="container no-padding">
         <div class="row small-gutters">
-            <div class="col-lg-8 top-post-left">
+            <div class="col-lg-8 top-post-left mt-10">
                 <div class="feature-image-thumb relative">
                     <div class="overlay overlay-bg"></div>
-                    <img class="img-fluid" src="<%= folderUpload + items[0].thumb  %>" alt="<%= items[0].title %>">
+                    <img class="img-fluid" style="height:430px;"  src="<%= folderUpload + items[0].thumb  %>" alt="<%= items[0].title %>">
                 </div>
                 <div class="top-post-details">
                     <ul class="tags">
                         <li>
-                            <a href="#"><%- showCategoryName(category,items[0].categoryId).name  %></a>
+                            <a href="/category/<%- showCategoryName(category,items[0].categoryId).slug%>"><%- showCategoryName(category,items[0].categoryId).name  %></a>
                         </li>
                     </ul>
                     <a href="/post/<%= items[0].slug %>">
@@ -39,7 +39,7 @@
             </div>
             <div class="col-lg-4 top-post-right">
                 <% data.forEach((data,index) =>{ %>
-                    <div class="single-top-post">
+                    <div class="single-top-post mt-10">
                         <div class="feature-image-thumb relative">
                             <div class="overlay overlay-bg"></div>
                             <img class="img-fluid" src="<%= folderUpload + data.thumb  %>" alt="">
@@ -47,10 +47,10 @@
                         <div class="top-post-details">
                             <ul class="tags">
                                 <li>
-                                    <a href="#"><%- showCategoryName(category,data.categoryId).name  %></a>
+                                    <a href="/category/<%- showCategoryName(category,data.categoryId).slug%>"><%- showCategoryName(category,data.categoryId).name  %></a>
                                 </li>
                             </ul>
-                            <a href="image-post.html">
+                            <a href="/post/<%= data.slug %>">
                                 <h4><%= data.title  %></h4>
                             </a>
                             <ul class="meta">

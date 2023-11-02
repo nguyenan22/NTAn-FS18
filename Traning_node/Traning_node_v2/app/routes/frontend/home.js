@@ -25,7 +25,9 @@ router.get('/',async function(req, res, next) {
   await articlesModels.listItemsFrontEnd(null,{task:"mostPopular-item"}).then ((item) =>{
     mostPopularItem=item
   })
+
   res.render(`${folderView}index`, { 
+    
     layout:layout,
     top_post:true,slide_bar:true,
     items:specialItem,

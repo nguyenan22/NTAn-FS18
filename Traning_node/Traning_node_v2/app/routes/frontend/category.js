@@ -26,14 +26,33 @@ router.get('/:slug',async function(req, res, next) {
   let category =await categoriesService.find({status:'active'}).sort({ordering:'asc'})
   let slugItem = paramsHelpers.getParam(req.params,'slug', '')
   let dataCategory = await categoriesService.find({slug:slugItem,status:'active'}).sort({ordering:'asc'})
-  let dataArticle=await articlesService.find({status:'active',categoryId:dataCategory[0].id})
+  let dataArticle=await articlesService.find({status:'active',categoryId:dataCategory[0].id}).limit(2)
+  if (dataArticle.length < 2) {
+    var hidden='hidden'
+  }
   res.render(`${folderView}index`, { 
     layout:layout,
     top_post:false, slide_bar:false,
     dataArticle,
     dataCategory,
-    category
+    category,
+    hidden
    });
+});
+
+router.get('/:slug/:page/:item_per_page',async function(req, res, next) {
+  let limitItem= paramsHelpers.getParam(req.params,'item_per_page', '')
+  let slugItem = paramsHelpers.getParam(req.params,'slug', '')
+  let pageItem = paramsHelpers.getParam(req.params,'page', '')
+  let dataCategory = await categoriesService.find({slug:slugItem,status:'active'}).sort({ordering:'asc'})
+  let dataArticleSkip=await articlesService.find({status:'active',categoryId:dataCategory[0].id}).skip(pageItem)
+  if (dataArticleSkip.length < parseInt(limitItem)) {
+      limitItem=dataArticleSkip.length
+  }
+  let dataArticle=await articlesService.find({status:'active',categoryId:dataCategory[0].id}).skip(pageItem)
+  console.log(dataArticle)
+  res.json(dataArticle)
+
 });
 
 module.exports = router;

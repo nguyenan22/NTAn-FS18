@@ -70,14 +70,14 @@
             <nav id="nav-menu-container">
                 <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
                     <li class="menu-active">
-                        <a href="index.html">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li class="menu-has-children">
                         <a href="" class="sf-with-ul">Category</a>
                         <ul style="display: none;">
                             <% category.forEach(data =>{%>
                                 <li>
-                                    <a href="<%= systemConfig.prefixFrontend +'/category/' + data.slug.replaceAll(' ','')  %>"><%= data.name  %></a>
+                                    <a href="<%= systemConfig.prefixFrontend +'/category/' + data.slug  %>"><%= data.name  %></a>
                                 </li>
                             <% })  %>
                         </ul>
@@ -103,10 +103,10 @@
                 </form>
             </div>
         </div>
-        <nav id="mobile-nav">
+        <!-- <nav id="mobile-nav">
             <ul class="" style="touch-action: pan-y;" id="">
                 <li class="menu-active">
-                    <a href="index.html">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li class="menu-has-children">
                     <i class="lnr lnr-chevron-down"></i>
@@ -135,5 +135,5 @@
             </ul>
         </nav>
         <div id="mobile-body-overly"></div>
-    </div>
+    </div> -->
 </header>

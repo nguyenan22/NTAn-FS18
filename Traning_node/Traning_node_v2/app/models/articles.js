@@ -16,7 +16,7 @@ module.exports = {
         sort[params.sortFied] = params.sortType
       return  articlesService
             .find(objWhere)
-            .select('title status ordering  editorData created thumb categoryId position slug')
+            .select('title status ordering  editorData created thumb categoryId position')
             .sort(sort)
             .limit(params.pagination.totalItemsPage)
             .skip((params.pagination.currentPage - 1)*params.pagination.totalItemsPage)
@@ -25,7 +25,7 @@ module.exports = {
       if(option.task=='special-item') {
         return articlesService
                 .find({position:'Top-Post',status:'active'})
-                .sort({ordering:'asc'})
+                .sort({ordering:'asc',createdAt:'desc'})
                 .limit(3)
 
       }
@@ -39,9 +39,11 @@ module.exports = {
 
       if(option.task=='mostPopular-item') {
         return articlesService
-                .find({position:'Normal',status:'active'})
-                .sort({ordering:'asc'})
-                .limit(5)
+                .aggregate([
+                  {$match:{status:'active'}},
+                  {$project:{id:1, title: 1, thumb: 1, createdAt: 1}},
+                  {$sample:{size:3}}
+                ])
 
       }
     },

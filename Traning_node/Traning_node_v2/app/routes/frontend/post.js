@@ -28,12 +28,16 @@ router.get('/:slug',async function(req, res, next) {
   let slugItem = paramsHelpers.getParam(req.params,'slug', '')
   let dataArticle=await articlesService.find({status:'active',slug:slugItem})
   let dataCategory = await categoriesService.find({_id:dataArticle[0].categoryId,status:'active'}).sort({ordering:'asc'})
-  console.log(dataCategory)
+  let dataRelavent= await articlesService.find({slug: {$not:{$in:slugItem}},categoryId:dataArticle[0].categoryId})
+
   res.render(`${folderView}index`, { 
     layout:layout,
     top_post:false, slide_bar:false,
-    dataArticle,dataCategory,category
+    dataArticle,dataCategory,category,dataRelavent
    });
 });
+
+
+
 
 module.exports = router;

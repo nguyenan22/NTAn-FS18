@@ -3,8 +3,9 @@
 <% include ./../../helpers/formatString %>
 <div class="col-lg-8 post-list">
     <!-- Start latest-post Area -->
-    <div class="latest-post-wrap">
+    <div class="latest-post-wrap" >
         <h4 class="cat-title"><%= dataCategory[0].name %></h4>
+        <div id="load-more">
         <% dataArticle.forEach(data => { %>
             <div class="single-latest-post row align-items-center">
             <div class="col-lg-5 post-left">
@@ -14,12 +15,12 @@
                 </div>
                 <ul class="tags">
                     <li>
-                        <a href="#"><%- showCategoryName(dataCategory,data.categoryId).name  %></a>
+                        <a href="/category/<%- showCategoryName(category,data.categoryId).slug%>" id="category-name"><%- showCategoryName(dataCategory,data.categoryId).name  %></a>
                     </li>
                 </ul>
             </div>
             <div class="col-lg-7 post-right">
-                <a href="<%= systemConfig.prefixFrontend +"/"+ data.slug %>"">
+                <a href="<%= systemConfig.prefixFrontend +"/post/"+ data.slug %>"">
                     <h4><%= data.title  %></h4>
                 </a>
                 <ul class="meta">
@@ -37,15 +38,15 @@
                     </li>
                 </ul>
                 <p class="excert">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+                    <%- formatStringHelper(data.editorData,100) %>
                 </p>
             </div>
         </div>
         <% }) %>
-
+    </div>
 
         <div class="load-more">
-            <a href="#" class="primary-btn">Load More Posts</a>
+            <a href="javascript:" class="primary-btn" <%= hidden %>>Load More Posts</a>
         </div>
 
     </div>
