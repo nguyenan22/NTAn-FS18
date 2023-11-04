@@ -9,7 +9,7 @@ var expressLayouts = require('express-ejs-layouts');
 const flash = require('express-flash-notification');
 const session = require('express-session');
 const moment = require('moment');
-
+const passport = require('passport')
 const pathConfigs = require('./path');
 global.__base = __dirname + '/';
 global.__path_app = __base + pathConfigs.folder_app + '/';
@@ -48,10 +48,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'csjbca',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie:{
+    maxAge:5*60*1000
+  }
 }))
+require(__path_configs +'authencation')(passport)
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use(flash(app,{
-    viewName:__path_views_backend+ 'elements/notify'
+    viewName:__path_views_backend + 'elements/notify'
 }));
 
 // setup router

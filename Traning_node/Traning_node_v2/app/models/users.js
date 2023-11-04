@@ -22,6 +22,9 @@ module.exports = {
     getItems:(id,option = null) =>  {
       return usersService.findById(id)
     },
+    getItemsUserName: async(username,option=null) => {
+        return await usersService.find({status:'active',userName:username})
+    },
     countItems:(params, option = null) =>  {
       let objWhere = {};
       if(params.groupID !== 'allvalue') {objWhere['group.id']= params.groupID}
