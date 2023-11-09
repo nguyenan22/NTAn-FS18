@@ -27,17 +27,25 @@ router.get('/:slug',async function(req, res, next) {
   let category =await categoriesService.find({status:'active'}).sort({ordering:'asc'})
   let slugItem = paramsHelpers.getParam(req.params,'slug', '')
   let dataArticle=await articlesService.find({status:'active',slug:slugItem})
+  let dataArticles=await articlesService.find({status:'active',categoryId:dataArticle[0].categoryId})
   let dataCategory = await categoriesService.find({_id:dataArticle[0].categoryId,status:'active'}).sort({ordering:'asc'})
   let dataRelavent= await articlesService.find({slug: {$not:{$in:slugItem}},categoryId:dataArticle[0].categoryId})
 
   res.render(`${folderView}index`, { 
     layout:layout,
     top_post:false, slide_bar:false,
-    dataArticle,dataCategory,category,dataRelavent
+    dataArticle,dataCategory,category,dataRelavent,dataArticles
    });
 });
 
-
+router.get('/:slugCategory/:id',async function(req, res, next) {
+  let limitItem=1
+  let slugItem = paramsHelpers.getParam(req.params,'slugCategory', '')
+  let idItem = paramsHelpers.getParam(req.params,'id', '')
+  let category =await categoriesService.find({status:'active',slug:slugItem}).sort({ordering:'asc'})
+  let dataArticle=await articlesService.find({status:'active',categoryId:category[0]._id}).limit(limitItem).skip((idItem) * limitItem)
+  res.json(dataArticle)
+})
 
 
 module.exports = router;

@@ -240,5 +240,39 @@ $('select[name="change-categoryId"]').change(function (value) {
         window.location.pathname = linkRedirect
     }
 });
+$('.logout-btn').click(function () {
+    
+    Swal.fire({
+        title: "Bạn có chắc chắn không?",
+        text: "Bạn đang thực hiện việc đăng xuất khỏi trang!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "OK!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "http://localhost:3000/adminHHH/auth/logout",
+                type: 'GET',
+                dataType: 'json', // added data type
+                success:   function(res) {
+                    if (res) {
+                        Swal.fire({
+                            title: "Đăng xuất!",
+                            text: "Bạn đã đăng xuất thành công.",
+                            icon: "success"
+                          });
+                          setTimeout(() => {
+                            window.location.pathname = "adminHHH/auth/login";
+                          }, 2000);
+                          
+                    }
+                }
+            });
+
+        }
+      });
+})
 });
 

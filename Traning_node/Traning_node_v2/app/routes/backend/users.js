@@ -63,9 +63,10 @@ router.get('(/status/:status)?', async function(req, res, next) {
 
 // change status single
 router.get('/change-status/:status/:id', async function(req, res, next) {
+  let modify=req.user 
   let currentStatus = paramsHelpers.getParam(req.params, 'status', 'active');
   let id = paramsHelpers.getParam(req.params, 'id', '');
-  usersModels.changeStatus(id,currentStatus,{task:'update-one'}).then((result)=>{
+  usersModels.changeStatus(id,currentStatus,{task:'update-one'},modify).then((result)=>{
     req.flash('success', notifyConfig.CHANGE_STATUS_SUCCESS, linkIndex)
   });
 });
@@ -83,17 +84,19 @@ router.get('/delete/:id', async function(req, res, next) {
 
 // change-ordering
 router.post('/change-ordering/', async function(req, res, next) {
+  let modify=req.user
   let cids = req.body.cid
   let oderings = req.body.ordering
-  usersModels.changeOrdering(cids, oderings, null).then((result)=>{
+  usersModels.changeOrdering(cids, oderings, null,modify).then((result)=>{
   req.flash('success', notifyConfig.CHANGE_ORDERING_SUCCESS, linkIndex)
 })
 });
 
 // change status multi
 router.post('/change-status/:status', async function(req, res, next) {
+  let modify=req.user
   let currentStatus = paramsHelpers.getParam(req.params, 'status', 'active');
-  usersModels.changeStatus(req.body.cid, currentStatus,{task:'update-multi'}).then((result)=>{
+  usersModels.changeStatus(req.body.cid, currentStatus,{task:'update-multi'},modify).then((result)=>{
    req.flash('success', util.format(notifyConfig.CHANGE_STATUS_MULTI_SUCCESS, result.matchedCount), linkIndex)
  })
 });
@@ -159,7 +162,7 @@ body('avatar')
   }),
 async function(req, res, next) {
   const errors = validationResult(req);
-  console.log(req.body.id)
+  let creater=req.user
   req.body = JSON.parse(JSON.stringify(req.body));
   let item = Object.assign(req.body)
   let taskCurrent = (typeof item !== 'undefined' && item.id !== '') ? 'edit' : 'add'
@@ -184,7 +187,7 @@ async function(req, res, next) {
     }
     let message = (taskCurrent == 'add') ? notifyConfig.ADD_SUCCESS : notifyConfig.EDIT_SUCCESS
     console.log(item)
-    usersModels.saveItems(item,{task: taskCurrent}).then((result)=>{
+    usersModels.saveItems(item,{task: taskCurrent},creater).then((result)=>{
       req.flash('success', message , linkIndex)
     });
   }

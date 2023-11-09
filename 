@@ -1,0 +1,464 @@
+[33mcommit 5d2f705feb84e7f26470f14dd32bf1b92466d20c[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Nov 4 21:53:34 2023 +0700
+
+    update Authenticate
+
+[33mcommit 8ec926e57377dbb61a7577e250c5f01075556ed9[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Thu Nov 2 22:51:56 2023 +0700
+
+    update login
+
+[33mcommit 9b4622bcb8fe292ead59341fbae62ae3de2f7e7d[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Oct 31 22:45:36 2023 +0700
+
+    update show data article, category
+
+[33mcommit fc0bd3934f8b4854374ccf5a7c64cdc8972a88d2[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Oct 28 17:51:42 2023 +0700
+
+    update tranning node
+
+[33mcommit f41d71a720df15df892e100bccc76c49575b0fe3[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sun Oct 8 19:16:13 2023 +0700
+
+    update
+
+[33mcommit 8e10c97d426b502e15f6038147911c9bb177d83e[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Fri Oct 6 13:45:50 2023 +0700
+
+    Traning node v2 (1)
+
+[33mcommit c52c0a0ad63a4f4fa0b740d004e89c648724a2ab[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Sep 30 18:19:24 2023 +0700
+
+    update
+
+[33mcommit f01f5bad59b88fce02f2aa29c8b4b5cd553c0624[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Sep 23 22:31:53 2023 +0700
+
+    update Node_Traning
+
+[33mcommit 38ef9c198fcf92a69df0d56a1ccdb4ede0b84f42[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Fri Sep 22 12:08:14 2023 +0700
+
+    update
+
+[33mcommit e920eeafc51c0426d4dd390531e3de665e655465[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Thu Sep 21 22:35:59 2023 +0700
+
+    update
+
+[33mcommit 4812b8dbb19ea2a1ffa589991eab6341e7398e4f[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Sep 19 22:10:34 2023 +0700
+
+    update
+
+[33mcommit 7c2c575d9988166631108fee60a404a78f3ee150[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Sep 19 15:54:08 2023 +0700
+
+    update
+
+[33mcommit abd9e06fd8a04cbfbfd1a7d0460a8e483a5deb5d[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Sep 19 02:29:54 2023 +0700
+
+    update
+
+[33mcommit ff75c4856329a7c4618d55df4497f5d935c4559f[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Sep 16 04:01:19 2023 +0700
+
+    update
+
+[33mcommit 07c43dc18c36eacf15995655cb37c0402b492c0c[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Sep 16 03:12:34 2023 +0700
+
+    update
+
+[33mcommit 97ed0b8d6655f13862cfc7a8cee97dd43f332fd9[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Fri Sep 15 22:47:47 2023 +0700
+
+    update
+
+[33mcommit b86b03fe4223a1340f400ba34d2e9202c209409d[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Wed Sep 13 00:49:41 2023 +0700
+
+    update
+
+[33mcommit 8e49e0a9f8b85e7215db6b8c78550efc63ce519c[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Sep 12 23:13:04 2023 +0700
+
+    update 9/12/2023
+
+[33mcommit 131f750424eded685d53820b087265a2fa674452[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Sep 9 21:54:41 2023 +0700
+
+    update feature edit,delete
+
+[33mcommit 1662631a6133c76221a0c6da2c3037910181658b[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Sep 9 21:53:03 2023 +0700
+
+    update feature edit,delete
+
+[33mcommit 377616d107f3c9ff5513f8d8ebe6a546d1eb2627[m
+Merge: 5197771 ce4a236
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Sep 9 18:52:02 2023 +0700
+
+    Merge branch 'main' of https://github.com/nguyenan22/NTAn-FS18
+
+[33mcommit 519777101771cb0222764a108cbd32e7bcec9bf8[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Sep 9 18:51:55 2023 +0700
+
+    update delete feature
+
+[33mcommit ce4a236d214ffbda0c9662a28769db92b91fd1ff[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Sep 9 18:44:35 2023 +0700
+
+    update delete all
+
+[33mcommit 880a2e061077e16d1bd3b9162be46fb845507590[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Thu Aug 31 22:04:56 2023 +0700
+
+    update
+
+[33mcommit 2aebfca93f7107d7bebe2aaf6e943d01dff87d02[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Aug 29 23:03:15 2023 +0700
+
+    update
+
+[33mcommit b2d47c5bde16f94be45c675e30a5d11d9dd4025e[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Aug 26 21:26:53 2023 +0700
+
+    update
+
+[33mcommit 7c5db716cf40ebb7e4430e5192685f6194aea00a[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Thu Aug 24 22:01:05 2023 +0700
+
+    update
+
+[33mcommit ebaefb1fe3914009a59adb716ea2270e674b0ad7[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Aug 22 21:40:49 2023 +0700
+
+    update
+
+[33mcommit 95486e107ab5fd71bc5a2ec842c435e522ef0272[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Mon Aug 21 01:21:28 2023 +0700
+
+    update
+
+[33mcommit b95e62c3a78bc8d7d659a46d29449c04bc85a127[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Mon Aug 21 00:56:15 2023 +0700
+
+    update
+
+[33mcommit 5e66ca8c7089f04c042529034131ff15d3ad7ad2[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Aug 19 21:36:30 2023 +0700
+
+    update 8/19/2023
+
+[33mcommit 1e0979f2221754849161bd8c9f98975fa0a967e2[m
+Merge: 4805bdc af57d54
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Aug 19 18:38:12 2023 +0700
+
+    Merge branch 'main' of https://github.com/nguyenan22/NTAn-FS18
+
+[33mcommit 4805bdc4bb0bec7423c7b73880634a647d304f6d[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Aug 19 18:37:40 2023 +0700
+
+    update exam 3
+
+[33mcommit af57d54b50123bbbf05e6842f6a78b865343b09e[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Thu Aug 17 21:51:43 2023 +0700
+
+    8/17/2023
+
+[33mcommit 2cea6f527a2c6112a2d99069bb8e91ab2a3b9719[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Aug 15 22:16:34 2023 +0700
+
+    8/15/2023
+
+[33mcommit 3fc6b64e643f3683ca33b4fa9e12556150690f4c[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Aug 12 21:54:41 2023 +0700
+
+    update
+
+[33mcommit 3f56d984ec922c04b78a683e678ce5a4b4177060[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Aug 12 12:36:12 2023 +0700
+
+    update
+
+[33mcommit ec1064e6bf2a6931d9574e248ac895ab776a6b33[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Aug 8 21:43:48 2023 +0700
+
+    update
+
+[33mcommit 2d3af3a69370371a57d2d669d84085c67e9e4a6c[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Aug 8 21:38:57 2023 +0700
+
+    update
+
+[33mcommit e2cf823c9065c5a97b4b09e4f0d7aad2146c8b9d[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Fri Aug 4 11:01:11 2023 +0700
+
+    update JS
+
+[33mcommit 295703566dfb097648255f6704ed938f2d97df85[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Thu Aug 3 18:44:08 2023 +0700
+
+    DOM JS
+
+[33mcommit 3585d77f6e1c3dca09a5a3458ec6e8d0a5987350[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Thu Aug 3 18:38:14 2023 +0700
+
+    update
+
+[33mcommit 67f1d0140a280a557fccff1924d68ffb92646be2[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Jul 29 22:47:01 2023 +0700
+
+    DOM JS
+
+[33mcommit 8b4ff11e8a8286094ea457d49fd1812bde10773b[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Thu Jul 27 22:27:18 2023 +0700
+
+    DOM JS
+
+[33mcommit 5c0336de0e7bcf83eeb8073f6b404512b1ca8a94[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Jul 25 21:36:34 2023 +0700
+
+    update JS/DOM
+
+[33mcommit f9631379262c9772a25419d0ae2b7653d767280d[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Thu Jul 20 22:42:05 2023 +0700
+
+    update Dom/JS
+
+[33mcommit 92b60bfbcba6ef6b634c9ee5d5cbee75fa300ece[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Jul 18 21:31:01 2023 +0700
+
+    update DOM,JS
+
+[33mcommit 0c7dac093ff0c8ef77bb3b954afd089f71710676[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Thu Jul 13 22:35:52 2023 +0700
+
+    update js
+
+[33mcommit a0da8edbed79667cd902936c9867713241fc95c0[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue Jul 11 21:31:57 2023 +0700
+
+    update JS
+
+[33mcommit 8bda39f082c3ed3bb7f364a0d594d710c8bf4124[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Jul 8 22:00:12 2023 +0700
+
+    update JS
+
+[33mcommit a7e6acee5e57f99192118b9d3ec718f9642ef5fc[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Jun 24 23:39:01 2023 +0700
+
+    sad
+
+[33mcommit 8e24405945e58819a8939e3a3d992b5503bf0c9f[m
+Merge: 66c1ded 9b0925f
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Jun 24 22:32:03 2023 +0700
+
+    Merge branch 'main' of https://github.com/nguyenan22/NTAn-FS18
+
+[33mcommit 9b0925fdf68a3e667ca7adf6530e55228308a304[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Jun 24 21:19:20 2023 +0700
+
+    test merge
+
+[33mcommit 0609355da21016aacb386bdeaec230f220519cf0[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Jun 24 21:06:22 2023 +0700
+
+    6/24/2023
+
+[33mcommit 66c1ded9f2e28bafcfce30b88bf11d1ffec587b4[m
+Merge: dff6af2 12a020d
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Jun 24 18:16:41 2023 +0700
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit dff6af2a87ca08f94f45067f45ade11545dcddd4[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Jun 24 18:14:38 2023 +0700
+
+    js
+
+[33mcommit 12a020d053ad72a149e771e992a051529dbabc2c[m
+Merge: 8915e6d 5b4420d
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Jun 24 18:09:55 2023 +0700
+
+    Merge branch 'main' of https://github.com/nguyenan22/NTAn-FS18
+
+[33mcommit 8915e6d5b4a19eb4d2b230e7b51d1d8889e8fdb8[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Jun 24 18:07:19 2023 +0700
+
+    js
+
+[33mcommit 5b4420d21012bbf46e60b427b51c4b320546b3a0[m
+Merge: f06b94e 188d45a
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Jun 24 17:55:07 2023 +0700
+
+    Merge branch 'main' of https://github.com/nguyenan22/NTAn-FS18
+
+[33mcommit f06b94ec26587d0cf1ebf9cef6e46c87cf89b0c4[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Jun 24 17:54:47 2023 +0700
+
+    Revert "study js"
+    
+    This reverts commit 7b6e946af7c34df61d5ec7f5b612fb38f332d44a.
+
+[33mcommit 7b6e946af7c34df61d5ec7f5b612fb38f332d44a[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Jun 24 17:48:49 2023 +0700
+
+    study js
+
+[33mcommit 188d45aecf4a8bb91de73611393e73d14a73e670[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Jun 17 21:55:44 2023 +0700
+
+    update w3school band
+
+[33mcommit cd012f088d471c509791eb0da292c92bdfe7e86c[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Jun 17 18:16:38 2023 +0700
+
+    update w3school band
+
+[33mcommit 206f42a93085752b1831f0f3e412692e7e71e813[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Jun 17 16:28:10 2023 +0700
+
+    update w3school band
+
+[33mcommit bc209526d0e4f5d93180457919d49423711808f9[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Jun 17 15:18:55 2023 +0700
+
+    update w3school band
+
+[33mcommit 6ece4b4f9633444c80748bf1c5e7ea3bae515393[m
+Merge: 28510a9 a7eebf0
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Jun 17 13:09:17 2023 +0700
+
+    Merge branch 'main' of https://github.com/nguyenan22/NTAn-FS18
+
+[33mcommit 28510a9b1ee66eb45f7b9e54973e660d0019a644[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Jun 17 13:07:52 2023 +0700
+
+    w3school
+
+[33mcommit 6bdc631c948b3f16112a799144bcc1ab4023641e[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Jun 17 12:58:02 2023 +0700
+
+    w3school band
+
+[33mcommit 671c98ea099b159835678b39931914b8d8da74dc[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Sat Jun 17 12:54:52 2023 +0700
+
+    w3school band
+
+[33mcommit a7eebf0cf3c6288d8356bc011153aeb9ab6fd9e0[m
+Author: nguyenan <nguyenan22021996@gmail.com>
+Date:   Sat Jun 10 12:12:42 2023 +0700
+
+    buoi 4
+
+[33mcommit 496ed54515f25e44fa22012bb75c73bac7e4e637[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Thu Jun 1 22:19:32 2023 +0700
+
+    buoi 3
+
+[33mcommit 5dc444ba0e3ef4d988e787c68e90124821e1ade7[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue May 30 22:21:20 2023 +0700
+
+    buoi 2
+
+[33mcommit ec906dd2150eb11d79dd5f729c0bb62f02919ab3[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue May 30 18:57:15 2023 +0700
+
+    buoi hoc 2
+
+[33mcommit 8cb429cffb00f34d1ad9cb96e20c8950a4a8888a[m
+Author: DESKTOP-PT0V3F7\Hi <nguyenan22021996@gmail.com>
+Date:   Tue May 30 09:13:59 2023 +0700
+
+    test git commit
+
+[33mcommit f947199424b9184b6bca0f050bd3f80c484adfea[m
+Author: FS18-NTAn <nguyenan22021996@gmail.com>
+Date:   Sat May 27 21:33:47 2023 +0700
+
+    basic html
+
+[33mcommit 82d5832833e1d9834c2b427d5ac34a170bc86297[m
+Author: FS18-NTAn <nguyenan22021996@gmail.com>
+Date:   Sat May 27 20:08:39 2023 +0700
+
+    'fix test'

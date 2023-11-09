@@ -24,6 +24,7 @@ const linkIndex= `/${systemConfig.prefixAdmin}/dashboard`
 const linkLogin= `/${systemConfig.prefixAdmin}/auth/login`
 const usersModels = require(__path_models + 'users')
 const md5=require('md5')
+const Swal = require('sweetalert2')
 // form
 router.get('/login', async function(req, res, next) {
   let item = {userName: '', password: ''}
@@ -57,7 +58,7 @@ router.get('/no-permission', async function(req, res, next) {
 router.get('/logout',function(req, res, next) {
   req.logout(function(err) {
     if (err) {return next(err)}
-    res.redirect(linkLogin)
+    res.send(true)
   })
   } 
 );
@@ -77,12 +78,10 @@ async function(req, res, next) {
   let item = Object.assign(req.body)
   console.log(item)
   if (!errors.isEmpty()) {
+    console.log(errors.errors)
       res.render(`${folderView}login`, {layout:layout, item, showError: errors.errors
       })
   } else {
-    // let message = (taskCurrent == 'add') ? notifyConfig.ADD_SUCCESS : notifyConfig.EDIT_SUCCESS
-    // ItemModels.saveItems(item,{task: taskCurrent}).then((result)=>{
-    //   req.flash('success', message , linkIndex)
     console.log('ok')
     passport.authenticate('local',{
       successRedirect: linkIndex,

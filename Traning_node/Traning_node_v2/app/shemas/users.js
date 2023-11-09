@@ -17,11 +17,11 @@ const schema = new mongoose.Schema({
     editorData:String,
     created: {
         user_name: String,
-        user_id: Number
+        user_id: String
       },
       modify: {
         user_name: String,
-        user_id: Number
+        user_id: String
       }
 },
 { timestamps: true });

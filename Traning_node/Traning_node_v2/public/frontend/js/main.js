@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     "use strict";
 
@@ -464,9 +465,9 @@ $(document).ready(function() {
     $(document).ready(function(){
         const items_per_page=2
         let page=2
+        const folderUpload='uploads/articles/'
         $('.primary-btn').click(function() {
             let html=''
-            const folderUpload='uploads/articles/'
             $.ajax({
                 url: `${window.location.href}/${page}/${items_per_page}`,
                 type: 'GET',
@@ -520,6 +521,88 @@ $(document).ready(function() {
                 }
             })
             
+        })
+        
+        let slugCategory=$('.slugCategory').text()
+        let dataLength=$('.dataLength').text()
+         
+        $('.next'). click(function () {
+            let currentIndex=(parseInt($('.currentIndexArticle').text()) < dataLength-1)? parseInt($('.currentIndexArticle').text())+1 : dataLength -1
+            $.ajax({
+                url: `http://localhost:3000/post/${slugCategory}/${currentIndex}`,
+                type: 'GET',
+                dataType: 'json', // added data type
+                success: function(res) {
+
+                    let xhtml=`<div class="overlay overlay-bg"></div>
+                                <img class="img-fluid" src="${folderUpload}${res[0].thumb}" alt="">`
+                    let contentHtml=`
+                    <ul class="tags mt-10">
+                    <li><a href="/category/${slugCategory}">
+                    ${$('#category-name').text()}
+                    </a></li>
+                </ul>
+                <a href="/post/${res[0].slug}">
+                    <h3>${res[0].title}</h3>
+                    <h3 class="currentIndexArticle" hidden>${currentIndex}</h3>
+                    <h3 class="slugCategory" hidden>${slugCategory}</h3>
+                    <h3 class="dataLength" hidden>${dataLength}</h3>
+                </a>
+                <ul class="meta pb-20">
+                    <li><a href="#"><span class="lnr lnr-user"></span>${res[0].created.user_name}  </a></li>
+                    <li><a href="#"><span class="lnr lnr-calendar-full"></span>${res[0].createdAt}</a></li>
+                    <li><a href="#"><span class="lnr lnr-bubble"></span>06 </a></li>
+                </ul>
+                <p>
+                    ${formatStringHelper(res[0].editorData)}
+                </p>
+                    `
+                    $('.feature-img-thumb').html(xhtml) 
+                    $('.content-post').html(contentHtml)
+                    history.pushState(null, null,`/post/${res[0].slug}`)
+                }
+        })
+        
+    })
+    
+        $('.prev'). click(function () {
+            let currentIndex=(parseInt($('.currentIndexArticle').text())>0)? parseInt($('.currentIndexArticle').text())-1 : 0
+            console.log(currentIndex)
+            $.ajax({
+                url: `http://localhost:3000/post/${slugCategory}/${currentIndex}`,
+                type: 'GET',
+                dataType: 'json', // added data type
+                success: function(res) {
+
+                    let xhtml=`<div class="overlay overlay-bg"></div>
+                                <img class="img-fluid" src="${folderUpload}${res[0].thumb}" alt="">`
+                    let contentHtml=`
+                    <ul class="tags mt-10">
+                    <li><a href="/category/${slugCategory}">
+                    ${$('#category-name').text()}
+                    </a></li>
+                </ul>
+                <a href="/post/${res[0].slug}">
+                    <h3>${res[0].title}</h3>
+                    <h3 class="currentIndexArticle" hidden>${currentIndex}</h3>
+                    <h3 class="slugCategory" hidden>${slugCategory}</h3>
+                    <h3 class="dataLength" hidden>${dataLength}</h3>
+                </a>
+                <ul class="meta pb-20">
+                    <li><a href="#"><span class="lnr lnr-user"></span>${res[0].created.user_name}  </a></li>
+                    <li><a href="#"><span class="lnr lnr-calendar-full"></span>${res[0].createdAt}</a></li>
+                    <li><a href="#"><span class="lnr lnr-bubble"></span>06 </a></li>
+                </ul>
+                <p>
+                    ${formatStringHelper(res[0].editorData)}
+                </p>
+                    `
+                    $('.feature-img-thumb').html(xhtml) 
+                    $('.content-post').html(contentHtml)
+                    history.pushState(null, null,`/post/${res[0].slug}`)
+
+                }
+        })
         })
     })
 

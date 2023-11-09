@@ -14,7 +14,7 @@ module.exports = {
         sort[params.sortFied] = params.sortType
       return  usersService
             .find(objWhere)
-            .select('fullName userName email status ordering group editorData created avatar')
+            .select('fullName userName email status ordering group editorData created avatar modify')
             .sort(sort)
             .limit(params.pagination.totalItemsPage)
             .skip((params.pagination.currentPage - 1)*params.pagination.totalItemsPage)
@@ -32,13 +32,13 @@ module.exports = {
       if(params.keyword !== ''){objWhere.name =  new RegExp(params.keyword, 'i')}
        return usersService.count(params.objWhere)
     },
-    changeStatus:(id,currentStatus, option = null) =>  {
+    changeStatus:(id,currentStatus, option = null,modify) =>  {
         let status = (currentStatus === 'active') ? 'inactive': 'active'
         let data = {
         //   status: status, 
           modify: {
-            user_name: 'admin',
-            user_id: 0
+            user_name: modify.userName,
+            user_id: modify.id
           }
         }
         if(option.task == 'update-one'){
@@ -52,12 +52,12 @@ module.exports = {
         }
     
      },
-     changeOrdering: async(cids,oderings, option = null) =>  {
+     changeOrdering: async(cids,oderings, option = null,modify) =>  {
         let data = {
             ordering: parseInt(oderings),
             modify: {
-            user_name: 'admin',
-            user_id: 0
+            user_name: modify.userName,
+            user_id: modify.id
             }
         }
 
@@ -97,13 +97,13 @@ module.exports = {
           }
           return usersService.deleteMany({_id:{$in:id}})
     }},
-    saveItems: (item, option = null)=>{
+    saveItems: (item, option = null,creater)=>{
       
         if(option.task == 'add'){
           delete item.id
             item.created = {
-                user_name: 'admin',
-                user_id: 0
+                user_name: creater.userName,
+                user_id: creater.id
               }
               item.group = {
                 id: item.group_id,
@@ -126,8 +126,8 @@ module.exports = {
                 name: item.group_name
               },
               modify: {
-                user_name: 'admin',
-                user_id: 0
+                user_name: creater.userName,
+                user_id: creater.id
               }
               })  
           }
