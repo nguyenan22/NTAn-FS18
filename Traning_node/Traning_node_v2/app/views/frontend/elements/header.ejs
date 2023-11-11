@@ -1,4 +1,7 @@
->
+<%
+    include ../helpers/showUsers
+ %>
+
 <header>
 
     <div class="header-top">
@@ -88,6 +91,7 @@
                     <li>
                         <a href="contact.html">Contact</a>
                     </li>
+                    <%- showUsers(userInfo) %>
                 </ul>
             </nav>
             <!-- #nav-menu-container -->

@@ -23,7 +23,7 @@ router.get('/',async function(req, res, next) {
 });
 
 router.get('/:slug',async function(req, res, next) {
-  let category =await categoriesService.find({status:'active'}).sort({ordering:'asc'})
+  // let category =await categoriesService.find({status:'active'}).sort({ordering:'asc'})
   let slugItem = paramsHelpers.getParam(req.params,'slug', '')
   let dataCategory = await categoriesService.find({slug:slugItem,status:'active'}).sort({ordering:'asc'})
   let dataArticle=await articlesService.find({status:'active',categoryId:dataCategory[0].id}).limit(2)
@@ -35,13 +35,12 @@ router.get('/:slug',async function(req, res, next) {
     top_post:false, slide_bar:false,
     dataArticle,
     dataCategory,
-    category,
     hidden
    });
 });
 
 router.get('/:slug/:page/:item_per_page',async function(req, res, next) {
-  let limitItem= paramsHelpers.getParam(req.params,'item_per_page', '')
+  // let limitItem= paramsHelpers.getParam(req.params,'item_per_page', '')
   let slugItem = paramsHelpers.getParam(req.params,'slug', '')
   let pageItem = paramsHelpers.getParam(req.params,'page', '')
   let dataCategory = await categoriesService.find({slug:slugItem,status:'active'}).sort({ordering:'asc'})
@@ -50,7 +49,6 @@ router.get('/:slug/:page/:item_per_page',async function(req, res, next) {
       limitItem=dataArticleSkip.length
   }
   let dataArticle=await articlesService.find({status:'active',categoryId:dataCategory[0].id}).skip(pageItem)
-  console.log(dataArticle)
   res.json(dataArticle)
 
 });

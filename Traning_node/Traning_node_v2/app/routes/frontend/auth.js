@@ -11,20 +11,27 @@ const colName = 'auth'
 // const paramsHelpers = require(__path_helpers +'getParam')
 const systemConfig = require(__path_configs +'system')
 const notifyConfig = require(__path_configs +'notify');
+const stringHelpers = require(__path_helpers +'string');
 const LocalStrategy = require('passport-local');
 const passport = require('passport');
 // let linkIndex = `/${systemConfig.prefixAdmin}/${colName}`  
-let pageTitle = `Items Manager`
-let pageTitleAdd = pageTitle + ' Add'
-let pageTitleEdit = pageTitle + ' Edit'
-const folderView = __path_views_backend +`pages/${colName}/`
-const folderNoPermission = __path_views_backend +`pages/${colName}/no-permission`
-let layout=__path_views_backend + 'login'
-const linkIndex= `/${systemConfig.prefixAdmin}/dashboard`
-const linkLogin= `/${systemConfig.prefixAdmin}/auth/login`
+const folderView = __path_views_frontend +`pages/${colName}/`
+const folderNoPermission = __path_views_frontend +`pages/${colName}/no-permission`
+let layout=__path_views_frontend + 'login'
+let layoutNoPermission=__path_views_frontend + 'no-permission'
+const linkIndex= stringHelpers.formatLink(`/${systemConfig.prefixFrontend}/`) 
+const linkLogin= stringHelpers.formatLink(`/${systemConfig.prefixFrontend}/auth/login`)
 const usersModels = require(__path_models + 'users')
 const md5=require('md5')
 const Swal = require('sweetalert2')
+
+
+
+//Middleware
+const getUserInfo=require(__path_middleware + 'getUsers')
+const getCategoriesInfo=require(__path_middleware + 'getCategories')
+const getRandomPostInfo=require(__path_middleware + 'getRandomPost')
+
 // form
 router.get('/login', async function(req, res, next) {
   let item = {userName: '', password: ''}
@@ -40,10 +47,11 @@ router.get('/login', async function(req, res, next) {
   // }
 );
 
-router.get('/no-permission', async function(req, res, next) {
+router.get('/no-permission',getUserInfo,getCategoriesInfo,getRandomPostInfo, async function(req, res, next) {
   let item = {userName: '', password: '',ordering:''}
   let showError = null
     res.render(`${folderNoPermission}`,{
+      layout:layoutNoPermission,
       pageTitle:'No Permission',
       item,showError});
   } 

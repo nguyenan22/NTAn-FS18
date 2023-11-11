@@ -253,7 +253,7 @@ $('.logout-btn').click(function () {
       }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: "http://localhost:3000/adminHHH/auth/logout",
+                url: "http://localhost:3000/auth/logout",
                 type: 'GET',
                 dataType: 'json', // added data type
                 success:   function(res) {
@@ -264,7 +264,7 @@ $('.logout-btn').click(function () {
                             icon: "success"
                           });
                           setTimeout(() => {
-                            window.location.pathname = "adminHHH/auth/login";
+                            window.location.pathname = "/auth/login";
                           }, 2000);
                           
                     }

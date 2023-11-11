@@ -8,6 +8,7 @@ module.exports = {
   folder_models: 'models',
   folder_shemas: 'shemas',
   folder_public:'public',
+  folder_middleware:'middleware',
   // folder_public_backend: 'public/backend',
   // folder_public_frontend: 'public/frontend',
   folder_uploads: 'uploads'

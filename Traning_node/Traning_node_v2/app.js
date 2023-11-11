@@ -22,6 +22,7 @@ global.__path_shemas = __path_app + pathConfigs.folder_shemas +'/';
 global.__path_models = __path_app + pathConfigs.folder_models +'/';
 global.__path_public = __base + pathConfigs.folder_public +'/';
 global.__path_uploads =__path_public +  pathConfigs.folder_uploads +'/';
+global.__path_middleware = __path_app +  pathConfigs.folder_middleware +'/';
 const categoriesService = require(__path_shemas + 'categories')
 const systemConfig = require(__path_configs +'system')
 const databaseConfig = require(__path_configs +'database')
@@ -50,7 +51,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie:{
-    maxAge:5*60*1000
+    maxAge:2*60*1000
   }
 }))
 require(__path_configs +'authencation')(passport)

@@ -7,11 +7,11 @@ module.exports= (passport) =>{
           console.log(user)
           let data = user[0]
           if (!data) {
-            console.log('Không tồn tại user này!')
+            console.log('Vui lòng nhập lại!')
           }
           else {
             if (md5(password) !== data.password) {
-              console.log('Không đúng mật khẩu')
+              console.log('Vui lòng nhập lại')
               return cb(null,false)
             }
             else {

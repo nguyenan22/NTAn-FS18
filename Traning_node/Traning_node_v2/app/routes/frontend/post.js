@@ -24,7 +24,6 @@ router.get('/',async function(req, res, next) {
 
 router.get('/:slug',async function(req, res, next) {
   console.log('test')
-  let category =await categoriesService.find({status:'active'}).sort({ordering:'asc'})
   let slugItem = paramsHelpers.getParam(req.params,'slug', '')
   let dataArticle=await articlesService.find({status:'active',slug:slugItem})
   let dataArticles=await articlesService.find({status:'active',categoryId:dataArticle[0].categoryId})
@@ -34,7 +33,7 @@ router.get('/:slug',async function(req, res, next) {
   res.render(`${folderView}index`, { 
     layout:layout,
     top_post:false, slide_bar:false,
-    dataArticle,dataCategory,category,dataRelavent,dataArticles
+    dataArticle,dataCategory,dataRelavent,dataArticles
    });
 });
 
