@@ -1,0 +1,29 @@
+.header-logo{
+    flex: 0 0 0 270px;
+    max-width: 270px;
+    text-align: center;
+}
+.img-logo{
+    height: 60px;
+    width: auto;
+}
+.header-search{
+    /* flex: 1; */
+    width: 50%;
+}
+.input-lh{
+    line-height: 38px;
+    border: none;
+    background-color: #EDEDED;
+    border-radius: 4px;
+    left: 100px;
+    padding-left: 10px;
+    
+}
+.btn-head{
+    width: 110px;
+    background-color: red;
+    border: none;
+    line-height: 28px;
+    right: 50px;
+}
