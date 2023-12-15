@@ -1,0 +1,74 @@
+<% include ./../../helpers/showCategory %>
+<% include ./../../helpers/formatString %>
+<%
+    const folderUpload='uploads/articles/'
+%>
+<div class="col-lg-8 post-list">
+							<!-- Start single-post Area -->
+							<div class="single-post-wrap">
+								<div class="feature-img-thumb relative">
+									<div class="overlay overlay-bg"></div>
+									<img class="img-fluid" src="<%= folderUpload + dataArticle[0].thumb %>" alt="">
+								</div>
+								<div class="content-wrap ">
+									<div class="content-post">
+										<ul class="tags mt-10">
+											<li><a href="/category/<%- showCategoryName(category,dataArticle[0].categoryId).slug%>">
+												<%- showCategoryName(dataCategory,dataArticle[0].categoryId).name  %>
+											</a></li>
+										</ul>
+										<a href="/post/<%= dataArticle[0].slug %>">
+											<h3><%= dataArticle[0].title %></h3>
+											<h3 class="currentIndexArticle" hidden><%= dataArticles.findIndex((data) => data.title==dataArticle[0].title)%></h3>
+											<h3 class="slugCategory" hidden><%- showCategoryName(dataCategory,dataArticle[0].categoryId).slug  %></h3>
+											<h3 class="dataLength" hidden><%= dataArticles.length  %></h3>
+										</a>
+										<ul class="meta pb-20">
+											<li><a href="#"><span class="lnr lnr-user"></span><%= dataArticle[0].created.user_name %></a></li>
+											<li><a href="#"><span class="lnr lnr-calendar-full"></span><%= moment(dataArticle[0].createdAt).format(systemConfig.formatTime) %></a></li>
+											<li><a href="#"><span class="lnr lnr-bubble"></span>06 </a></li>
+										</ul>
+										<p>
+											<%- formatStringHelper(dataArticle[0].editorData) %>
+										</p>
+									</div>
+
+								<div class="navigation-wrap justify-content-between d-flex">
+									<a class="prev" href="javascript:"><span class="lnr lnr-arrow-left"></span>Prev Post</a>
+									<a class="next" href="javascript:">Next Post<span class="lnr lnr-arrow-right"></span></a>
+								</div>
+							</div>
+							<div class="relavent-story-post-wrap mt-30">
+								<h4 class="title">Relavent Stories</h4>
+								<div class="relavent-story-list-wrap">
+									<% dataRelavent.forEach(data =>{ %>
+									<div class="single-relavent-post row align-items-center">
+										<div class="col-lg-5 post-left">
+											<div class="feature-img relative">
+												<div class="overlay overlay-bg"></div>
+												<img class="img-fluid" src="<%= folderUpload + data.thumb %>" alt="">
+											</div>
+											<ul class="tags">
+												<li><a href="/category/<%- showCategoryName(category,data.categoryId).slug%>"  id="category-name"><%- showCategoryName(dataCategory,data.categoryId).name  %></a></li>
+											</ul>
+										</div>
+										<div class="col-lg-7 post-right">
+											<a href="/post/<%= data.slug %>">
+												<h4><%= data.title  %></h4>
+											</a>
+											<ul class="meta">
+												<li><a href="#"><span class="lnr lnr-user"></span>Mark wiens</a></li>
+												<li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a></li>
+												<li><a href="#"><span class="lnr lnr-bubble"></span>06 Comments</a></li>
+											</ul>
+											<p class="excert">
+												<%- formatStringHelper(data.editorData,100) %>
+											</p>
+										</div>
+									</div>
+									<% }) %>
+								</div>
+							</div>
+						</div>
+						<!-- End single-post Area -->
+					</div>

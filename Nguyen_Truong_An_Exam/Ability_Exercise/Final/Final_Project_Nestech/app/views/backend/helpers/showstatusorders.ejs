@@ -1,0 +1,14 @@
+<% 
+let showStatusOrder = (currentStatus, listStatus) =>{
+    let html =''
+    for (const [key, value] of Object.entries(listStatus)) {
+        let isSelected = (key == currentStatus) ? 'selected="selected"' : ''
+        html += `<option ${isSelected} value="${key}" data-select2-id="14" >${value}</option>`
+    }
+    return html
+}
+
+let disabledSelect = (status) =>{
+    return (status > 2) ? 'disabled' : ''
+} 
+ %>

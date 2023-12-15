@@ -1,0 +1,8 @@
+<% 
+formatStringHelper = (content,count) => { 
+    if (content=='') return ''
+    formatString = content.replace( /(<[^>]+>)/igm , "")
+    if (formatString.length < count) return formatString
+    return content.replace( /(<[^>]+>)/igm , "").substring(0,count)+ '...'
+}%>
+

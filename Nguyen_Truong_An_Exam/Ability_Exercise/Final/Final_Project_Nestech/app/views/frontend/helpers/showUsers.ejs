@@ -1,0 +1,18 @@
+<%
+ showUsers=(userInfo) =>{
+    let xhtmlUser=''
+    let linkLogout = systemConfig.prefixFrontend + 'auth/logout'
+    let linkLogin = systemConfig.prefixFrontend + 'auth/login'
+    let linkDashboard = systemConfig.prefixAdmin + '/dashboard'
+    if(Object.keys(userInfo).length >0) {
+        xhtmlUser=`<li><a href="${linkLogout}">Logout</a></li>`
+        if (userInfo.userName==='admin') {
+            xhtmlUser=`<li><a href="${linkDashboard}">Admin Control</a></li>`   
+        }
+    } else {
+        xhtmlUser=`<li><a href="${linkLogin}">Login</a></li>`
+        }
+    return xhtmlUser
+    }
+    
+%>

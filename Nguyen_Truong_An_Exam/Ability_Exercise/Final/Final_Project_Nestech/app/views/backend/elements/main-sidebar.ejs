@@ -1,0 +1,113 @@
+<%  
+    let arrMenu = [
+        {parent: false, name: 'Dashboard', icon: 'fa-solid fa-gauge', link: `${systemConfig.prefixAdmin}/dashboard`},
+        {parent: true, child: [
+          { name: 'Product Category', icon: 'fa-solid fa-list-alt', link: `categories_product`},
+          { name: 'Product List', icon: 'fa-solid fa-user', link: `articles_product`},
+          { name: 'Product Discount', icon: 'fa-solid fa-user', link: `discounts_product`},
+        ], name: 'Manage Product', icon: 'fa-solid fa-users', link: `/${systemConfig.prefixAdmin}/`},
+        {parent: true, child: [
+          { name: 'Blog Category', icon: 'fa-solid fa-list-alt', link: `categories`},
+          { name: 'Blog Article', icon: 'fa-solid fa-user', link: `articles`},
+        ], name: 'Manage Blog', icon: 'fa-solid fa-users', link: `/${systemConfig.prefixAdmin}/`},
+        {parent: false, name: 'Order', icon: 'fa-solid fa-cart-shopping', link: `${systemConfig.prefixAdmin}/orders_product`},
+        {parent: false, name: 'Delivery Cost', icon: 'fa-solid fa-dollar-sign', link: `${systemConfig.prefixAdmin}/delivery_product`},
+        {parent: false, name: 'Coupon Code', icon: 'fa-solid fa-percent', link: `${systemConfig.prefixAdmin}/coupon_product`},
+        {parent: false, name: 'Slider', icon: 'fa-solid fa-image', link: `${systemConfig.prefixAdmin}/slider_product`},
+        {parent: false, name: 'Menu Bar', icon: 'fa-solid fa-align-justify', link: `${systemConfig.prefixAdmin}/menubar`},
+        {parent: false, name: 'Contact', icon: 'fa-solid fa-envelopes-bulk', link: `${systemConfig.prefixAdmin}/contact`},
+        {parent: false, name: 'Newsletter', icon: 'fa-solid fa-envelopes-bulk', link: `${systemConfig.prefixAdmin}/newsletter`},
+        {parent: false, name: 'Setting', icon: 'fa-solid fa-images', link: `${systemConfig.prefixAdmin}/setting`},
+        {parent: true, child: [
+            { name: 'Group', icon: 'fa-solid fa-user-group', link: `groups`},
+            { name: 'User', icon: 'fa-solid fa-user', link: `users`},
+        ], name: 'Manage User', icon: 'fa-solid fa-users', link: `/${systemConfig.prefixAdmin}/`},
+    ];
+    
+    let xhtmlMenu = '';
+    arrMenu.forEach(menu => {
+      if(menu.parent == false){
+        xhtmlMenu += `<li class="nav-item">
+                          <a href="/${menu.link}" class="nav-link">
+                            <i class="${menu.icon}" style="margin-right: 10px;"></i>
+                            <p>
+                              ${menu.name}
+                            </p>
+                          </a>
+                     </li>`;
+      } else if(menu.parent == true){
+        let childHtml = ''
+        menu.child.forEach(function(childrenEntry){
+          childHtml+= `
+                      <li class="nav-item">
+                        <a href="${menu.link}${childrenEntry.link}" class="nav-link">
+                          <i class="${childrenEntry.icon}"></i>
+                          <p>${childrenEntry.name}</p>
+                        </a>
+                      </li>
+                      `
+        })
+        xhtmlMenu+=`
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">
+                        <i class="nav-icon ${menu.icon}"></i>
+                        <p>
+                          ${menu.name}
+                          <i class="fas fa-angle-left right"></i>
+                        </p>
+                      </a>
+                      <ul class="nav nav-treeview" style="display: none;">
+                            ${childHtml}
+                      </ul>
+                    </li>
+                `
+      }
+    });
+
+    const linkPhoToUser = '/uploads/users/'
+%>
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/admin" class="brand-link">
+      <img src="/uploads/admin/pngtree-restaurant-logo-design-vector-template-png-image_5441058.jpg" alt="Admin Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Restaurant Admin</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="<%= linkPhoToUser%>c3RIsVVNci.jpg" class="img-circle elevation-2" alt="User Image" onerror="this.onerror=null;this.src='<%= linkPhoToUser %>avatar-no.png'">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block"><%= userInfo.name %></a>
+          <a href="/dang-xuat"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <!-- <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+               <%- xhtmlMenu %>
+
+
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

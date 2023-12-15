@@ -1,0 +1,10 @@
+<% 
+showCategoryName = (category,id) => {
+        let result =category.find(x => x.id===id)
+        if (result !== undefined) {
+        return {name:result.name, id:result.id, slug:result.slug}}
+         else {
+        return {name:'Lổi hiển thị', id:'index'}
+    }
+}
+%>

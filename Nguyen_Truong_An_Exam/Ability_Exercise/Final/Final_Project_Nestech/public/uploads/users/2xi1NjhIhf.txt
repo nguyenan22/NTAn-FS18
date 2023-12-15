@@ -1,0 +1,69 @@
+Tìm hiểu các phương thức trong API
+	Cài đặt và chuẩn bị môi trường 
+		1. Setup: https://youtu.be/XdFAIvebKnU
+		2. Set header: https://youtu.be/tT1Sw7Qmak4
+		3. Set Status Code: https://youtu.be/XQjFKuOedRo
+	Thực hành các phương thức 
+		1. Practice - Get: https://youtu.be/sGmX-FOggNg
+		2. Practice - Post: https://youtu.be/6G5TxDqOLuc
+		3. Practice - Put: https://youtu.be/fEMIi19ENbw
+		4. Practice - Delete: https://youtu.be/oGGOHpbLEuE
+Thực hành API với mô hình MVC 
+	Hướng dẫn MongoDB Compass: https://youtu.be/Qi-kWd9voLE
+	Thực hành các phương thức với MVC
+		1. Router Items
+		2. Method Items
+		3. Build Model
+		4. Add Items
+		5. Get Items
+		6. Set Try Catch
+		7. Build Colections
+		8. Delete Item
+		9. Edit Item
+Xây dựng project với API
+	Xây dựng giao diện
+	Gọi API lấy dữ liệu từ Backend
+		1. Get API show Items
+		2. Use Cors
+	Xây dựng các chức năng cơ bản
+		1. Show Items
+		2. Toggle Form
+		3. Add Item
+		4. Delete Item
+		5. Edit Item
+	Xây dựng chức năng tìm kiếm và sắp xếp
+		1. Test sort
+		2. Test search key
+		3. Set btnClose
+		4. Sort Items
+		5. Search Items
+		6. Tối ưu
+Tối ưu code với các middleware
+	Use Id mongoDB
+	Áp dụng các middleware
+		1. Use Mogan And Color
+		2. Use AsyncHandle
+		3. Create ErrorHandle
+Khởi động tìm kiếm thông tin nhà hàng với API
+	Import Data 
+	Xây dựng Validation dữ liệu
+		1. Validation 1
+		2. Validation 2
+		3. Tối ưu
+	Xây dựng các chức năng cơ bản
+		1. Fillter
+		2. Select
+		3. Sort
+		4. Pagination
+Liên kết dữ liệu và chức năng đánh giá
+	Xây dựng careers và thêm dữ liệu
+		1. Setup Careers
+		2. Import Data
+	Tạo Colection cho Careers
+	Kiểm tra dữ liệu khi rỗng
+	Xây dựng chức năng đánh giá
+		1. Build like
+		2. Build dislike
+		3. Option
+Liên kết giữa các bảng dữ liệu
+		

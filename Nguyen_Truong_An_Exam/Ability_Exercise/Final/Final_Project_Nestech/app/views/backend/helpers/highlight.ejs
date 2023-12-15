@@ -1,0 +1,11 @@
+<% 
+    highlightHelper = (name, search) => {
+        console.log(name,search)
+        if(search.length > 0) return name.replace(new RegExp(search, "ig"), (searchResult) => {
+            return `<span class='highlight'>${searchResult}></span>`
+        });
+
+        return name;
+    }
+%>
+

@@ -1,0 +1,17 @@
+<%
+  showThumbMulti = (id, array, linkThumb) => {
+    if(!id || !array) return
+    let html=''
+    array.forEach(value=>{
+        let name = value.split(".")[0]
+        html += `
+        <div class="ui-state-default col-4 mx-4 my-4 position-relative" data-name="${value}" style="position: relative; left: 0px; top: 0px;">
+          <img class="imgPreviewMulti" data-name="${value}" src="${linkThumb + value}">
+          <div class="hide"><a href="javascript:deletePhotoDiv('${value}','${id}')"><i class="fa-solid fa-trash text-danger"></i></a></div>
+         </div>
+        `
+    })
+    return html
+  }
+%>
+

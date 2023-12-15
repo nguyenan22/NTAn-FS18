@@ -1,0 +1,17 @@
+module.exports = {
+    USER_NAME: 'nguyenan22021996',
+    PASSWORD: '2411996An',
+    DATABASE_NAME:'cluster0.ubyknfq.mongodb.net' + '/' + 'project',
+    COL_ITEMS: 'objectTable',
+    COL_GROUPS: 'groups',
+    COL_USERS: 'users',
+    COL_CATEGORIES: 'categories',
+    COL_CATEGORIES_PRODUCTION: 'categories_products',
+    COL_ARTICLES: 'articles',
+    COL_ARTICLES_PRODUCTION: 'articles_products',
+    COL_DISCOUNT_PRODUCTION: 'discounts_products',
+    COL_ORDER_PRODUCTION: 'orders_products',
+    COL_DELIVERY_PRODUCTION: 'delivery_products',
+    COL_COUPON_PRODUCTION: 'coupon_products',
+    COL_SLIDER_PRODUCTION: 'slider_products',
+}
