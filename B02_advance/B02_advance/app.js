@@ -1,15 +1,17 @@
 var createError   = require('http-errors');
 var express       = require('express');
-
 const mongoose = require('mongoose');
 const cors=require('cors')
 var bodyParser = require('body-parser')
 var app = express();
 var morgan = require('morgan')
 var colors = require('colors');
+var validator=require('express-validator')
 app.use(express.json());
 app.use(cors())
 app.use(morgan('tiny'))
+app.use(validator())
+
 const pathConfig        = require('./path');
 global.__base           = __dirname + '/';
 global.__path_app       = __base + pathConfig.folder_app + '/';
@@ -18,6 +20,7 @@ global.__path_schemas   = __path_app + pathConfig.folder_schemas + '/';
 global.__path_models    = __path_app + pathConfig.folder_models + '/';
 global.__path_routers   = __path_app + pathConfig.folder_routers + '/';
 global.__path_configs   = __path_app + pathConfig.folder_configs + '/';
+global.__path_validates   = __path_app + pathConfig.folder_validates + '/';
 global.__path_middlewares   = __path_app + pathConfig.folder_middlewares + '/';
 
 

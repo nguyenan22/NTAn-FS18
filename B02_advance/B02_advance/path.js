@@ -7,4 +7,6 @@ module.exports = {
     folder_schemas   : 'schemas',
     folder_validates : 'validates',
     folder_middlewares : 'middlewares',
+    folder_validates : 'validates',
+
 };

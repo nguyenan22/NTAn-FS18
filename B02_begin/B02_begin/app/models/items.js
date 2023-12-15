@@ -4,29 +4,39 @@ const MainModel = require(__path_schemas + 'items.schema');
 
 
 module.exports = {
-    create: (item) =>{
-        return new MainModel(item).save()
+    create: async (item) =>{
+         await new MainModel(item).save()
+         return await MainModel.find({}).select(' task level')
     },
-    listItem: (params,option) =>{
+    listItem: async(params,option) =>{
+        let sort={}
+        let objWhere={}
+        if(params.keyword!=='' && params.sortField) objWhere[params.sortField]=new RegExp(params.keyword,'i')
+        if(params.sortField) sort[params.sortField]=params.sortType || 'asc'
         if(option.task=='all'){
-            return MainModel
-                            .find({})
-                            .select('id name status')
+            return await MainModel
+                            .find(objWhere)
+                            .sort(sort)
+                            .select('task level')
         }
         else {
-            return MainModel
-                            .find({id:params.id})
-                            .select('id name status')
+            return await MainModel
+                            .findById(params.id)
+                            .select('task level')
         }
     },
-    deleteItem: (params,option) =>{
+    deleteItem: async(params,option) =>{
         if (option.task=='one') {
-            return MainModel.deleteOne({id:params.id})
+           await MainModel.deleteOne({id:params.id})
+            return await MainModel.find({}).select('task level')
         }
     },
-    editItem: (params,option) =>{
+    editItem: async (params,option) =>{
         if(option.task==='edit'){
-            return MainModel.updateOne({id:params.id},params.body)
+             await MainModel.updateOne({id:params.id},params.body)
+             return await MainModel
+             .find({})
+             .select('task level') 
         }
     }
 }
